@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Admin · Punto Alto</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="admin.css"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ─── LOGIN ─────────────────────────────────────────── -->
+<section class="login" id="loginView">
+  <div class="login__card">
+    <div class="login__logo" aria-hidden="true">
+      <svg viewBox="0 0 60 60" fill="none">
+        <path d="M8 52 L30 10 L52 52" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="30" cy="10" r="5" fill="#FF6A3D"/>
+      </svg>
+    </div>
+    <h1 class="login__title">Punto Alto <span>Admin</span></h1>
+    <p class="login__sub">Acceso restringido — sólo administradores.</p>
+
+    <form class="login__form" id="loginForm" novalidate>
+      <label class="field">
+        <span>Email</span>
+        <input type="email" id="loginEmail" autocomplete="email" required/>
+      </label>
+      <label class="field">
+        <span>Contraseña</span>
+        <input type="password" id="loginPassword" autocomplete="current-password" required/>
+      </label>
+      <button type="submit" class="btn btn--primary" id="loginSubmit">Entrar</button>
+      <a href="#" id="forgotLink" class="forgot">¿Olvidaste tu contraseña?</a>
+      <p class="login__error" id="loginError" role="alert"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ─── DASHBOARD ─────────────────────────────────────── -->
+<section class="dash" id="dashView" hidden>
+
+  <!-- Topbar -->
+  <header class="dash__top">
+    <div class="dash__brand">
+      <svg viewBox="0 0 60 60" fill="none" width="28" height="28">
+        <path d="M8 52 L30 10 L52 52" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="30" cy="10" r="5" fill="#FF6A3D"/>
+      </svg>
+      <strong>Punto Alto</strong><span>/ Admin</span>
+    </div>
+    <div class="dash__user">
+      <span id="userEmail">—</span>
+      <button class="btn btn--ghost btn--sm" id="logoutBtn">Salir</button>
+    </div>
+  </header>
+
+  <main class="dash__main">
+
+    <!-- Period filter -->
+    <section class="period" aria-label="Filtro de período">
+      <div class="period__filter" role="tablist">
+        <button class="period__btn" data-period="7"  role="tab" aria-selected="false">7d</button>
+        <button class="period__btn is-active" data-period="30" role="tab" aria-selected="true">30d</button>
+        <button class="period__btn" data-period="90" role="tab" aria-selected="false">90d</button>
+      </div>
+      <span class="period__hint" id="periodHint">comparado con los 30 días previos</span>
+    </section>
+
+    <!-- KPI cards -->
+    <section class="kpis" aria-label="Indicadores clave">
+      <article class="kpi">
+        <p class="kpi__label">Visitas</p>
+        <strong class="kpi__value" id="kpiVisits">0</strong>
+        <span class="kpi__delta" id="kpiVisitsDelta">—</span>
+      </article>
+      <article class="kpi">
+        <p class="kpi__label">Leads</p>
+        <strong class="kpi__value" id="kpiLeads">0</strong>
+        <span class="kpi__delta" id="kpiLeadsDelta">—</span>
+      </article>
+      <article class="kpi">
+        <p class="kpi__label">Conv. Visita → Lead</p>
+        <strong class="kpi__value" id="kpiVtoL">—</strong>
+        <span class="kpi__delta" id="kpiVtoLDelta">—</span>
+      </article>
+      <article class="kpi">
+        <p class="kpi__label">Conv. Form</p>
+        <strong class="kpi__value" id="kpiConv">—</strong>
+        <span class="kpi__delta" id="kpiConvDelta">—</span>
+      </article>
+      <article class="kpi">
+        <p class="kpi__label">Envío WhatsApp</p>
+        <strong class="kpi__value" id="kpiWa">—</strong>
+        <span class="kpi__delta" id="kpiWaDelta">—</span>
+      </article>
+      <article class="kpi">
+        <p class="kpi__label">Promedio diario</p>
+        <strong class="kpi__value" id="kpiAvg">0</strong>
+        <span class="kpi__delta" id="kpiAvgDelta">—</span>
+      </article>
+    </section>
+
+    <!-- Unified trends chart -->
+    <section class="panel panel--chart" aria-label="Tendencias">
+      <header class="panel__head">
+        <h2>Tendencias</h2>
+        <span class="panel__sub" id="trendSub">visitas, aperturas y leads — últimos 30 días</span>
+      </header>
+      <div class="panel__body">
+        <canvas id="chartTrends"></canvas>
+      </div>
+    </section>
+
+    <!-- Funnel de conversión -->
+    <section class="panel" aria-label="Funnel de conversión">
+      <header class="panel__head">
+        <h2>Funnel de conversión</h2>
+        <span class="panel__sub">del click al lead</span>
+      </header>
+      <div class="panel__body funnel" id="funnel">
+        <!-- rendered dynamically -->
+        <p class="funnel__empty">Sin sesiones registradas aún.</p>
+      </div>
+    </section>
+
+    <!-- Breakdown donuts -->
+    <section class="breakdowns">
+      <article class="panel">
+        <header class="panel__head">
+          <h3>Por desafío</h3>
+        </header>
+        <div class="panel__body panel__body--donut">
+          <canvas id="chartChallenge"></canvas>
+        </div>
+      </article>
+      <article class="panel">
+        <header class="panel__head">
+          <h3>Por presupuesto</h3>
+        </header>
+        <div class="panel__body panel__body--donut">
+          <canvas id="chartBudget"></canvas>
+        </div>
+      </article>
+      <article class="panel">
+        <header class="panel__head">
+          <h3>Por origen</h3>
+        </header>
+        <div class="panel__body panel__body--donut">
+          <canvas id="chartSource"></canvas>
+        </div>
+      </article>
+      <article class="panel">
+        <header class="panel__head">
+          <h3>Por CTA</h3>
+          <span class="panel__sub">de dónde abrió</span>
+        </header>
+        <div class="panel__body panel__body--donut">
+          <canvas id="chartCta"></canvas>
+        </div>
+      </article>
+      <article class="panel">
+        <header class="panel__head">
+          <h3>Por UTM source</h3>
+          <span class="panel__sub">origen de tráfico</span>
+        </header>
+        <div class="panel__body panel__body--donut">
+          <canvas id="chartUtm"></canvas>
+        </div>
+      </article>
+    </section>
+
+    <!-- Leads table -->
+    <section class="panel" aria-label="Tabla de leads">
+      <header class="panel__head panel__head--with-actions">
+        <h2>Leads</h2>
+        <div class="toolbar">
+          <input type="search" class="input input--search" id="searchInput" placeholder="Buscar nombre, teléfono, empresa…"/>
+          <select class="input" id="filterSource">
+            <option value="">Todos los orígenes</option>
+            <option value="landing-puntoalto">Landing principal</option>
+            <option value="landing-contadores">Contadores</option>
+          </select>
+          <select class="input" id="filterStatus">
+            <option value="">Todos los estados</option>
+            <option value="new">Nuevo</option>
+            <option value="contacted">Contactado</option>
+            <option value="qualified">Calificado</option>
+            <option value="converted">Convertido</option>
+            <option value="lost">Perdido</option>
+          </select>
+          <button class="btn btn--ghost btn--sm" id="exportBtn" title="Exportar CSV de la vista actual">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            CSV
+          </button>
+        </div>
+      </header>
+      <div class="panel__body panel__body--table">
+        <table class="leads" id="leadsTable">
+          <thead>
+            <tr>
+              <th data-sort="created_at">Fecha</th>
+              <th data-sort="name">Nombre</th>
+              <th data-sort="phone">Teléfono</th>
+              <th data-sort="company">Empresa</th>
+              <th data-sort="source">Origen</th>
+              <th>WA</th>
+              <th data-sort="status">Estado</th>
+            </tr>
+          </thead>
+          <tbody id="leadsBody">
+            <tr class="leads__empty"><td colspan="7">Cargando…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <footer class="panel__foot" id="leadsCount">—</footer>
+    </section>
+
+  </main>
+</section>
+
+<!-- ─── DETAIL DRAWER ─────────────────────────────────── -->
+<aside class="drawer" id="drawer" aria-hidden="true" hidden>
+  <div class="drawer__scrim" id="drawerScrim"></div>
+  <div class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <header class="drawer__head">
+      <h2 id="drawerTitle">Lead</h2>
+      <button class="drawer__close" id="drawerClose" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </header>
+    <div class="drawer__body" id="drawerBody">
+      <!-- populated dynamically -->
+    </div>
+  </div>
+</aside>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script type="module" src="admin.js"></script>
+</body>
+</html>

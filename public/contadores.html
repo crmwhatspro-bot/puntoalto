@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Punto Alto para Contadores — Automatización contable para Paraguay</title>
+<meta name="description" content="Portal inteligente para contadores paraguayos. Factura legal automática, consulta de RUC, conciliación bancaria con IA y noticias tributarias del DNIT en tiempo real."/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link rel="preload" as="style"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+</noscript>
+
+<link rel="stylesheet" href="contadores.css"/>
+
+<script type="module" src="firebase-init.js"></script>
+<script defer src="contadores.js"></script>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─────────────────────────────────────────── -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="logo" aria-label="Punto Alto">
+      <svg class="logo__mark" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+        <path d="M8 52 L30 10 L52 52" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="30" cy="10" r="5" fill="#FF6A3D"/>
+      </svg>
+      <span class="logo__text">
+        <strong>PUNTO ALTO</strong>
+        <small>PARA CONTADORES</small>
+      </span>
+    </a>
+
+    <nav class="nav__links">
+      <a href="#servicios">Servicios</a>
+      <a href="#factura">Factura Legal</a>
+      <a href="#ruc">Consulta RUC</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#precios">Precios</a>
+    </nav>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">
+      <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="4"/>
+        <line x1="12" y1="2"  x2="12" y2="4"/>
+        <line x1="12" y1="20" x2="12" y2="22"/>
+        <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/>
+        <line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/>
+        <line x1="2"  y1="12" x2="4"  y2="12"/>
+        <line x1="20" y1="12" x2="22" y2="12"/>
+        <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/>
+        <line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>
+      </svg>
+      <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+
+    <button class="btn btn--primary nav__cta" data-open-form data-open-form-source="navbar">
+      Consultoría gratis <span aria-hidden="true">→</span>
+    </button>
+
+    <button class="nav__burger" id="navBurger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="nav-mobile" id="navMobile" hidden>
+  <nav class="nav-mobile__links">
+    <a href="#servicios">Servicios</a>
+    <a href="#factura">Factura Legal</a>
+    <a href="#ruc">Consulta RUC</a>
+    <a href="#noticias">Noticias</a>
+    <a href="#precios">Precios</a>
+    <button class="btn btn--primary" data-open-form data-open-form-source="navbar-mobile">Consultoría gratis →</button>
+  </nav>
+</div>
+
+<main id="top">
+
+<!-- ─── HERO ──────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__grid"></div>
+    <div class="hero__glow"></div>
+    <svg class="hero__chevron" viewBox="0 0 60 60" aria-hidden="true">
+      <path d="M8 52 L30 10 L52 52" stroke="#1B5FA8" stroke-width="3" fill="none" stroke-linejoin="round"/>
+      <circle cx="30" cy="10" r="5" fill="#FF6A3D"/>
+    </svg>
+  </div>
+
+  <div class="hero__content">
+    <div class="hero__text">
+      <span class="pill js-reveal">
+        <span class="pill__dot"></span> Automatización contable &middot; Paraguay
+      </span>
+
+      <h1 class="hero__title">
+        <span class="js-line">Tu estudio contable,</span>
+        <span class="js-line"><em>automatizado con IA.</em></span>
+      </h1>
+
+      <p class="hero__sub js-reveal">
+        Factura legal en segundos. Consulta de RUC instantánea. Conciliación bancaria automática.
+        Noticias tributarias del DNIT actualizadas por IA — todo en un solo portal para contadores paraguayos.
+      </p>
+
+      <div class="hero__ctas js-reveal">
+        <button class="btn btn--primary btn--lg" data-open-form data-open-form-source="hero">
+          Quiero automatizar mi estudio <span aria-hidden="true">→</span>
+        </button>
+        <a href="#factura" class="btn btn--ghost btn--lg">Ver demo en vivo</a>
+      </div>
+    </div>
+
+    <!-- Terminal animation -->
+    <div class="terminal js-reveal" aria-hidden="true">
+      <div class="terminal__chrome">
+        <span class="terminal__dot"></span>
+        <span class="terminal__dot"></span>
+        <span class="terminal__dot"></span>
+        <span class="terminal__title">punto-alto-contadores</span>
+      </div>
+      <div class="terminal__body" id="terminalBody">
+        <div class="terminal__line">
+          <span class="t-prompt">$</span>
+          <span class="t-cmd" id="termCmd"></span>
+          <span class="t-cursor">|</span>
+        </div>
+        <div class="terminal__output" id="termOutput"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS ─────────────────────────────────────────── -->
+<section class="stats">
+  <div class="stats__inner">
+    <div class="stat js-reveal">
+      <strong data-counter="500" data-suffix="+">0</strong>
+      <span>Facturas generadas por día</span>
+    </div>
+    <div class="stat js-reveal">
+      <strong data-counter="3" data-suffix="seg">0</strong>
+      <span>Consulta de RUC</span>
+    </div>
+    <div class="stat js-reveal">
+      <strong data-counter="99" data-suffix=".8%">0</strong>
+      <span>Precisión en conciliación</span>
+    </div>
+    <div class="stat js-reveal">
+      <strong data-counter="24" data-suffix="/7">0</strong>
+      <span>Monitoreo de noticias DNIT</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICIOS ─────────────────────────────────────── -->
+<section class="section" id="servicios">
+  <div class="section__head">
+    <span class="eyebrow js-reveal">Lo que automatizamos</span>
+    <h2 class="js-reveal">Todo lo que hacés manual, nosotros lo automatizamos.</h2>
+    <p class="js-reveal">Herramientas de nivel global adaptadas a la realidad tributaria paraguaya. SET, DNIT, SIFEN — todo integrado.</p>
+  </div>
+
+  <div class="grid grid--3">
+    <article class="card js-reveal">
+      <div class="card__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+        </svg>
+      </div>
+      <h3>Factura Legal Electrónica</h3>
+      <p>Generación automática de facturas legales vía SIFEN/e-Kuatia. Timbrado, XML firmado digitalmente y envío al DNIT en segundos.</p>
+      <span class="card__tag card__tag--coming">Próximamente</span>
+    </article>
+
+    <article class="card js-reveal">
+      <div class="card__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>
+          <path d="M8 11h6M11 8v6"/>
+        </svg>
+      </div>
+      <h3>Consulta de RUC Instantánea</h3>
+      <p>Buscá cualquier contribuyente por RUC, razón social o nombre. Datos actualizados directo del registro oficial del DNIT.</p>
+      <span class="card__tag card__tag--live">En vivo &middot; TuRuc API</span>
+    </article>
+
+    <article class="card js-reveal">
+      <div class="card__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-10"/>
+        </svg>
+      </div>
+      <h3>Conciliación Bancaria con IA</h3>
+      <p>Importá extractos bancarios y dejá que la IA cruce automáticamente con tus registros contables. Detecta diferencias al instante.</p>
+      <span class="card__tag card__tag--coming">Próximamente</span>
+    </article>
+
+    <article class="card js-reveal">
+      <div class="card__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      </div>
+      <h3>Noticias Tributarias en Tiempo Real</h3>
+      <p>IA que monitorea DNIT, SET, Hacienda y BCP 24/7. Recibí alertas de resoluciones, plazos y cambios que afectan a tus clientes.</p>
+      <span class="card__tag card__tag--live">Curado &middot; Verificado</span>
+    </article>
+
+    <article class="card js-reveal">
+      <div class="card__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/>
+        </svg>
+      </div>
+      <h3>Declaraciones Juradas</h3>
+      <p>Generación asistida de DJ informativas y de liquidación. Form 500, IVA, IRE, IRP — pre-llenado automático desde tus datos.</p>
+      <span class="card__tag card__tag--coming">Próximamente</span>
+    </article>
+
+    <article class="card js-reveal">
+      <div class="card__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <h3>Cumplimiento Automático</h3>
+      <p>Calendario fiscal inteligente con alertas automáticas. Nunca más pierdas un vencimiento del DNIT o del SET.</p>
+      <span class="card__tag card__tag--coming">Próximamente</span>
+    </article>
+  </div>
+</section>
+
+<!-- ─── FACTURA LEGAL DEMO ────────────────────────────── -->
+<section class="section section--dark" id="factura">
+  <div class="section__head">
+    <span class="badge-coming js-reveal">Próximamente</span>
+    <span class="eyebrow js-reveal">Vista previa</span>
+    <h2 class="js-reveal">Generá una factura legal en <em>segundos.</em></h2>
+    <p class="js-reveal">Así va a funcionar la generación de factura electrónica con timbrado SIFEN. Requiere integración con certificado digital y homologación del DNIT — estamos en proceso.</p>
+  </div>
+
+  <div class="demo-factura js-reveal">
+    <div class="demo-factura__form">
+      <h3>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <path d="M14 2v6h6"/>
+        </svg>
+        Datos de la factura
+      </h3>
+
+      <div class="demo-field">
+        <label for="fac-ruc">RUC del cliente</label>
+        <input type="text" id="fac-ruc" class="demo-input" placeholder="80012345-6" value="80012345-6"/>
+      </div>
+
+      <div class="demo-field">
+        <label for="fac-nombre">Razón social</label>
+        <input type="text" id="fac-nombre" class="demo-input" placeholder="Empresa Ejemplo S.A." value="Empresa Ejemplo S.A."/>
+      </div>
+
+      <div class="demo-row">
+        <div class="demo-field">
+          <label for="fac-concepto">Concepto</label>
+          <input type="text" id="fac-concepto" class="demo-input" placeholder="Servicio contable mensual" value="Servicio contable mensual"/>
+        </div>
+        <div class="demo-field">
+          <label for="fac-monto">Monto (Gs.)</label>
+          <input type="text" id="fac-monto" class="demo-input" placeholder="3.500.000" value="3.500.000"/>
+        </div>
+      </div>
+
+      <div class="demo-row">
+        <div class="demo-field">
+          <label for="fac-iva">Tasa IVA</label>
+          <select id="fac-iva" class="demo-select">
+            <option value="10" selected>10%</option>
+            <option value="5">5%</option>
+            <option value="0">Exenta</option>
+          </select>
+        </div>
+        <div class="demo-field">
+          <label for="fac-condicion">Condición</label>
+          <select id="fac-condicion" class="demo-select">
+            <option value="contado" selected>Contado</option>
+            <option value="credito">Crédito</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn btn--primary" id="btnGenFactura">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+          <path d="M13 2v7h7"/>
+        </svg>
+        Simular generación (demo)
+      </button>
+      <small class="demo-disclaimer">Esta es una simulación visual. La integración con SIFEN requiere certificado digital y homologación del DNIT.</small>
+    </div>
+
+    <div class="demo-factura__preview" id="facturaPreview">
+      <div class="factura-doc">
+        <div class="factura-doc__header">
+          <div class="factura-doc__logo">
+            <svg viewBox="0 0 60 60" width="32" height="32" fill="none">
+              <path d="M8 52 L30 10 L52 52" stroke="#1B5FA8" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+              <circle cx="30" cy="10" r="5" fill="#FF6A3D"/>
+            </svg>
+            <div>
+              <strong>Estudio Contable Demo</strong>
+              <small>RUC: 80098765-4</small>
+            </div>
+          </div>
+          <div class="factura-doc__stamp">
+            <span class="factura-doc__type">FACTURA ELECTRÓNICA</span>
+            <span class="factura-doc__timbrado" id="facTimbrado">Timbrado: 15847293</span>
+            <span class="factura-doc__numero" id="facNumero">001-001-0000147</span>
+          </div>
+        </div>
+
+        <div class="factura-doc__info">
+          <div class="factura-doc__row">
+            <span>Fecha:</span>
+            <strong id="facFecha">10/04/2026</strong>
+          </div>
+          <div class="factura-doc__row">
+            <span>RUC Cliente:</span>
+            <strong id="facClienteRuc">80012345-6</strong>
+          </div>
+          <div class="factura-doc__row">
+            <span>Razón Social:</span>
+            <strong id="facClienteNombre">Empresa Ejemplo S.A.</strong>
+          </div>
+          <div class="factura-doc__row">
+            <span>Condición:</span>
+            <strong id="facCondicion">Contado</strong>
+          </div>
+        </div>
+
+        <div class="factura-doc__table-wrap">
+          <table class="factura-doc__table">
+            <thead>
+              <tr>
+                <th>Cant.</th>
+                <th>Descripción</th>
+                <th>Precio Unit.</th>
+                <th>IVA</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="facTableBody">
+              <tr>
+                <td>1</td>
+                <td id="facConceptoOut">Servicio contable mensual</td>
+                <td id="facPrecioOut">Gs. 3.500.000</td>
+                <td id="facIvaOut">10%</td>
+                <td id="facTotalLinea">Gs. 3.500.000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="factura-doc__totals">
+          <div class="factura-doc__row">
+            <span>Subtotal:</span>
+            <strong id="facSubtotal">Gs. 3.181.818</strong>
+          </div>
+          <div class="factura-doc__row">
+            <span>IVA (10%):</span>
+            <strong id="facIvaTotal">Gs. 318.182</strong>
+          </div>
+          <div class="factura-doc__row factura-doc__row--total">
+            <span>TOTAL:</span>
+            <strong id="facTotal">Gs. 3.500.000</strong>
+          </div>
+        </div>
+
+        <div class="factura-doc__footer">
+          <div class="factura-doc__cdc">
+            <span>CDC:</span>
+            <code id="facCDC">01800987654001001000014710042026</code>
+          </div>
+          <div class="factura-doc__qr" id="facQR" aria-label="Código QR de verificación">
+            <svg viewBox="0 0 100 100" width="64" height="64">
+              <rect width="100" height="100" fill="#fff"/>
+              <g fill="#000">
+                <rect x="4" y="4" width="28" height="28"/>
+                <rect x="8" y="8" width="20" height="20" fill="#fff"/>
+                <rect x="12" y="12" width="12" height="12"/>
+                <rect x="68" y="4" width="28" height="28"/>
+                <rect x="72" y="8" width="20" height="20" fill="#fff"/>
+                <rect x="76" y="12" width="12" height="12"/>
+                <rect x="4" y="68" width="28" height="28"/>
+                <rect x="8" y="72" width="20" height="20" fill="#fff"/>
+                <rect x="12" y="76" width="12" height="12"/>
+                <rect x="36" y="4" width="4" height="4"/>
+                <rect x="44" y="4" width="8" height="4"/>
+                <rect x="56" y="8" width="4" height="4"/>
+                <rect x="36" y="12" width="4" height="8"/>
+                <rect x="48" y="16" width="8" height="4"/>
+                <rect x="36" y="24" width="12" height="4"/>
+                <rect x="56" y="20" width="4" height="8"/>
+                <rect x="36" y="36" width="4" height="4"/>
+                <rect x="44" y="32" width="4" height="8"/>
+                <rect x="52" y="36" width="8" height="4"/>
+                <rect x="4" y="36" width="4" height="8"/>
+                <rect x="12" y="40" width="8" height="4"/>
+                <rect x="24" y="36" width="4" height="8"/>
+                <rect x="64" y="36" width="4" height="4"/>
+                <rect x="72" y="36" width="8" height="4"/>
+                <rect x="84" y="36" width="8" height="4"/>
+                <rect x="68" y="44" width="4" height="4"/>
+                <rect x="80" y="44" width="4" height="8"/>
+                <rect x="4" y="48" width="8" height="4"/>
+                <rect x="16" y="52" width="4" height="4"/>
+                <rect x="24" y="48" width="8" height="4"/>
+                <rect x="36" y="48" width="4" height="8"/>
+                <rect x="44" y="44" width="4" height="4"/>
+                <rect x="56" y="48" width="8" height="4"/>
+                <rect x="4" y="56" width="4" height="8"/>
+                <rect x="12" y="60" width="4" height="4"/>
+                <rect x="20" y="56" width="8" height="4"/>
+                <rect x="36" y="60" width="8" height="4"/>
+                <rect x="48" y="56" width="4" height="8"/>
+                <rect x="56" y="60" width="4" height="4"/>
+                <rect x="68" y="52" width="4" height="4"/>
+                <rect x="76" y="56" width="8" height="4"/>
+                <rect x="88" y="52" width="4" height="8"/>
+                <rect x="68" y="64" width="8" height="4"/>
+                <rect x="80" y="68" width="4" height="4"/>
+                <rect x="88" y="64" width="4" height="8"/>
+                <rect x="68" y="72" width="4" height="4"/>
+                <rect x="76" y="76" width="8" height="4"/>
+                <rect x="68" y="84" width="8" height="4"/>
+                <rect x="80" y="80" width="4" height="4"/>
+                <rect x="88" y="76" width="4" height="8"/>
+                <rect x="88" y="88" width="4" height="4"/>
+                <rect x="36" y="68" width="4" height="4"/>
+                <rect x="48" y="68" width="8" height="4"/>
+                <rect x="40" y="76" width="4" height="8"/>
+                <rect x="48" y="80" width="4" height="4"/>
+                <rect x="56" y="76" width="4" height="4"/>
+                <rect x="36" y="88" width="8" height="4"/>
+                <rect x="48" y="88" width="4" height="4"/>
+                <rect x="56" y="84" width="4" height="8"/>
+              </g>
+            </svg>
+          </div>
+          <div class="factura-doc__sifen">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>Documento electrónico validado por SIFEN &middot; DNIT Paraguay</span>
+          </div>
+        </div>
+
+        <!-- Overlay animation -->
+        <div class="factura-doc__generating" id="facGenerating">
+          <div class="factura-spinner"></div>
+          <span>Generando factura electrónica...</span>
+          <small>Firmando XML &middot; Enviando a SIFEN</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONCILIACIÓN BANCARIA ─────────────────────────── -->
+<section class="section" id="conciliacion">
+  <div class="section__head">
+    <span class="badge-coming js-reveal">Próximamente</span>
+    <span class="eyebrow js-reveal">Conciliación con IA</span>
+    <h2 class="js-reveal">Tu extracto bancario, <em>conciliado automáticamente.</em></h2>
+    <p class="js-reveal">Así va a funcionar: importás el extracto CSV del banco y la IA cruza cada movimiento con tus registros contables. En desarrollo — bancos paraguayos no ofrecen API pública aún.</p>
+  </div>
+
+  <div class="conciliacion-demo js-reveal">
+    <div class="conc-panel">
+      <div class="conc-panel__header">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/>
+        </svg>
+        <span>Extracto Bancario</span>
+        <small>Banco Continental</small>
+      </div>
+      <div class="conc-table">
+        <div class="conc-row conc-row--header">
+          <span>Fecha</span><span>Descripción</span><span>Monto</span><span>Estado</span>
+        </div>
+        <div class="conc-row" data-match="ok">
+          <span>08/04</span><span>Transfer. Recibida - IMPORTADORA ZEUS</span><span class="conc-positive">+Gs. 12.450.000</span>
+          <span class="conc-badge conc-badge--ok">Conciliado</span>
+        </div>
+        <div class="conc-row" data-match="ok">
+          <span>07/04</span><span>Pago Proveedores - DISTRIBUIDORA ÑANDUTI</span><span class="conc-negative">-Gs. 4.200.000</span>
+          <span class="conc-badge conc-badge--ok">Conciliado</span>
+        </div>
+        <div class="conc-row" data-match="warning">
+          <span>05/04</span><span>Débito Automático - ANDE</span><span class="conc-negative">-Gs. 890.000</span>
+          <span class="conc-badge conc-badge--warn">Diferencia</span>
+        </div>
+        <div class="conc-row" data-match="error">
+          <span>03/04</span><span>Transfer. Recibida - DESCONOCIDO</span><span class="conc-positive">+Gs. 2.150.000</span>
+          <span class="conc-badge conc-badge--error">Sin registro</span>
+        </div>
+        <div class="conc-row" data-match="ok">
+          <span>01/04</span><span>Pago Salarios Abril</span><span class="conc-negative">-Gs. 18.500.000</span>
+          <span class="conc-badge conc-badge--ok">Conciliado</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="conc-summary">
+      <div class="conc-summary__item conc-summary__item--ok">
+        <strong>3</strong><span>Conciliados</span>
+      </div>
+      <div class="conc-summary__item conc-summary__item--warn">
+        <strong>1</strong><span>Con diferencia</span>
+      </div>
+      <div class="conc-summary__item conc-summary__item--error">
+        <strong>1</strong><span>Sin registro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RUC LOOKUP ────────────────────────────────────── -->
+<section class="section section--dark" id="ruc">
+  <div class="section__head">
+    <span class="eyebrow js-reveal">API en vivo &middot; Datos reales</span>
+    <h2 class="js-reveal">Consultá cualquier RUC del <em>Paraguay.</em></h2>
+    <p class="js-reveal">Conectado a la API gratuita de TuRuc (turuc.com.py). Datos reales del Registro Único de Contribuyentes — buscá por RUC o razón social.</p>
+  </div>
+
+  <div class="ruc-demo js-reveal">
+    <div class="ruc-search">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>
+      </svg>
+      <input type="text" id="rucInput" class="ruc-search__input" placeholder="Ingresá RUC o razón social..." value=""/>
+      <button class="btn btn--primary" id="btnRucSearch">Consultar</button>
+    </div>
+
+    <div class="ruc-examples">
+      <span>Probá con:</span>
+      <button class="ruc-chip" data-ruc="80013737-0">80013737-0 (Itaipú)</button>
+      <button class="ruc-chip" data-ruc="BANCO CONTINENTAL">BANCO CONTINENTAL</button>
+      <button class="ruc-chip" data-ruc="80000011-0">80000011-0</button>
+    </div>
+
+    <div class="ruc-result" id="rucResult" hidden>
+      <div class="ruc-result__header">
+        <div class="ruc-result__status">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#22C55E" stroke-width="2.5">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <path d="M22 4L12 14.01l-3-3"/>
+          </svg>
+          <span>Contribuyente encontrado</span>
+        </div>
+      </div>
+
+      <div class="ruc-result__grid">
+        <div class="ruc-result__field">
+          <label>RUC</label>
+          <strong id="rucResultRuc">—</strong>
+        </div>
+        <div class="ruc-result__field">
+          <label>Razón Social</label>
+          <strong id="rucResultNombre">—</strong>
+        </div>
+        <div class="ruc-result__field">
+          <label>Estado</label>
+          <strong id="rucResultFantasia">—</strong>
+        </div>
+        <div class="ruc-result__field">
+          <label>Situación</label>
+          <strong id="rucResultEstado">—</strong>
+        </div>
+        <div class="ruc-result__field">
+          <label>Tipo de Persona</label>
+          <strong id="rucResultOblig">—</strong>
+        </div>
+        <div class="ruc-result__field">
+          <label>Detalle</label>
+          <strong id="rucResultActividad">—</strong>
+        </div>
+      </div>
+
+      <div class="ruc-result__footer">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
+        </svg>
+        <span>Datos via <strong>TuRuc API</strong> (turuc.com.py) &middot; Registro Único de Contribuyentes &middot; DNIT Paraguay</span>
+      </div>
+    </div>
+
+    <div class="ruc-loading" id="rucLoading" hidden>
+      <div class="factura-spinner"></div>
+      <span>Consultando...</span>
+    </div>
+
+    <div class="ruc-error" id="rucError" hidden>
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+      </svg>
+      <span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── NOTICIAS TRIBUTARIAS ──────────────────────────── -->
+<section class="section" id="noticias">
+  <div class="section__head">
+    <span class="eyebrow js-reveal">Highlights tributarios &middot; Actualizado cada hora</span>
+    <h2 class="js-reveal">Noticias que <em>importan</em> a tu estudio.</h2>
+    <p class="js-reveal">Noticias extraídas automáticamente de fuentes oficiales paraguayas cada 1 hora, filtradas por IA y seleccionadas por relevancia para estudios contables.</p>
+  </div>
+
+  <div class="news-tabs js-reveal">
+    <button class="news-tab active" data-tab="all">Todas</button>
+    <button class="news-tab" data-tab="dnit">DNIT / SET</button>
+    <button class="news-tab" data-tab="sifen">SIFEN</button>
+    <button class="news-tab" data-tab="fiscal">Fiscal</button>
+  </div>
+
+  <div class="news-grid" id="newsGrid">
+
+    <a class="news-card js-reveal" data-category="dnit" href="https://www.abc.com.py/negocios/2026/04/07/dnit-pone-la-lupa-en-criptoactivos-y-abre-debate-por-riesgos/" target="_blank" rel="noopener">
+      <div class="news-card__meta">
+        <span class="news-card__source">DNIT</span>
+        <time>10 Abr 2026</time>
+      </div>
+      <h3>DNIT exige reporte obligatorio de transacciones en criptoactivos</h3>
+      <p>La Resolución N. 47/2026 establece la obligación de presentar Declaración Jurada Informativa sobre operaciones con criptoactivos. Afecta a todos los contribuyentes que operen con monedas digitales.</p>
+      <div class="news-card__tags">
+        <span>Resolución 47/2026</span>
+        <span>Criptoactivos</span>
+        <span>DJ Informativa</span>
+      </div>
+      <div class="news-card__alert">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <path d="M12 9v4M12 17h.01"/>
+        </svg>
+        Acción requerida para clientes con cripto
+      </div>
+      <span class="news-card__link">Leer en abc.com.py →</span>
+    </a>
+
+    <a class="news-card js-reveal" data-category="sifen" href="https://www.dnit.gov.py/web/portal-institucional/factura-electronica" target="_blank" rel="noopener">
+      <div class="news-card__meta">
+        <span class="news-card__source">SIFEN</span>
+        <time>09 Abr 2026</time>
+      </div>
+      <h3>Facturación electrónica obligatoria para proveedores del Estado desde enero 2026</h3>
+      <p>Todos los contribuyentes con contratos como proveedores, contratistas o consultores de entidades estatales deben emitir factura electrónica desde el 2 de enero de 2026. Grupos 14-18 se integran progresivamente.</p>
+      <div class="news-card__tags">
+        <span>e-Kuatia</span>
+        <span>Proveedores Estado</span>
+        <span>Grupos 14-18</span>
+      </div>
+      <div class="news-card__timeline">
+        <div class="news-card__tl-item">
+          <span class="news-card__tl-dot news-card__tl-dot--done"></span>
+          <div><strong>Grupo 14</strong><small>1 Dic 2025</small></div>
+        </div>
+        <div class="news-card__tl-item">
+          <span class="news-card__tl-dot news-card__tl-dot--done"></span>
+          <div><strong>Grupo 15</strong><small>2 Mar 2026</small></div>
+        </div>
+        <div class="news-card__tl-item">
+          <span class="news-card__tl-dot news-card__tl-dot--active"></span>
+          <div><strong>Grupo 16</strong><small>1 Jun 2026</small></div>
+        </div>
+        <div class="news-card__tl-item">
+          <span class="news-card__tl-dot"></span>
+          <div><strong>Grupo 17</strong><small>1 Sep 2026</small></div>
+        </div>
+        <div class="news-card__tl-item">
+          <span class="news-card__tl-dot"></span>
+          <div><strong>Grupo 18</strong><small>1 Dic 2026</small></div>
+        </div>
+      </div>
+      <span class="news-card__link">Leer en dnit.gov.py →</span>
+    </a>
+
+    <a class="news-card js-reveal" data-category="fiscal" href="https://www.infobae.com/america/agencias/2026/04/09/ministro-buscara-eficiencia-del-gasto-ante-caida-de-ingresos-tributarios-en-paraguay/" target="_blank" rel="noopener">
+      <div class="news-card__meta">
+        <span class="news-card__source">MEF</span>
+        <time>09 Abr 2026</time>
+      </div>
+      <h3>Nuevo Ministro de Hacienda prioriza eficiencia del gasto ante caída de ingresos</h3>
+      <p>Óscar Lovera asumió como Ministro de Economía y Finanzas. Su foco: eficiencia del gasto público e inversión prioritaria ante la caída de ingresos tributarios en el primer bimestre de 2026.</p>
+      <div class="news-card__tags">
+        <span>Ministerio de Hacienda</span>
+        <span>Política fiscal</span>
+      </div>
+      <span class="news-card__link">Leer en infobae.com →</span>
+    </a>
+
+    <a class="news-card js-reveal" data-category="dnit" href="https://www.dnit.gov.py/web/portal-institucional/noticias" target="_blank" rel="noopener">
+      <div class="news-card__meta">
+        <span class="news-card__source">DNIT</span>
+        <time>07 Abr 2026</time>
+      </div>
+      <h3>Resolución 49/2026: nuevos requisitos para Estados Financieros del IRE</h3>
+      <p>Los contribuyentes del IRE deben incluir composición detallada de utilidades y resultados acumulados en Notas a los Estados Financieros. Formulario 500 Versión 3 obligatorio desde abril 2026.</p>
+      <div class="news-card__tags">
+        <span>Resolución 49/2026</span>
+        <span>Form 500 v3</span>
+        <span>IRE</span>
+      </div>
+      <div class="news-card__alert">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+        </svg>
+        Vigente desde abril 2026 &mdash; verificar clientes con obligación IRE
+      </div>
+      <span class="news-card__link">Leer en dnit.gov.py →</span>
+    </a>
+
+    <a class="news-card js-reveal" data-category="fiscal" href="https://revistaplus.com.py/2026/01/02/paraguay-recaudo-us-6-445-millones-en-impuestos-y-sumo-82-643-contribuyentes-en-2025/" target="_blank" rel="noopener">
+      <div class="news-card__meta">
+        <span class="news-card__source">DNIT</span>
+        <time>05 Abr 2026</time>
+      </div>
+      <h3>Recaudación tributaria 2025: USD 6.445 millones con 82.643 nuevos contribuyentes</h3>
+      <p>Paraguay cerró 2025 con una recaudación récord. Sin embargo, enero-febrero 2026 muestra caída respecto al mismo período, lo que podría intensificar la fiscalización del DNIT.</p>
+      <div class="news-card__tags">
+        <span>Recaudación</span>
+        <span>Fiscalización</span>
+      </div>
+      <span class="news-card__link">Leer en revistaplus.com.py →</span>
+    </a>
+
+    <a class="news-card js-reveal" data-category="dnit" href="https://www.abc.com.py/economia/2026/03/26/contadores-rechazan-nueva-disposicion-de-dnit-los-contribuyentes-no-tienen-la-culpa-del-mal-calculo-que-ellos-hacen-reclaman/" target="_blank" rel="noopener">
+      <div class="news-card__meta">
+        <span class="news-card__source">DNIT</span>
+        <time>02 Abr 2026</time>
+      </div>
+      <h3>Contadores rechazan nueva disposición: "los contribuyentes no tienen la culpa del mal cálculo"</h3>
+      <p>Gremios de contadores manifestaron rechazo a una disposición del DNIT argumentando errores de cálculo institucionales que afectan a los contribuyentes. Se espera revisión del organismo.</p>
+      <div class="news-card__tags">
+        <span>Gremio contadores</span>
+        <span>Disposición DNIT</span>
+      </div>
+      <span class="news-card__link">Leer en abc.com.py →</span>
+    </a>
+
+    <a class="news-card js-reveal" data-category="fiscal" href="https://www.dnit.gov.py/web/portal-institucional/noticias" target="_blank" rel="noopener">
+      <div class="news-card__meta">
+        <span class="news-card__source">DNIT</span>
+        <time>28 Mar 2026</time>
+      </div>
+      <h3>Vencimiento IDU: declaración hasta el 12 de abril, pago hasta el 13</h3>
+      <p>Recordatorio: la declaración/confirmación del Impuesto a los Dividendos y Utilidades (IDU) vence el 12 de abril de 2026. Pago electrónico hasta el 13 de abril.</p>
+      <div class="news-card__tags">
+        <span>IDU</span>
+        <span>Vencimiento</span>
+      </div>
+      <div class="news-card__alert news-card__alert--urgent">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+        Vence en 2 días &mdash; verificar clientes con obligación IDU
+      </div>
+      <span class="news-card__link">Leer en dnit.gov.py →</span>
+    </a>
+
+  </div>
+
+  <div class="news-source js-reveal">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>
+    <span>Fuentes: <strong>abc.com.py</strong> &middot; <strong>Google News</strong> &middot; <strong>dnit.gov.py</strong> &middot; <strong>mef.gov.py</strong> &middot; Curado por IA de Punto Alto &middot; Nuevas noticias cada 1 hora</span>
+  </div>
+</section>
+
+<!-- ─── PRECIOS ───────────────────────────────────────── -->
+<section class="section" id="precios">
+  <div class="section__head">
+    <span class="eyebrow js-reveal">Inversión</span>
+    <h2 class="js-reveal">Cada plan, hecho a medida.</h2>
+    <p class="js-reveal">No vendemos paquetes cerrados. Armamos el plan exacto según el tamaño de tu estudio, tu cartera de clientes y los procesos que necesitás automatizar.</p>
+  </div>
+
+  <article class="pricing-card js-reveal" aria-labelledby="starterCardTitle">
+    <div class="pricing-card__col pricing-card__col--starter">
+      <span class="pricing-card__eyebrow">Plan inicio · desde</span>
+      <h3 id="starterCardTitle" class="pricing-card__title">Empezá con estructura real desde el día uno.</h3>
+      <div class="pricing-card__price">
+        <strong>Gs. 1.500.000</strong>
+        <span class="pricing-card__unit">/mes</span>
+      </div>
+      <span class="pricing-card__tag">IVA incluido</span>
+      <p>El piso para automatizar tu estudio: sitio profesional, consulta de RUC integrada, portal tributario y WhatsApp comercial — listo para captar y atender clientes desde el día uno.</p>
+      <button class="btn btn--primary" data-open-form data-open-form-source="plan-starter">Empezar con este plan <span aria-hidden="true">→</span></button>
+    </div>
+
+    <div class="pricing-card__divider" aria-hidden="true"></div>
+
+    <div class="pricing-card__col pricing-card__col--budget">
+      <span class="pricing-card__eyebrow">Verba sugerida en ads</span>
+      <h3 class="pricing-card__title">Lo recomendado para arrancar.</h3>
+      <div class="pricing-card__price pricing-card__price--alt">
+        <strong>Gs. 50.000</strong>
+        <span class="pricing-card__unit">/día</span>
+      </div>
+      <span class="pricing-card__tag pricing-card__tag--alt">Mínimo recomendado</span>
+      <p>Para que Google y Meta tengan datos suficientes para optimizar y traer clientes cualificados a tu estudio. Este presupuesto se paga directo a la plataforma — fuera de la mensualidad de Punto Alto.</p>
+    </div>
+  </article>
+
+  <aside class="custom-plan js-reveal" aria-labelledby="customPlanTitle">
+    <div class="custom-plan__head">
+      <span class="custom-plan__eyebrow">Plan a tu medida</span>
+      <h3 id="customPlanTitle" class="custom-plan__title">¿Tu estudio ya está en otro nivel?</h3>
+      <p>Para operaciones más complejas —IA en WhatsApp 24/7, alertas tributarias automáticas por cliente, multi-atendente, integraciones con tu sistema contable, gerente de cuenta dedicado— armamos un plan exacto para tu caso. Cotizamos según tu operación, cartera y objetivos.</p>
+    </div>
+    <button class="btn btn--ghost custom-plan__cta" data-open-form data-open-form-source="plan-custom">Hablemos <span aria-hidden="true">→</span></button>
+  </aside>
+
+  <!-- Alcance del plan: lo que entra y lo que se contrata aparte -->
+  <aside class="scope-note js-reveal" aria-labelledby="scopeNoteTitle">
+    <div class="scope-note__head">
+      <span class="scope-note__eyebrow">Inversión aparte</span>
+      <h3 id="scopeNoteTitle" class="scope-note__title">
+        Nuestros planes cubren el servicio completo de la agencia.
+      </h3>
+      <p class="scope-note__sub">
+        Los ítems marcados con <span class="scope-note__mark" aria-hidden="true">*</span> se contratan directo con cada proveedor — así mantenés control total sobre tu presupuesto, sin intermediarios ni sorpresas.
+      </p>
+    </div>
+
+    <ul class="scope-note__items" role="list">
+      <li class="scope-note__item">
+        <span class="scope-note__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"/>
+            <rect x="7"  y="12" width="3" height="6" rx="0.5"/>
+            <rect x="12" y="8"  width="3" height="10" rx="0.5"/>
+            <rect x="17" y="5"  width="3" height="13" rx="0.5"/>
+          </svg>
+        </span>
+        <div class="scope-note__body">
+          <strong>Pauta en Google Ads</strong>
+          <span>Presupuesto de medios pagado directo a Google.</span>
+        </div>
+      </li>
+
+      <li class="scope-note__item">
+        <span class="scope-note__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 20l1.5-4A8 8 0 1 1 9 20.5L4 20z"/>
+            <path d="M9 11h.01M12 11h.01M15 11h.01"/>
+          </svg>
+        </span>
+        <div class="scope-note__body">
+          <strong>API de WhatsApp Business</strong>
+          <span>Licencia facturada aparte — el costo varía según la cantidad de números y atendentes que operen el sistema.</span>
+        </div>
+      </li>
+
+      <li class="scope-note__item">
+        <span class="scope-note__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="M3 7l9 6 9-6"/>
+          </svg>
+        </span>
+        <div class="scope-note__body">
+          <strong>Email corporativo profesional</strong>
+          <span>Precio variable según usuarios — base del ecosistema digital de tu estudio.</span>
+        </div>
+      </li>
+    </ul>
+  </aside>
+
+</section>
+
+<!-- ─── CTA FINAL ─────────────────────────────────────── -->
+<section class="section cta-final" id="contacto">
+  <div class="cta-final__box js-reveal">
+    <h2>
+      Automatizá tu estudio contable.<br/>
+      <em>Empezá hoy.</em>
+    </h2>
+    <p>Consultoría gratuita. 30 minutos. Te mostramos cómo automatizar tu operación contable.</p>
+    <button class="btn btn--primary btn--lg" data-open-form data-open-form-source="cta-final">
+      Agendar consultoría <span aria-hidden="true">→</span>
+    </button>
+    <small>Respuesta por WhatsApp en menos de 2 horas &middot; 100% gratuito</small>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="logo">
+      <svg class="logo__mark" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+        <path d="M8 52 L30 10 L52 52" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="30" cy="10" r="5" fill="#FF6A3D"/>
+      </svg>
+      <span class="logo__text">
+        <strong>PUNTO ALTO</strong>
+        <small>Para Contadores</small>
+      </span>
+    </div>
+    <div class="footer__links">
+      <a href="index.html">Punto Alto Marketing</a>
+      <span>&middot;</span>
+      <a href="#servicios">Servicios</a>
+      <span>&middot;</span>
+      <a href="#noticias">Noticias</a>
+    </div>
+    <p class="footer__copy">&copy; 2026 Punto Alto &mdash; Asunci&oacute;n, Paraguay. Automatizaci&oacute;n contable con IA.</p>
+  </div>
+</footer>
+
+</main>
+
+<!-- ─── FORM OVERLAY ──────────────────────────────────── -->
+<div class="formx" id="formx" aria-modal="true" role="dialog" aria-label="Consultoría gratuita" hidden>
+  <div class="formx__bg" aria-hidden="true"></div>
+
+  <div class="formx__progress"><div class="formx__bar" id="fxBar"></div></div>
+  <div class="formx__counter" id="fxCounter" aria-live="polite"></div>
+
+  <button class="formx__close" id="fxClose" aria-label="Cerrar formulario">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 6L6 18M6 6l12 12"/>
+    </svg>
+  </button>
+
+  <div class="formx__stage" id="fxStage">
+
+    <div class="fxstep" data-step="1">
+      <p class="fxstep__label">Pregunta 1 / 5</p>
+      <h2>¿Cómo te llamamos?</h2>
+      <input type="text" id="f-name" class="fxinput" placeholder="Tu nombre" autocomplete="given-name"/>
+      <small class="fxhint">Presioná <kbd>Enter ↵</kbd> para continuar</small>
+      <span class="fxerror" id="e-name"></span>
+      <button class="btn btn--primary fxnext" data-next>Continuar →</button>
+    </div>
+
+    <div class="fxstep" data-step="2">
+      <p class="fxstep__label">Pregunta 2 / 5</p>
+      <h2>¿Tu número de WhatsApp?</h2>
+      <div class="fxphone-simple">
+        <span class="fxphone-prefix">+595</span>
+        <input type="tel" id="f-phone" class="fxinput" placeholder="981 123 456" autocomplete="tel"/>
+      </div>
+      <small class="fxhint">Te contactamos ahí con la agenda</small>
+      <span class="fxerror" id="e-phone"></span>
+      <button class="btn btn--primary fxnext" data-next>Continuar →</button>
+    </div>
+
+    <div class="fxstep" data-step="3">
+      <p class="fxstep__label">Pregunta 3 / 5</p>
+      <h2>¿Nombre de tu estudio contable?</h2>
+      <input type="text" id="f-company" class="fxinput" placeholder="Tu estudio o firma" autocomplete="organization"/>
+      <span class="fxerror" id="e-company"></span>
+      <button class="btn btn--primary fxnext" data-next>Continuar →</button>
+    </div>
+
+    <div class="fxstep" data-step="4">
+      <p class="fxstep__label">Pregunta 4 / 5</p>
+      <h2>¿Cuántos clientes manejás?</h2>
+      <p class="fxsub">Para recomendarte el plan ideal.</p>
+      <div class="fxradios" id="rg-clients">
+        <label><input type="radio" name="clients" value="1-10"/><span>1 – 10 clientes</span></label>
+        <label><input type="radio" name="clients" value="11-30"/><span>11 – 30 clientes</span></label>
+        <label><input type="radio" name="clients" value="31-50"/><span>31 – 50 clientes</span></label>
+        <label><input type="radio" name="clients" value="50+"/><span>Más de 50</span></label>
+      </div>
+      <span class="fxerror" id="e-clients"></span>
+    </div>
+
+    <div class="fxstep" data-step="5">
+      <p class="fxstep__label">Última pregunta</p>
+      <h2>¿Qué te interesa automatizar primero?</h2>
+      <p class="fxsub">Elegí uno — seguimos automáticamente.</p>
+      <div class="fxradios" id="rg-interest">
+        <label><input type="radio" name="interest" value="factura"/><span>Facturación electrónica</span></label>
+        <label><input type="radio" name="interest" value="conciliacion"/><span>Conciliación bancaria</span></label>
+        <label><input type="radio" name="interest" value="declaraciones"/><span>Declaraciones juradas</span></label>
+        <label><input type="radio" name="interest" value="noticias"/><span>Monitoreo de noticias</span></label>
+        <label><input type="radio" name="interest" value="todo"/><span>Todo lo anterior</span></label>
+      </div>
+      <span class="fxerror" id="e-interest"></span>
+    </div>
+
+    <div class="fxstep fxstep--ok" data-step="6">
+      <svg class="fxcheck" viewBox="0 0 52 52" aria-hidden="true">
+        <circle cx="26" cy="26" r="24" fill="none"/>
+        <path fill="none" d="M14 27l8 8 16-16"/>
+      </svg>
+      <h2>¡Perfecto, <span id="fxOkName"></span>!</h2>
+      <p class="fxsub">Te escribimos por WhatsApp en menos de 2 horas para agendar tu consultoría gratuita.</p>
+      <button class="btn btn--ghost" id="fxDone">Volver al sitio</button>
+    </div>
+
+  </div>
+
+  <div class="formx__nav">
+    <button class="fxback" id="fxBack">← Volver</button>
+    <div class="fxdots" id="fxDots" aria-hidden="true"></div>
+  </div>
+</div>
+
+<!-- Scripts movidos para o <head> com defer -->
+</body>
+</html>

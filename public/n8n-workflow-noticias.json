@@ -1,0 +1,266 @@
+{
+  "name": "Punto Alto — Noticias Contadores v3",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "noticias-contadores",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "noticias-contadores"
+    },
+    {
+      "parameters": {
+        "url": "https://www.abc.com.py/economia/",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": false,
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 15000
+        }
+      },
+      "id": "http-abc-econ",
+      "name": "ABC Economia",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 100],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.abc.com.py/nacionales/",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": false,
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 15000
+        }
+      },
+      "id": "http-abc-nac",
+      "name": "ABC Nacionales",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 260],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://news.google.com/rss/search?q=economia+paraguay+impuestos+tributario&hl=es-419&gl=PY&ceid=PY:es-419",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": false,
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 15000
+        }
+      },
+      "id": "http-gnews-tributos",
+      "name": "Google News Tributos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 420],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://news.google.com/rss/search?q=contadores+paraguay+DNIT+SET&hl=es-419&gl=PY&ceid=PY:es-419",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": false,
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 15000
+        }
+      },
+      "id": "http-gnews-contadores",
+      "name": "Google News Contadores",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 580],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://news.google.com/rss/search?q=factura+electronica+SIFEN+paraguay&hl=es-419&gl=PY&ceid=PY:es-419",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": false,
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 15000
+        }
+      },
+      "id": "http-gnews-sifen",
+      "name": "Google News SIFEN",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 740],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// ─── PARSER MULTI-FUENTE v3 ───────────────────────────\n// Fuentes:\n// [0] ABC Color Economia (HTML)\n// [1] ABC Color Nacionales (HTML)\n// [2] Google News RSS - Tributos Paraguay\n// [3] Google News RSS - Contadores DNIT\n// [4] Google News RSS - SIFEN Factura\n\nconst items = $input.all();\nconst abcEconHtml = items[0]?.json?.data || items[0]?.json?.body || '';\nconst abcNacHtml  = items[1]?.json?.data || items[1]?.json?.body || '';\nconst gnewsTrib   = items[2]?.json?.data || items[2]?.json?.body || '';\nconst gnewsCont   = items[3]?.json?.data || items[3]?.json?.body || '';\nconst gnewsSifen  = items[4]?.json?.data || items[4]?.json?.body || '';\n\nconst noticias = [];\n\nfunction cleanText(s) {\n  return (s || '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ')\n    .replace(/&amp;/g, '&').replace(/&quot;/g, '\"').replace(/&lt;/g, '<')\n    .replace(/&gt;/g, '>').replace(/&#\\d+;/g, '').replace(/\\s+/g, ' ').trim();\n}\n\nfunction dateFromUrl(url) {\n  const m = url.match(/(\\d{4})\\/(\\d{2})\\/(\\d{2})/);\n  if (m) return m[3] + '/' + m[2] + '/' + m[1];\n  return new Date().toLocaleDateString('es-PY');\n}\n\n// ══ Parser ABC Color (HTML) ══\nfunction parseABC(html, section) {\n  try {\n    const titleRx = /aria-label=\"Enlace a comentarios para el art[ií]culo ([^\"]+)\"/gi;\n    const titles = [];\n    let tm;\n    while ((tm = titleRx.exec(html)) !== null) titles.push(tm[1].trim());\n\n    const urlRx = new RegExp('href=\"(/' + section + '/\\\\d{4}/\\\\d{2}/\\\\d{2}/[^\"]+/)\"', 'gi');\n    const urlSet = new Set();\n    const urls = [];\n    let um;\n    while ((um = urlRx.exec(html)) !== null) {\n      if (!um[1].includes('#') && !urlSet.has(um[1])) {\n        urlSet.add(um[1]);\n        urls.push(um[1]);\n      }\n    }\n\n    const introRx = /class=\"article-intro\"><p>([^<]+)<\\/p>/gi;\n    const intros = [];\n    let im;\n    while ((im = introRx.exec(html)) !== null) intros.push(cleanText(im[1]).slice(0, 250));\n\n    const count = Math.min(titles.length, urls.length);\n    for (let i = 0; i < count; i++) {\n      noticias.push({\n        title: titles[i].slice(0, 200),\n        url: 'https://www.abc.com.py' + urls[i],\n        source: 'ABC Color',\n        category: section === 'economia' ? 'fiscal' : 'dnit',\n        date: dateFromUrl(urls[i]),\n        summary: intros[i] || ''\n      });\n    }\n  } catch(e) {}\n}\n\n// ══ Parser Google News RSS (XML) ══\nfunction parseGoogleRSS(xml, defaultCategory) {\n  try {\n    const itemRx = /<item>[\\s\\S]*?<\\/item>/gi;\n    let match;\n    while ((match = itemRx.exec(xml)) !== null) {\n      const block = match[0];\n\n      const titleM = block.match(/<title>([^<]+)<\\/title>/);\n      const linkM  = block.match(/<link>([^<]+)<\\/link>/);\n      const dateM  = block.match(/<pubDate>([^<]+)<\\/pubDate>/);\n      const srcM   = block.match(/<source[^>]*>([^<]+)<\\/source>/);\n\n      if (!titleM) continue;\n\n      // Google News title format: \"Titulo - Fuente\"\n      let rawTitle = cleanText(titleM[1]);\n      let source = srcM ? cleanText(srcM[1]) : '';\n\n      // Remover \" - Fuente\" del final del título si está duplicado\n      if (source && rawTitle.endsWith(' - ' + source)) {\n        rawTitle = rawTitle.slice(0, -(source.length + 3));\n      }\n\n      // Formatear fecha\n      let dateStr = '';\n      if (dateM) {\n        try {\n          const d = new Date(dateM[1]);\n          dateStr = d.toLocaleDateString('es-PY', { day: '2-digit', month: '2-digit', year: 'numeric' });\n        } catch(e) { dateStr = dateM[1]; }\n      }\n\n      // Categorizar por contenido\n      let category = defaultCategory;\n      const lower = rawTitle.toLowerCase();\n      if (lower.includes('dnit') || lower.includes('set') || lower.includes('contribuyente')) category = 'dnit';\n      if (lower.includes('sifen') || lower.includes('factura electr')) category = 'sifen';\n\n      noticias.push({\n        title: rawTitle.slice(0, 200),\n        url: linkM ? linkM[1] : '',\n        source: source || 'Google News',\n        category,\n        date: dateStr,\n        summary: ''\n      });\n    }\n  } catch(e) {}\n}\n\n// ── Ejecutar parsers ──\nparseABC(abcEconHtml, 'economia');\nparseABC(abcNacHtml, 'nacionales');\nparseGoogleRSS(gnewsTrib, 'fiscal');\nparseGoogleRSS(gnewsCont, 'dnit');\nparseGoogleRSS(gnewsSifen, 'sifen');\n\n// ── Deduplicar por título ──\nconst unique = [];\nconst seen = new Set();\nfor (const n of noticias) {\n  const key = n.title.toLowerCase().replace(/[^a-záéíóúñ0-9]/g, '').slice(0, 50);\n  if (seen.has(key)) continue;\n  seen.add(key);\n  unique.push(n);\n}\n\nconst result = unique.slice(0, 30);\n\nreturn [{\n  json: {\n    noticias: result,\n    lastUpdated: new Date().toISOString(),\n    count: result.length,\n    sources: ['ABC Color Economia', 'ABC Color Nacionales', 'Google News (tributos)', 'Google News (contadores)', 'Google News (SIFEN)']\n  }\n}];"
+      },
+      "id": "code-parser",
+      "name": "Parsear noticias",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [920, 420]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              },
+              {
+                "name": "Cache-Control",
+                "value": "public, max-age=3600"
+              }
+            ]
+          }
+        }
+      },
+      "id": "respond-webhook",
+      "name": "Responder",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1140, 420]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "ABC Economia",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ABC Nacionales",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google News Tributos",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google News Contadores",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google News SIFEN",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ABC Economia": {
+      "main": [
+        [
+          {
+            "node": "Parsear noticias",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ABC Nacionales": {
+      "main": [
+        [
+          {
+            "node": "Parsear noticias",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Google News Tributos": {
+      "main": [
+        [
+          {
+            "node": "Parsear noticias",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Google News Contadores": {
+      "main": [
+        [
+          {
+            "node": "Parsear noticias",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Google News SIFEN": {
+      "main": [
+        [
+          {
+            "node": "Parsear noticias",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Parsear noticias": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "instanceId": "punto-alto-contadores"
+  },
+  "tags": [
+    {
+      "name": "contadores"
+    }
+  ]
+}

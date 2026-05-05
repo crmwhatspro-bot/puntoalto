@@ -1,0 +1,90 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helpers ──────────────────────────────────────
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in [
+          'diogomarquespy@gmail.com'
+        ];
+    }
+
+    function onlyTouches(fields) {
+      return request.resource.data.diff(resource.data)
+             .affectedKeys().hasOnly(fields);
+    }
+
+    // ── Leads ────────────────────────────────────────
+    //  • Public clients (landing forms): create-only, validated.
+    //  • Admin: read everything + update status/notes.
+    //  • Nobody deletes from the client — only the Admin SDK (console).
+    match /leads/{leadId} {
+      allow read:   if isAdmin();
+      allow delete: if false;
+
+      allow update:
+        if isAdmin()
+        && onlyTouches(['status', 'notes', 'updated_at', 'updated_by', 'booking']);
+
+      allow create:
+        if request.resource.data.keys().size() <= 40
+        && request.resource.data.status == 'new'
+        && request.resource.data.created_at == request.time
+        && (
+             (request.resource.data.get('name', '')  is string && request.resource.data.get('name', '').size()  <= 200)
+          || (request.resource.data.get('phone', '') is string && request.resource.data.get('phone', '').size() <= 40)
+        )
+        && request.resource.data.get('company',    '') is string
+        && request.resource.data.get('email',      '') is string
+        && request.resource.data.get('source',     '') is string
+        && request.resource.data.get('user_agent', '') is string
+        && request.resource.data.get('user_agent', '').size() <= 500;
+    }
+
+    // ── Form sessions (funnel tracking) ──────────────
+    //  • Public clients: create + update their own session doc.
+    //  • Admin: read everything.
+    //  • Session IDs are random UUIDs, so "claiming" another one is
+    //    infeasible; App Check + short-lived tokens provide the perimeter.
+    match /form_sessions/{sessionId} {
+      allow read:   if isAdmin();
+      allow delete: if false;
+
+      allow create:
+        if request.resource.data.keys().size() <= 30
+        && request.resource.data.created_at == request.time
+        && request.resource.data.get('source', '')     is string
+        && request.resource.data.get('cta_origin', '') is string;
+
+      allow update:
+        if request.resource.data.keys().size() <= 30
+        && resource.data.created_at == request.resource.data.created_at;
+    }
+
+    // ── Page views (funnel topo) ─────────────────────
+    //  • Public clients: create-only, documento imutável após gravação.
+    //  • Admin: read everything.
+    //  • Docs são gerados com id aleatório pelo SDK (addDoc).
+    match /page_views/{pageViewId} {
+      allow read:            if isAdmin();
+      allow delete, update:  if false;
+
+      allow create:
+        if request.resource.data.keys().size() <= 20
+        && request.resource.data.created_at == request.time
+        && request.resource.data.get('session_id', '') is string
+        && request.resource.data.get('session_id', '').size() <= 100
+        && request.resource.data.get('path', '')       is string
+        && request.resource.data.get('path', '').size() <= 200
+        && request.resource.data.get('user_agent', '') is string
+        && request.resource.data.get('user_agent', '').size() <= 500;
+    }
+
+    // ── Everything else: locked. Admin SDK bypasses rules. ──
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

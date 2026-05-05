@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Área restrita — painel admin, não deve aparecer em SERPs.
+Disallow: /admin
+Disallow: /admin/
+Disallow: /admin.html
+
+# Páginas técnicas / arquivos internos.
+Disallow: /404
+Disallow: /404.html
+Disallow: /n8n-workflow-noticias.json
+
+# Importante: CSS e JS (script.js, firebase-init.js, form.js, styles.css, etc.)
+# ficam liberados por padrão — o Googlebot precisa deles para renderizar a
+# página e avaliar Core Web Vitals. Não bloqueie esses arquivos.
+
+Sitemap: https://puntoalto.com.py/sitemap.xml
