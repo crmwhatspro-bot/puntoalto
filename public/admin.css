@@ -590,6 +590,111 @@ select.input option { background: var(--bg-2); color: var(--text); }
 .wa--fail { background: var(--red-soft);   color: var(--red);   border-color: rgba(248,113,113,0.3); }
 .wa--wait { color: var(--muted); }
 
+/* Lead source badge — niche differentiation */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  font-family: inherit;
+}
+.badge--contadores {
+  color: var(--orange);
+  background: rgba(255, 106, 61, 0.12);
+  border-color: rgba(255, 106, 61, 0.3);
+}
+.badge--inmobiliario {
+  color: var(--blue);
+  background: rgba(55, 138, 221, 0.14);
+  border-color: rgba(55, 138, 221, 0.3);
+}
+.badge--marketing {
+  color: var(--muted);
+  background: var(--surface-2);
+  border-color: var(--line-2);
+}
+
+/* Copy WhatsApp button in drawer */
+.copy-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  background: var(--green-soft);
+  color: var(--green);
+  border: 1px solid rgba(29, 158, 117, 0.4);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+  width: 100%;
+  justify-content: center;
+}
+.copy-wa-btn:hover { background: rgba(29, 158, 117, 0.18); }
+.copy-wa-btn:active { transform: scale(0.98); }
+.copy-wa-btn.is-copied {
+  background: var(--green);
+  color: white;
+}
+.copy-wa-preview {
+  margin-top: 0.55rem;
+  padding: 0.85rem;
+  background: var(--surface-2);
+  border: 1px dashed var(--line-2);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--text-2);
+  white-space: pre-wrap;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* Quick copy button in leads table */
+.msg-copy {
+  background: transparent;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  padding: 0.4rem 0.55rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  color: var(--green);
+  min-width: 44px;
+  min-height: 28px;
+}
+.msg-copy:hover {
+  background: var(--green-soft);
+  border-color: rgba(29, 158, 117, 0.4);
+}
+.msg-copy.is-copied {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+}
+.msg-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.msg-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--line-2);
+  display: inline-block;
+}
+.msg-dot.is-on { background: var(--green); }
+
 /* ════════════════════════════════════════════════════════
    DRAWER
    ════════════════════════════════════════════════════════ */

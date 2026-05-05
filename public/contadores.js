@@ -2,6 +2,383 @@
    PUNTO ALTO PARA CONTADORES — JS
    ════════════════════════════════════════════════════════ */
 
+/* ════════════════════════════════════════════════════════
+   i18n — ES (default) · EN · PT
+   ════════════════════════════════════════════════════════ */
+const I18N = {
+  es: {
+    'logo.sub': 'PARA CONTADORES',
+    'nav.services': 'Servicios', 'nav.factura': 'Factura Legal',
+    'nav.ruc': 'Consulta RUC', 'nav.news': 'Noticias', 'nav.pricing': 'Precios',
+    'nav.cta': 'Consultoría gratis <span aria-hidden="true">→</span>',
+    'nav.cta_short': 'Consultoría gratis →',
+
+    'hero.pill': 'Automatización contable · Paraguay',
+    'hero.title1': 'Tu estudio contable,',
+    'hero.title2': '<em>automatizado con IA.</em>',
+    'hero.sub': 'Factura legal en segundos. Consulta de RUC instantánea. Conciliación bancaria automática. Noticias tributarias del DNIT actualizadas por IA — todo en un solo portal para contadores paraguayos.',
+    'hero.cta1': 'Quiero automatizar mi estudio <span aria-hidden="true">→</span>',
+    'hero.cta2': 'Ver demo en vivo',
+
+    'stats.s1': 'Facturas generadas por día', 'stats.s2': 'Consulta de RUC',
+    'stats.s3': 'Precisión en conciliación',  'stats.s4': 'Monitoreo de noticias DNIT',
+
+    'svc.eyebrow': 'Lo que automatizamos',
+    'svc.title': 'Todo lo que hacés manual, nosotros lo automatizamos.',
+    'svc.sub': 'Herramientas de nivel global adaptadas a la realidad tributaria paraguaya. SET, DNIT, SIFEN — todo integrado.',
+    'svc.tag.coming': 'Próximamente',
+    'svc.1.t': 'Factura Legal Electrónica',
+    'svc.1.d': 'Generación automática de facturas legales vía SIFEN/e-Kuatia. Timbrado, XML firmado digitalmente y envío al DNIT en segundos.',
+    'svc.2.t': 'Consulta de RUC Instantánea',
+    'svc.2.d': 'Buscá cualquier contribuyente por RUC, razón social o nombre. Datos actualizados directo del registro oficial del DNIT.',
+    'svc.2.tag': 'En vivo · TuRuc API',
+    'svc.3.t': 'Conciliación Bancaria con IA',
+    'svc.3.d': 'Importá extractos bancarios y dejá que la IA cruce automáticamente con tus registros contables. Detecta diferencias al instante.',
+    'svc.4.t': 'Noticias Tributarias en Tiempo Real',
+    'svc.4.d': 'IA que monitorea DNIT, SET, Hacienda y BCP 24/7. Recibí alertas de resoluciones, plazos y cambios que afectan a tus clientes.',
+    'svc.4.tag': 'Curado · Verificado',
+    'svc.5.t': 'Declaraciones Juradas',
+    'svc.5.d': 'Generación asistida de DJ informativas y de liquidación. Form 500, IVA, IRE, IRP — pre-llenado automático desde tus datos.',
+    'svc.6.t': 'Cumplimiento Automático',
+    'svc.6.d': 'Calendario fiscal inteligente con alertas automáticas. Nunca más pierdas un vencimiento del DNIT o del SET.',
+
+    'badge.coming': 'Próximamente',
+    'factura.eyebrow': 'Vista previa',
+    'factura.title': 'Generá una factura legal en <em>segundos.</em>',
+    'factura.sub': 'Así va a funcionar la generación de factura electrónica con timbrado SIFEN. Requiere integración con certificado digital y homologación del DNIT — estamos en proceso.',
+    'conc.eyebrow': 'Conciliación con IA',
+    'conc.title': 'Tu extracto bancario, <em>conciliado automáticamente.</em>',
+    'conc.sub': 'Así va a funcionar: importás el extracto CSV del banco y la IA cruza cada movimiento con tus registros contables. En desarrollo — bancos paraguayos no ofrecen API pública aún.',
+    'ruc.eyebrow': 'API en vivo · Datos reales',
+    'ruc.title': 'Consultá cualquier RUC del <em>Paraguay.</em>',
+    'ruc.sub': 'Conectado a la API gratuita de TuRuc (turuc.com.py). Datos reales del Registro Único de Contribuyentes — buscá por RUC o razón social.',
+    'news.eyebrow': 'Highlights tributarios · Actualizado cada hora',
+    'news.title': 'Noticias que <em>importan</em> a tu estudio.',
+    'news.sub': 'Noticias extraídas automáticamente de fuentes oficiales paraguayas cada 1 hora, filtradas por IA y seleccionadas por relevancia para estudios contables.',
+
+    'price.eyebrow': 'Inversión',
+    'price.title': 'Cada plan, hecho a medida.',
+    'price.sub': 'No vendemos paquetes cerrados. Armamos el plan exacto según el tamaño de tu estudio, tu cartera de clientes y los procesos que necesitás automatizar.',
+    'price.start.eyebrow': 'Plan inicio · desde',
+    'price.start.title': 'Empezá con estructura real desde el día uno.',
+    'price.start.tag': 'IVA incluido',
+    'price.start.desc': 'El piso para automatizar tu estudio: sitio profesional, consulta de RUC integrada, portal tributario y WhatsApp comercial — listo para captar y atender clientes desde el día uno.',
+    'price.start.cta': 'Empezar con este plan <span aria-hidden="true">→</span>',
+    'price.ads.eyebrow': 'Verba sugerida en ads',
+    'price.ads.title': 'Lo recomendado para arrancar.',
+    'price.ads.tag': 'Mínimo recomendado',
+    'price.ads.desc': 'Para que Google y Meta tengan datos suficientes para optimizar y traer clientes cualificados a tu estudio. Este presupuesto se paga directo a la plataforma — fuera de la mensualidad de Punto Alto.',
+    'price.custom.eyebrow': 'Plan a tu medida',
+    'price.custom.title': '¿Tu estudio ya está en otro nivel?',
+    'price.custom.desc': 'Para operaciones más complejas —IA en WhatsApp 24/7, alertas tributarias automáticas por cliente, multi-atendente, integraciones con tu sistema contable, gerente de cuenta dedicado— armamos un plan exacto para tu caso. Cotizamos según tu operación, cartera y objetivos.',
+    'price.custom.cta': 'Hablemos <span aria-hidden="true">→</span>',
+    'scope.eyebrow': 'Inversión aparte',
+    'scope.title': 'Nuestros planes cubren el servicio completo de la agencia.',
+    'scope.sub': 'Los ítems marcados con <span class="scope-note__mark" aria-hidden="true">*</span> se contratan directo con cada proveedor — así mantenés control total sobre tu presupuesto, sin intermediarios ni sorpresas.',
+    'scope.i1.t': 'Pauta en Google Ads',
+    'scope.i1.d': 'Presupuesto de medios pagado directo a Google.',
+    'scope.i2.t': 'API de WhatsApp Business',
+    'scope.i2.d': 'Licencia facturada aparte — el costo varía según la cantidad de números y atendentes que operen el sistema.',
+    'scope.i3.t': 'Email corporativo profesional',
+    'scope.i3.d': 'Precio variable según usuarios — base del ecosistema digital de tu estudio.',
+
+    'cta.title': 'Automatizá tu estudio contable.<br/><em>Empezá hoy.</em>',
+    'cta.sub': 'Consultoría gratuita. 30 minutos. Te mostramos cómo automatizar tu operación contable.',
+    'cta.btn': 'Agendar consultoría <span aria-hidden="true">→</span>',
+    'cta.trust': 'Respuesta por WhatsApp en menos de 2 horas · 100% gratuito',
+
+    'footer.sub': 'Para Contadores',
+    'footer.l1': 'Punto Alto Marketing',
+    'footer.l2': 'Para Inmobiliarias',
+    'footer.copy': '© 2026 Punto Alto — Asunción, Paraguay. Automatización contable con IA.',
+
+    'form.overlay.aria': 'Consultoría gratuita',
+    'form.s1.label': 'Pregunta 1 / 6', 'form.s1.q': '¿Cómo te llamamos?', 'form.s1.ph': 'Tu nombre',
+    'form.s2.label': 'Pregunta 2 / 6', 'form.s2.q': '¿Tu número de WhatsApp?', 'form.s2.ph': '981 123 456',
+    'form.s2.hint': 'Te contactamos ahí con la agenda',
+    'form.s3.label': 'Pregunta 3 / 6', 'form.s3.q': '¿Nombre de tu estudio contable?', 'form.s3.ph': 'Tu estudio o firma',
+    'form.s4.label': 'Pregunta 4 / 6', 'form.s4.q': '¿Cuántos clientes manejás?', 'form.s4.sub': 'Para dimensionar el plan ideal.',
+    'form.s4.o1': '1 – 10 clientes', 'form.s4.o2': '11 – 30 clientes', 'form.s4.o3': '31 – 50 clientes', 'form.s4.o4': 'Más de 50',
+    'form.s5.label': 'Pregunta 5 / 6', 'form.s5.q': '¿Qué software contable usás hoy?', 'form.s5.sub': 'Para entender de dónde partimos.',
+    'form.s5.o1': 'Excel / planillas', 'form.s5.o2': 'Tango Gestión', 'form.s5.o3': 'Bejerman',
+    'form.s5.o4': 'Memory', 'form.s5.o5': 'Excel + algún sistema', 'form.s5.o6': 'Ninguno por ahora',
+    'form.s6.label': 'Última pregunta', 'form.s6.q': '¿Cuál es tu mayor desafío hoy?', 'form.s6.sub': 'Elegí el principal — seguimos automáticamente.',
+    'form.s6.o1': 'Mi equipo está sobrecargado', 'form.s6.o2': 'Migrar a factura electrónica (SIFEN)',
+    'form.s6.o3': 'Conciliación bancaria manual', 'form.s6.o4': 'Cumplir plazos del DNIT',
+    'form.s6.o5': 'Captar más clientes', 'form.s6.o6': 'Modernizar todo el estudio',
+    'form.next': 'Continuar →', 'form.back': '← Volver',
+    'form.hint.enter': 'Presioná <kbd>Enter ↵</kbd> para continuar',
+    'form.ok.title': '¡Perfecto, <span id="fxOkName"></span>!',
+    'form.ok.sub': 'Te escribimos por WhatsApp en menos de 2 horas para agendar tu consultoría gratuita.',
+    'form.ok.btn': 'Volver al sitio',
+  },
+
+  en: {
+    'logo.sub': 'FOR ACCOUNTANTS',
+    'nav.services': 'Services', 'nav.factura': 'E-Invoicing',
+    'nav.ruc': 'RUC Lookup', 'nav.news': 'News', 'nav.pricing': 'Pricing',
+    'nav.cta': 'Free consultation <span aria-hidden="true">→</span>',
+    'nav.cta_short': 'Free consultation →',
+
+    'hero.pill': 'Accounting automation · Paraguay',
+    'hero.title1': 'Your accounting firm,',
+    'hero.title2': '<em>automated with AI.</em>',
+    'hero.sub': 'Legal invoices in seconds. Instant RUC lookup. Automatic bank reconciliation. Tax news from DNIT curated by AI — all in one portal for Paraguayan accountants.',
+    'hero.cta1': 'I want to automate my firm <span aria-hidden="true">→</span>',
+    'hero.cta2': 'See live demo',
+
+    'stats.s1': 'Invoices issued per day', 'stats.s2': 'RUC lookup speed',
+    'stats.s3': 'Reconciliation accuracy',  'stats.s4': 'DNIT news monitoring',
+
+    'svc.eyebrow': 'What we automate',
+    'svc.title': 'Everything you do manually, we automate.',
+    'svc.sub': 'World-class tools adapted to Paraguayan tax reality. SET, DNIT, SIFEN — fully integrated.',
+    'svc.tag.coming': 'Coming soon',
+    'svc.1.t': 'Electronic Legal Invoicing',
+    'svc.1.d': 'Automatic legal invoice generation via SIFEN/e-Kuatia. Timbrado, signed XML and DNIT submission in seconds.',
+    'svc.2.t': 'Instant RUC Lookup',
+    'svc.2.d': 'Look up any taxpayer by RUC, business name or trade name. Live data from the official DNIT registry.',
+    'svc.2.tag': 'Live · TuRuc API',
+    'svc.3.t': 'AI Bank Reconciliation',
+    'svc.3.d': 'Import bank statements and let AI cross-match every entry with your accounting records. Spot mismatches instantly.',
+    'svc.4.t': 'Real-time Tax News',
+    'svc.4.d': 'AI monitors DNIT, SET, MEF and BCP 24/7. Get alerts on resolutions, deadlines and changes affecting your clients.',
+    'svc.4.tag': 'Curated · Verified',
+    'svc.5.t': 'Tax Returns',
+    'svc.5.d': 'Assisted generation of informative and liquidation tax returns. Form 500, VAT, IRE, IRP — pre-filled from your data.',
+    'svc.6.t': 'Automatic Compliance',
+    'svc.6.d': 'Smart fiscal calendar with auto-alerts. Never miss a DNIT or SET deadline again.',
+
+    'badge.coming': 'Coming soon',
+    'factura.eyebrow': 'Preview',
+    'factura.title': 'Generate a legal invoice in <em>seconds.</em>',
+    'factura.sub': 'How electronic invoicing with SIFEN timbrado will work. Requires digital certificate integration and DNIT homologation — in progress.',
+    'conc.eyebrow': 'AI Reconciliation',
+    'conc.title': 'Your bank statement, <em>auto-reconciled.</em>',
+    'conc.sub': 'How it will work: import the CSV from your bank and AI matches every transaction with your accounting records. In development — Paraguayan banks don\'t offer public APIs yet.',
+    'ruc.eyebrow': 'Live API · Real data',
+    'ruc.title': 'Look up any RUC in <em>Paraguay.</em>',
+    'ruc.sub': 'Connected to the free TuRuc API (turuc.com.py). Real data from the official taxpayer registry — search by RUC or business name.',
+    'news.eyebrow': 'Tax highlights · Updated hourly',
+    'news.title': 'News that <em>matters</em> to your firm.',
+    'news.sub': 'News auto-extracted from official Paraguayan sources every hour, filtered by AI and selected by relevance for accounting firms.',
+
+    'price.eyebrow': 'Investment',
+    'price.title': 'Every plan, tailor-made.',
+    'price.sub': 'We don\'t sell closed packages. We build the exact plan based on your firm size, client portfolio and the processes you need to automate.',
+    'price.start.eyebrow': 'Starter plan · from',
+    'price.start.title': 'Start with real structure from day one.',
+    'price.start.tag': 'VAT included',
+    'price.start.desc': 'The floor to automate your firm: professional site, integrated RUC lookup, tax portal and commercial WhatsApp — ready to capture and serve clients from day one.',
+    'price.start.cta': 'Start with this plan <span aria-hidden="true">→</span>',
+    'price.ads.eyebrow': 'Suggested ad budget',
+    'price.ads.title': 'Recommended to start.',
+    'price.ads.tag': 'Recommended minimum',
+    'price.ads.desc': 'So Google and Meta have enough data to optimize and bring qualified clients to your firm. This budget is paid directly to the platform — separate from the Punto Alto fee.',
+    'price.custom.eyebrow': 'Custom plan',
+    'price.custom.title': 'Is your firm at another level?',
+    'price.custom.desc': 'For complex operations — 24/7 WhatsApp AI, automatic per-client tax alerts, multi-agent, integration with your accounting system, dedicated account manager — we build an exact plan. We quote based on operation, portfolio and goals.',
+    'price.custom.cta': 'Let\'s talk <span aria-hidden="true">→</span>',
+    'scope.eyebrow': 'Separate investment',
+    'scope.title': 'Our plans cover the full agency service.',
+    'scope.sub': 'Items marked with <span class="scope-note__mark" aria-hidden="true">*</span> are contracted directly with each provider — keeping you in full control of your budget, no middlemen, no surprises.',
+    'scope.i1.t': 'Google Ads spend',
+    'scope.i1.d': 'Media budget paid directly to Google.',
+    'scope.i2.t': 'WhatsApp Business API',
+    'scope.i2.d': 'Licensed separately — cost varies by number of phones and agents operating the system.',
+    'scope.i3.t': 'Professional corporate email',
+    'scope.i3.d': 'Variable price by user — base of your firm\'s digital ecosystem.',
+
+    'cta.title': 'Automate your accounting firm.<br/><em>Start today.</em>',
+    'cta.sub': 'Free consultation. 30 minutes. We\'ll show you how to automate your accounting operation.',
+    'cta.btn': 'Book consultation <span aria-hidden="true">→</span>',
+    'cta.trust': 'WhatsApp reply in under 2 hours · 100% free',
+
+    'footer.sub': 'For Accountants',
+    'footer.l1': 'Punto Alto Marketing',
+    'footer.l2': 'For Real Estate',
+    'footer.copy': '© 2026 Punto Alto — Asunción, Paraguay. Accounting automation with AI.',
+
+    'form.overlay.aria': 'Free consultation',
+    'form.s1.label': 'Question 1 / 6', 'form.s1.q': 'What should we call you?', 'form.s1.ph': 'Your name',
+    'form.s2.label': 'Question 2 / 6', 'form.s2.q': 'Your WhatsApp number?', 'form.s2.ph': '981 123 456',
+    'form.s2.hint': 'We\'ll reach you there to schedule',
+    'form.s3.label': 'Question 3 / 6', 'form.s3.q': 'Name of your accounting firm?', 'form.s3.ph': 'Your firm',
+    'form.s4.label': 'Question 4 / 6', 'form.s4.q': 'How many clients do you manage?', 'form.s4.sub': 'To size the right plan.',
+    'form.s4.o1': '1 – 10 clients', 'form.s4.o2': '11 – 30 clients', 'form.s4.o3': '31 – 50 clients', 'form.s4.o4': 'More than 50',
+    'form.s5.label': 'Question 5 / 6', 'form.s5.q': 'What accounting software do you use today?', 'form.s5.sub': 'To understand where we\'re starting.',
+    'form.s5.o1': 'Excel / spreadsheets', 'form.s5.o2': 'Tango Gestión', 'form.s5.o3': 'Bejerman',
+    'form.s5.o4': 'Memory', 'form.s5.o5': 'Excel + some system', 'form.s5.o6': 'None for now',
+    'form.s6.label': 'Last question', 'form.s6.q': 'What\'s your biggest challenge today?', 'form.s6.sub': 'Pick the main one — we continue automatically.',
+    'form.s6.o1': 'My team is overworked', 'form.s6.o2': 'Migrate to e-invoicing (SIFEN)',
+    'form.s6.o3': 'Manual bank reconciliation', 'form.s6.o4': 'Meeting DNIT deadlines',
+    'form.s6.o5': 'Acquire more clients', 'form.s6.o6': 'Modernize the whole firm',
+    'form.next': 'Continue →', 'form.back': '← Back',
+    'form.hint.enter': 'Press <kbd>Enter ↵</kbd> to continue',
+    'form.ok.title': 'Perfect, <span id="fxOkName"></span>!',
+    'form.ok.sub': 'We\'ll WhatsApp you in under 2 hours to schedule your free consultation.',
+    'form.ok.btn': 'Back to site',
+  },
+
+  pt: {
+    'logo.sub': 'PARA CONTADORES',
+    'nav.services': 'Serviços', 'nav.factura': 'Nota Fiscal Legal',
+    'nav.ruc': 'Consulta RUC', 'nav.news': 'Notícias', 'nav.pricing': 'Preços',
+    'nav.cta': 'Consultoria grátis <span aria-hidden="true">→</span>',
+    'nav.cta_short': 'Consultoria grátis →',
+
+    'hero.pill': 'Automação contábil · Paraguai',
+    'hero.title1': 'Seu escritório contábil,',
+    'hero.title2': '<em>automatizado com IA.</em>',
+    'hero.sub': 'Nota fiscal legal em segundos. Consulta de RUC instantânea. Conciliação bancária automática. Notícias tributárias do DNIT atualizadas por IA — tudo em um só portal para contadores paraguaios.',
+    'hero.cta1': 'Quero automatizar meu escritório <span aria-hidden="true">→</span>',
+    'hero.cta2': 'Ver demo ao vivo',
+
+    'stats.s1': 'Notas geradas por dia', 'stats.s2': 'Consulta de RUC',
+    'stats.s3': 'Precisão na conciliação',  'stats.s4': 'Monitoramento DNIT',
+
+    'svc.eyebrow': 'O que automatizamos',
+    'svc.title': 'Tudo que você faz manual, a gente automatiza.',
+    'svc.sub': 'Ferramentas de nível global adaptadas à realidade tributária paraguaia. SET, DNIT, SIFEN — tudo integrado.',
+    'svc.tag.coming': 'Em breve',
+    'svc.1.t': 'Nota Fiscal Eletrônica Legal',
+    'svc.1.d': 'Geração automática de notas legais via SIFEN/e-Kuatia. Timbrado, XML assinado digitalmente e envio ao DNIT em segundos.',
+    'svc.2.t': 'Consulta de RUC Instantânea',
+    'svc.2.d': 'Busque qualquer contribuinte por RUC, razão social ou nome. Dados atualizados direto do registro oficial do DNIT.',
+    'svc.2.tag': 'Ao vivo · TuRuc API',
+    'svc.3.t': 'Conciliação Bancária com IA',
+    'svc.3.d': 'Importe extratos bancários e deixe a IA cruzar automaticamente com seus registros contábeis. Detecta divergências na hora.',
+    'svc.4.t': 'Notícias Tributárias em Tempo Real',
+    'svc.4.d': 'IA que monitora DNIT, SET, Hacienda e BCP 24/7. Receba alertas de resoluções, prazos e mudanças que afetam seus clientes.',
+    'svc.4.tag': 'Curado · Verificado',
+    'svc.5.t': 'Declarações Juramentadas',
+    'svc.5.d': 'Geração assistida de DJs informativas e de liquidação. Form 500, IVA, IRE, IRP — pré-preenchido com seus dados.',
+    'svc.6.t': 'Compliance Automático',
+    'svc.6.d': 'Calendário fiscal inteligente com alertas automáticos. Nunca mais perca um vencimento do DNIT ou do SET.',
+
+    'badge.coming': 'Em breve',
+    'factura.eyebrow': 'Prévia',
+    'factura.title': 'Gere uma nota legal em <em>segundos.</em>',
+    'factura.sub': 'Como vai funcionar a geração de nota eletrônica com timbrado SIFEN. Requer integração com certificado digital e homologação do DNIT — em andamento.',
+    'conc.eyebrow': 'Conciliação com IA',
+    'conc.title': 'Seu extrato bancário, <em>conciliado automaticamente.</em>',
+    'conc.sub': 'Como vai funcionar: você importa o CSV do banco e a IA cruza cada movimento com seus registros contábeis. Em desenvolvimento — bancos paraguaios ainda não oferecem API pública.',
+    'ruc.eyebrow': 'API ao vivo · Dados reais',
+    'ruc.title': 'Consulte qualquer RUC do <em>Paraguai.</em>',
+    'ruc.sub': 'Conectado à API gratuita da TuRuc (turuc.com.py). Dados reais do registro de contribuintes — busque por RUC ou razão social.',
+    'news.eyebrow': 'Highlights tributários · Atualizado a cada hora',
+    'news.title': 'Notícias que <em>importam</em> pro seu escritório.',
+    'news.sub': 'Notícias extraídas automaticamente de fontes oficiais paraguaias a cada 1 hora, filtradas por IA e selecionadas pela relevância para escritórios contábeis.',
+
+    'price.eyebrow': 'Investimento',
+    'price.title': 'Cada plano, sob medida.',
+    'price.sub': 'Não vendemos pacotes fechados. Montamos o plano exato conforme o tamanho do escritório, sua carteira de clientes e os processos que precisa automatizar.',
+    'price.start.eyebrow': 'Plano início · a partir de',
+    'price.start.title': 'Comece com estrutura real desde o primeiro dia.',
+    'price.start.tag': 'IVA incluso',
+    'price.start.desc': 'O piso para automatizar seu escritório: site profissional, consulta de RUC integrada, portal tributário e WhatsApp comercial — pronto para captar e atender clientes desde o primeiro dia.',
+    'price.start.cta': 'Começar com este plano <span aria-hidden="true">→</span>',
+    'price.ads.eyebrow': 'Verba sugerida em ads',
+    'price.ads.title': 'Recomendado pra começar.',
+    'price.ads.tag': 'Mínimo recomendado',
+    'price.ads.desc': 'Pra que Google e Meta tenham dados suficientes pra otimizar e trazer clientes qualificados ao seu escritório. Esse orçamento é pago direto à plataforma — fora da mensalidade da Punto Alto.',
+    'price.custom.eyebrow': 'Plano sob medida',
+    'price.custom.title': 'Seu escritório já está em outro nível?',
+    'price.custom.desc': 'Pra operações mais complexas — IA no WhatsApp 24/7, alertas tributários automáticos por cliente, multi-atendente, integrações com seu sistema contábil, gerente de conta dedicado — montamos um plano exato. Cotamos conforme operação, carteira e objetivos.',
+    'price.custom.cta': 'Vamos conversar <span aria-hidden="true">→</span>',
+    'scope.eyebrow': 'Investimento à parte',
+    'scope.title': 'Nossos planos cobrem o serviço completo da agência.',
+    'scope.sub': 'Os itens marcados com <span class="scope-note__mark" aria-hidden="true">*</span> são contratados direto com cada fornecedor — assim você mantém controle total do orçamento, sem intermediários nem surpresas.',
+    'scope.i1.t': 'Verba em Google Ads',
+    'scope.i1.d': 'Orçamento de mídia pago direto ao Google.',
+    'scope.i2.t': 'API do WhatsApp Business',
+    'scope.i2.d': 'Licença faturada à parte — o custo varia conforme números e atendentes que operam o sistema.',
+    'scope.i3.t': 'Email corporativo profissional',
+    'scope.i3.d': 'Preço variável por usuário — base do ecossistema digital do seu escritório.',
+
+    'cta.title': 'Automatize seu escritório contábil.<br/><em>Comece hoje.</em>',
+    'cta.sub': 'Consultoria gratuita. 30 minutos. Mostramos como automatizar sua operação contábil.',
+    'cta.btn': 'Agendar consultoria <span aria-hidden="true">→</span>',
+    'cta.trust': 'Resposta por WhatsApp em menos de 2 horas · 100% gratuito',
+
+    'footer.sub': 'Para Contadores',
+    'footer.l1': 'Punto Alto Marketing',
+    'footer.l2': 'Para Imobiliárias',
+    'footer.copy': '© 2026 Punto Alto — Assunção, Paraguai. Automação contábil com IA.',
+
+    'form.overlay.aria': 'Consultoria gratuita',
+    'form.s1.label': 'Pergunta 1 / 6', 'form.s1.q': 'Como te chamamos?', 'form.s1.ph': 'Seu nome',
+    'form.s2.label': 'Pergunta 2 / 6', 'form.s2.q': 'Seu número de WhatsApp?', 'form.s2.ph': '981 123 456',
+    'form.s2.hint': 'Vamos te chamar lá pra agendar',
+    'form.s3.label': 'Pergunta 3 / 6', 'form.s3.q': 'Nome do seu escritório contábil?', 'form.s3.ph': 'Seu escritório',
+    'form.s4.label': 'Pergunta 4 / 6', 'form.s4.q': 'Quantos clientes você atende?', 'form.s4.sub': 'Para dimensionar o plano ideal.',
+    'form.s4.o1': '1 – 10 clientes', 'form.s4.o2': '11 – 30 clientes', 'form.s4.o3': '31 – 50 clientes', 'form.s4.o4': 'Mais de 50',
+    'form.s5.label': 'Pergunta 5 / 6', 'form.s5.q': 'Qual software contábil você usa hoje?', 'form.s5.sub': 'Pra entender de onde partimos.',
+    'form.s5.o1': 'Excel / planilhas', 'form.s5.o2': 'Tango Gestión', 'form.s5.o3': 'Bejerman',
+    'form.s5.o4': 'Memory', 'form.s5.o5': 'Excel + algum sistema', 'form.s5.o6': 'Nenhum por enquanto',
+    'form.s6.label': 'Última pergunta', 'form.s6.q': 'Qual seu maior desafio hoje?', 'form.s6.sub': 'Escolha o principal — seguimos automaticamente.',
+    'form.s6.o1': 'Minha equipe está sobrecarregada', 'form.s6.o2': 'Migrar pra nota eletrônica (SIFEN)',
+    'form.s6.o3': 'Conciliação bancária manual', 'form.s6.o4': 'Cumprir prazos do DNIT',
+    'form.s6.o5': 'Captar mais clientes', 'form.s6.o6': 'Modernizar todo o escritório',
+    'form.next': 'Continuar →', 'form.back': '← Voltar',
+    'form.hint.enter': 'Aperte <kbd>Enter ↵</kbd> para continuar',
+    'form.ok.title': 'Perfeito, <span id="fxOkName"></span>!',
+    'form.ok.sub': 'Vamos te chamar no WhatsApp em menos de 2 horas pra agendar sua consultoria gratuita.',
+    'form.ok.btn': 'Voltar ao site',
+  }
+};
+
+const I18N_KEY = 'pa-lang';
+let currentLang = 'es';
+window.paApp = { I18N, getCurrentLang: () => currentLang };
+
+function applyI18n(lang) {
+  const dict = I18N[lang] || I18N.es;
+  currentLang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = dict[el.dataset.i18n];
+    if (v != null) el.textContent = v;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const v = dict[el.dataset.i18nHtml];
+    if (v != null) el.innerHTML = v;
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const v = dict[el.dataset.i18nPh];
+    if (v != null) el.placeholder = v;
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    const v = dict[el.dataset.i18nAria];
+    if (v != null) el.setAttribute('aria-label', v);
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang__btn').forEach(b =>
+    b.classList.toggle('is-active', b.dataset.lang === lang)
+  );
+  try { localStorage.setItem(I18N_KEY, lang); } catch(e){}
+}
+
+function detectLang() {
+  try {
+    const saved = localStorage.getItem(I18N_KEY);
+    if (saved && I18N[saved]) return saved;
+  } catch(e){}
+  const nav = (navigator.language || 'es').slice(0,2).toLowerCase();
+  return I18N[nav] ? nav : 'es';
+}
+
+if (document.readyState !== 'loading') {
+  applyI18n(detectLang());
+} else {
+  document.addEventListener('DOMContentLoaded', () => applyI18n(detectLang()), { once: true });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.lang__btn').forEach(btn => {
+    btn.addEventListener('click', () => applyI18n(btn.dataset.lang));
+  });
+}, { once: true });
+
 /* ── Theme ─────────────────────────────────────────── */
 (function () {
   const KEY = 'pa-theme';
@@ -523,9 +900,10 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 1, field: 'f-name',    required: true,  type: 'text'   },
     { id: 2, field: 'f-phone',   required: true,  type: 'tel'    },
     { id: 3, field: 'f-company', required: true,  type: 'text'   },
-    { id: 4, field: 'rg-clients',   required: true,  type: 'radio'  },
-    { id: 5, field: 'rg-interest',  required: true,  type: 'radio'  },
-    { id: 6, field: null,        required: false, type: 'success' },
+    { id: 4, field: 'rg-clients',  required: true,  type: 'radio'  },
+    { id: 5, field: 'rg-software', required: true,  type: 'radio'  },
+    { id: 6, field: 'rg-pain',     required: true,  type: 'radio'  },
+    { id: 7, field: null,        required: false, type: 'success' },
   ];
   const TOTAL = STEPS.filter(s => s.type !== 'success').length;
 
@@ -755,7 +1133,8 @@ document.addEventListener('DOMContentLoaded', () => {
       phone_dial:    '595',
       company:   val('f-company'),
       clients:   radio('clients'),
-      interest:  radio('interest'),
+      software:  radio('software'),
+      pain:      radio('pain'),
       source:    'landing-contadores',
       page_url:  window.location.href,
       referrer:  document.referrer || '',

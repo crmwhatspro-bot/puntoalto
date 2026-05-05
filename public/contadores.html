@@ -34,17 +34,23 @@
       </svg>
       <span class="logo__text">
         <strong>PUNTO ALTO</strong>
-        <small>PARA CONTADORES</small>
+        <small data-i18n="logo.sub">PARA CONTADORES</small>
       </span>
     </a>
 
     <nav class="nav__links">
-      <a href="#servicios">Servicios</a>
-      <a href="#factura">Factura Legal</a>
-      <a href="#ruc">Consulta RUC</a>
-      <a href="#noticias">Noticias</a>
-      <a href="#precios">Precios</a>
+      <a href="#servicios" data-i18n="nav.services">Servicios</a>
+      <a href="#factura" data-i18n="nav.factura">Factura Legal</a>
+      <a href="#ruc" data-i18n="nav.ruc">Consulta RUC</a>
+      <a href="#noticias" data-i18n="nav.news">Noticias</a>
+      <a href="#precios" data-i18n="nav.pricing">Precios</a>
     </nav>
+
+    <div class="lang" role="group" aria-label="Language selector">
+      <button class="lang__btn" data-lang="es" aria-label="Español">ES</button>
+      <button class="lang__btn" data-lang="en" aria-label="English">EN</button>
+      <button class="lang__btn" data-lang="pt" aria-label="Português">PT</button>
+    </div>
 
     <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">
       <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -63,7 +69,7 @@
       </svg>
     </button>
 
-    <button class="btn btn--primary nav__cta" data-open-form data-open-form-source="navbar">
+    <button class="btn btn--primary nav__cta" data-open-form data-open-form-source="navbar" data-i18n-html="nav.cta">
       Consultoría gratis <span aria-hidden="true">→</span>
     </button>
 
@@ -76,12 +82,12 @@
 <!-- Mobile menu -->
 <div class="nav-mobile" id="navMobile" hidden>
   <nav class="nav-mobile__links">
-    <a href="#servicios">Servicios</a>
-    <a href="#factura">Factura Legal</a>
-    <a href="#ruc">Consulta RUC</a>
-    <a href="#noticias">Noticias</a>
-    <a href="#precios">Precios</a>
-    <button class="btn btn--primary" data-open-form data-open-form-source="navbar-mobile">Consultoría gratis →</button>
+    <a href="#servicios" data-i18n="nav.services">Servicios</a>
+    <a href="#factura" data-i18n="nav.factura">Factura Legal</a>
+    <a href="#ruc" data-i18n="nav.ruc">Consulta RUC</a>
+    <a href="#noticias" data-i18n="nav.news">Noticias</a>
+    <a href="#precios" data-i18n="nav.pricing">Precios</a>
+    <button class="btn btn--primary" data-open-form data-open-form-source="navbar-mobile" data-i18n="nav.cta_short">Consultoría gratis →</button>
   </nav>
 </div>
 
@@ -101,24 +107,24 @@
   <div class="hero__content">
     <div class="hero__text">
       <span class="pill js-reveal">
-        <span class="pill__dot"></span> Automatización contable &middot; Paraguay
+        <span class="pill__dot"></span> <span data-i18n="hero.pill">Automatización contable · Paraguay</span>
       </span>
 
       <h1 class="hero__title">
-        <span class="js-line">Tu estudio contable,</span>
-        <span class="js-line"><em>automatizado con IA.</em></span>
+        <span class="js-line" data-i18n="hero.title1">Tu estudio contable,</span>
+        <span class="js-line" data-i18n-html="hero.title2"><em>automatizado con IA.</em></span>
       </h1>
 
-      <p class="hero__sub js-reveal">
+      <p class="hero__sub js-reveal" data-i18n="hero.sub">
         Factura legal en segundos. Consulta de RUC instantánea. Conciliación bancaria automática.
         Noticias tributarias del DNIT actualizadas por IA — todo en un solo portal para contadores paraguayos.
       </p>
 
       <div class="hero__ctas js-reveal">
-        <button class="btn btn--primary btn--lg" data-open-form data-open-form-source="hero">
+        <button class="btn btn--primary btn--lg" data-open-form data-open-form-source="hero" data-i18n-html="hero.cta1">
           Quiero automatizar mi estudio <span aria-hidden="true">→</span>
         </button>
-        <a href="#factura" class="btn btn--ghost btn--lg">Ver demo en vivo</a>
+        <a href="#factura" class="btn btn--ghost btn--lg" data-i18n="hero.cta2">Ver demo en vivo</a>
       </div>
     </div>
 
@@ -147,19 +153,19 @@
   <div class="stats__inner">
     <div class="stat js-reveal">
       <strong data-counter="500" data-suffix="+">0</strong>
-      <span>Facturas generadas por día</span>
+      <span data-i18n="stats.s1">Facturas generadas por día</span>
     </div>
     <div class="stat js-reveal">
       <strong data-counter="3" data-suffix="seg">0</strong>
-      <span>Consulta de RUC</span>
+      <span data-i18n="stats.s2">Consulta de RUC</span>
     </div>
     <div class="stat js-reveal">
       <strong data-counter="99" data-suffix=".8%">0</strong>
-      <span>Precisión en conciliación</span>
+      <span data-i18n="stats.s3">Precisión en conciliación</span>
     </div>
     <div class="stat js-reveal">
       <strong data-counter="24" data-suffix="/7">0</strong>
-      <span>Monitoreo de noticias DNIT</span>
+      <span data-i18n="stats.s4">Monitoreo de noticias DNIT</span>
     </div>
   </div>
 </section>
@@ -167,9 +173,9 @@
 <!-- ─── SERVICIOS ─────────────────────────────────────── -->
 <section class="section" id="servicios">
   <div class="section__head">
-    <span class="eyebrow js-reveal">Lo que automatizamos</span>
-    <h2 class="js-reveal">Todo lo que hacés manual, nosotros lo automatizamos.</h2>
-    <p class="js-reveal">Herramientas de nivel global adaptadas a la realidad tributaria paraguaya. SET, DNIT, SIFEN — todo integrado.</p>
+    <span class="eyebrow js-reveal" data-i18n="svc.eyebrow">Lo que automatizamos</span>
+    <h2 class="js-reveal" data-i18n="svc.title">Todo lo que hacés manual, nosotros lo automatizamos.</h2>
+    <p class="js-reveal" data-i18n="svc.sub">Herramientas de nivel global adaptadas a la realidad tributaria paraguaya. SET, DNIT, SIFEN — todo integrado.</p>
   </div>
 
   <div class="grid grid--3">
@@ -180,9 +186,9 @@
           <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
         </svg>
       </div>
-      <h3>Factura Legal Electrónica</h3>
-      <p>Generación automática de facturas legales vía SIFEN/e-Kuatia. Timbrado, XML firmado digitalmente y envío al DNIT en segundos.</p>
-      <span class="card__tag card__tag--coming">Próximamente</span>
+      <h3 data-i18n="svc.1.t">Factura Legal Electrónica</h3>
+      <p data-i18n="svc.1.d">Generación automática de facturas legales vía SIFEN/e-Kuatia. Timbrado, XML firmado digitalmente y envío al DNIT en segundos.</p>
+      <span class="card__tag card__tag--coming" data-i18n="svc.tag.coming">Próximamente</span>
     </article>
 
     <article class="card js-reveal">
@@ -192,9 +198,9 @@
           <path d="M8 11h6M11 8v6"/>
         </svg>
       </div>
-      <h3>Consulta de RUC Instantánea</h3>
-      <p>Buscá cualquier contribuyente por RUC, razón social o nombre. Datos actualizados directo del registro oficial del DNIT.</p>
-      <span class="card__tag card__tag--live">En vivo &middot; TuRuc API</span>
+      <h3 data-i18n="svc.2.t">Consulta de RUC Instantánea</h3>
+      <p data-i18n="svc.2.d">Buscá cualquier contribuyente por RUC, razón social o nombre. Datos actualizados directo del registro oficial del DNIT.</p>
+      <span class="card__tag card__tag--live" data-i18n="svc.2.tag">En vivo · TuRuc API</span>
     </article>
 
     <article class="card js-reveal">
@@ -203,9 +209,9 @@
           <path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-10"/>
         </svg>
       </div>
-      <h3>Conciliación Bancaria con IA</h3>
-      <p>Importá extractos bancarios y dejá que la IA cruce automáticamente con tus registros contables. Detecta diferencias al instante.</p>
-      <span class="card__tag card__tag--coming">Próximamente</span>
+      <h3 data-i18n="svc.3.t">Conciliación Bancaria con IA</h3>
+      <p data-i18n="svc.3.d">Importá extractos bancarios y dejá que la IA cruce automáticamente con tus registros contables. Detecta diferencias al instante.</p>
+      <span class="card__tag card__tag--coming" data-i18n="svc.tag.coming">Próximamente</span>
     </article>
 
     <article class="card js-reveal">
@@ -215,9 +221,9 @@
           <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
         </svg>
       </div>
-      <h3>Noticias Tributarias en Tiempo Real</h3>
-      <p>IA que monitorea DNIT, SET, Hacienda y BCP 24/7. Recibí alertas de resoluciones, plazos y cambios que afectan a tus clientes.</p>
-      <span class="card__tag card__tag--live">Curado &middot; Verificado</span>
+      <h3 data-i18n="svc.4.t">Noticias Tributarias en Tiempo Real</h3>
+      <p data-i18n="svc.4.d">IA que monitorea DNIT, SET, Hacienda y BCP 24/7. Recibí alertas de resoluciones, plazos y cambios que afectan a tus clientes.</p>
+      <span class="card__tag card__tag--live" data-i18n="svc.4.tag">Curado · Verificado</span>
     </article>
 
     <article class="card js-reveal">
@@ -226,9 +232,9 @@
           <rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/>
         </svg>
       </div>
-      <h3>Declaraciones Juradas</h3>
-      <p>Generación asistida de DJ informativas y de liquidación. Form 500, IVA, IRE, IRP — pre-llenado automático desde tus datos.</p>
-      <span class="card__tag card__tag--coming">Próximamente</span>
+      <h3 data-i18n="svc.5.t">Declaraciones Juradas</h3>
+      <p data-i18n="svc.5.d">Generación asistida de DJ informativas y de liquidación. Form 500, IVA, IRE, IRP — pre-llenado automático desde tus datos.</p>
+      <span class="card__tag card__tag--coming" data-i18n="svc.tag.coming">Próximamente</span>
     </article>
 
     <article class="card js-reveal">
@@ -237,9 +243,9 @@
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
         </svg>
       </div>
-      <h3>Cumplimiento Automático</h3>
-      <p>Calendario fiscal inteligente con alertas automáticas. Nunca más pierdas un vencimiento del DNIT o del SET.</p>
-      <span class="card__tag card__tag--coming">Próximamente</span>
+      <h3 data-i18n="svc.6.t">Cumplimiento Automático</h3>
+      <p data-i18n="svc.6.d">Calendario fiscal inteligente con alertas automáticas. Nunca más pierdas un vencimiento del DNIT o del SET.</p>
+      <span class="card__tag card__tag--coming" data-i18n="svc.tag.coming">Próximamente</span>
     </article>
   </div>
 </section>
@@ -247,10 +253,10 @@
 <!-- ─── FACTURA LEGAL DEMO ────────────────────────────── -->
 <section class="section section--dark" id="factura">
   <div class="section__head">
-    <span class="badge-coming js-reveal">Próximamente</span>
-    <span class="eyebrow js-reveal">Vista previa</span>
-    <h2 class="js-reveal">Generá una factura legal en <em>segundos.</em></h2>
-    <p class="js-reveal">Así va a funcionar la generación de factura electrónica con timbrado SIFEN. Requiere integración con certificado digital y homologación del DNIT — estamos en proceso.</p>
+    <span class="badge-coming js-reveal" data-i18n="badge.coming">Próximamente</span>
+    <span class="eyebrow js-reveal" data-i18n="factura.eyebrow">Vista previa</span>
+    <h2 class="js-reveal" data-i18n-html="factura.title">Generá una factura legal en <em>segundos.</em></h2>
+    <p class="js-reveal" data-i18n="factura.sub">Así va a funcionar la generación de factura electrónica con timbrado SIFEN. Requiere integración con certificado digital y homologación del DNIT — estamos en proceso.</p>
   </div>
 
   <div class="demo-factura js-reveal">
@@ -482,10 +488,10 @@
 <!-- ─── CONCILIACIÓN BANCARIA ─────────────────────────── -->
 <section class="section" id="conciliacion">
   <div class="section__head">
-    <span class="badge-coming js-reveal">Próximamente</span>
-    <span class="eyebrow js-reveal">Conciliación con IA</span>
-    <h2 class="js-reveal">Tu extracto bancario, <em>conciliado automáticamente.</em></h2>
-    <p class="js-reveal">Así va a funcionar: importás el extracto CSV del banco y la IA cruza cada movimiento con tus registros contables. En desarrollo — bancos paraguayos no ofrecen API pública aún.</p>
+    <span class="badge-coming js-reveal" data-i18n="badge.coming">Próximamente</span>
+    <span class="eyebrow js-reveal" data-i18n="conc.eyebrow">Conciliación con IA</span>
+    <h2 class="js-reveal" data-i18n-html="conc.title">Tu extracto bancario, <em>conciliado automáticamente.</em></h2>
+    <p class="js-reveal" data-i18n="conc.sub">Así va a funcionar: importás el extracto CSV del banco y la IA cruza cada movimiento con tus registros contables. En desarrollo — bancos paraguayos no ofrecen API pública aún.</p>
   </div>
 
   <div class="conciliacion-demo js-reveal">
@@ -541,9 +547,9 @@
 <!-- ─── RUC LOOKUP ────────────────────────────────────── -->
 <section class="section section--dark" id="ruc">
   <div class="section__head">
-    <span class="eyebrow js-reveal">API en vivo &middot; Datos reales</span>
-    <h2 class="js-reveal">Consultá cualquier RUC del <em>Paraguay.</em></h2>
-    <p class="js-reveal">Conectado a la API gratuita de TuRuc (turuc.com.py). Datos reales del Registro Único de Contribuyentes — buscá por RUC o razón social.</p>
+    <span class="eyebrow js-reveal" data-i18n="ruc.eyebrow">API en vivo · Datos reales</span>
+    <h2 class="js-reveal" data-i18n-html="ruc.title">Consultá cualquier RUC del <em>Paraguay.</em></h2>
+    <p class="js-reveal" data-i18n="ruc.sub">Conectado a la API gratuita de TuRuc (turuc.com.py). Datos reales del Registro Único de Contribuyentes — buscá por RUC o razón social.</p>
   </div>
 
   <div class="ruc-demo js-reveal">
@@ -625,9 +631,9 @@
 <!-- ─── NOTICIAS TRIBUTARIAS ──────────────────────────── -->
 <section class="section" id="noticias">
   <div class="section__head">
-    <span class="eyebrow js-reveal">Highlights tributarios &middot; Actualizado cada hora</span>
-    <h2 class="js-reveal">Noticias que <em>importan</em> a tu estudio.</h2>
-    <p class="js-reveal">Noticias extraídas automáticamente de fuentes oficiales paraguayas cada 1 hora, filtradas por IA y seleccionadas por relevancia para estudios contables.</p>
+    <span class="eyebrow js-reveal" data-i18n="news.eyebrow">Highlights tributarios · Actualizado cada hora</span>
+    <h2 class="js-reveal" data-i18n-html="news.title">Noticias que <em>importan</em> a tu estudio.</h2>
+    <p class="js-reveal" data-i18n="news.sub">Noticias extraídas automáticamente de fuentes oficiales paraguayas cada 1 hora, filtradas por IA y seleccionadas por relevancia para estudios contables.</p>
   </div>
 
   <div class="news-tabs js-reveal">
@@ -794,55 +800,55 @@
 <!-- ─── PRECIOS ───────────────────────────────────────── -->
 <section class="section" id="precios">
   <div class="section__head">
-    <span class="eyebrow js-reveal">Inversión</span>
-    <h2 class="js-reveal">Cada plan, hecho a medida.</h2>
-    <p class="js-reveal">No vendemos paquetes cerrados. Armamos el plan exacto según el tamaño de tu estudio, tu cartera de clientes y los procesos que necesitás automatizar.</p>
+    <span class="eyebrow js-reveal" data-i18n="price.eyebrow">Inversión</span>
+    <h2 class="js-reveal" data-i18n="price.title">Cada plan, hecho a medida.</h2>
+    <p class="js-reveal" data-i18n="price.sub">No vendemos paquetes cerrados. Armamos el plan exacto según el tamaño de tu estudio, tu cartera de clientes y los procesos que necesitás automatizar.</p>
   </div>
 
   <article class="pricing-card js-reveal" aria-labelledby="starterCardTitle">
     <div class="pricing-card__col pricing-card__col--starter">
-      <span class="pricing-card__eyebrow">Plan inicio · desde</span>
-      <h3 id="starterCardTitle" class="pricing-card__title">Empezá con estructura real desde el día uno.</h3>
+      <span class="pricing-card__eyebrow" data-i18n="price.start.eyebrow">Plan inicio · desde</span>
+      <h3 id="starterCardTitle" class="pricing-card__title" data-i18n="price.start.title">Empezá con estructura real desde el día uno.</h3>
       <div class="pricing-card__price">
         <strong>Gs. 1.500.000</strong>
         <span class="pricing-card__unit">/mes</span>
       </div>
-      <span class="pricing-card__tag">IVA incluido</span>
-      <p>El piso para automatizar tu estudio: sitio profesional, consulta de RUC integrada, portal tributario y WhatsApp comercial — listo para captar y atender clientes desde el día uno.</p>
-      <button class="btn btn--primary" data-open-form data-open-form-source="plan-starter">Empezar con este plan <span aria-hidden="true">→</span></button>
+      <span class="pricing-card__tag" data-i18n="price.start.tag">IVA incluido</span>
+      <p data-i18n="price.start.desc">El piso para automatizar tu estudio: sitio profesional, consulta de RUC integrada, portal tributario y WhatsApp comercial — listo para captar y atender clientes desde el día uno.</p>
+      <button class="btn btn--primary" data-open-form data-open-form-source="plan-starter" data-i18n-html="price.start.cta">Empezar con este plan <span aria-hidden="true">→</span></button>
     </div>
 
     <div class="pricing-card__divider" aria-hidden="true"></div>
 
     <div class="pricing-card__col pricing-card__col--budget">
-      <span class="pricing-card__eyebrow">Verba sugerida en ads</span>
-      <h3 class="pricing-card__title">Lo recomendado para arrancar.</h3>
+      <span class="pricing-card__eyebrow" data-i18n="price.ads.eyebrow">Verba sugerida en ads</span>
+      <h3 class="pricing-card__title" data-i18n="price.ads.title">Lo recomendado para arrancar.</h3>
       <div class="pricing-card__price pricing-card__price--alt">
         <strong>Gs. 50.000</strong>
         <span class="pricing-card__unit">/día</span>
       </div>
-      <span class="pricing-card__tag pricing-card__tag--alt">Mínimo recomendado</span>
-      <p>Para que Google y Meta tengan datos suficientes para optimizar y traer clientes cualificados a tu estudio. Este presupuesto se paga directo a la plataforma — fuera de la mensualidad de Punto Alto.</p>
+      <span class="pricing-card__tag pricing-card__tag--alt" data-i18n="price.ads.tag">Mínimo recomendado</span>
+      <p data-i18n="price.ads.desc">Para que Google y Meta tengan datos suficientes para optimizar y traer clientes cualificados a tu estudio. Este presupuesto se paga directo a la plataforma — fuera de la mensualidad de Punto Alto.</p>
     </div>
   </article>
 
   <aside class="custom-plan js-reveal" aria-labelledby="customPlanTitle">
     <div class="custom-plan__head">
-      <span class="custom-plan__eyebrow">Plan a tu medida</span>
-      <h3 id="customPlanTitle" class="custom-plan__title">¿Tu estudio ya está en otro nivel?</h3>
-      <p>Para operaciones más complejas —IA en WhatsApp 24/7, alertas tributarias automáticas por cliente, multi-atendente, integraciones con tu sistema contable, gerente de cuenta dedicado— armamos un plan exacto para tu caso. Cotizamos según tu operación, cartera y objetivos.</p>
+      <span class="custom-plan__eyebrow" data-i18n="price.custom.eyebrow">Plan a tu medida</span>
+      <h3 id="customPlanTitle" class="custom-plan__title" data-i18n="price.custom.title">¿Tu estudio ya está en otro nivel?</h3>
+      <p data-i18n="price.custom.desc">Para operaciones más complejas —IA en WhatsApp 24/7, alertas tributarias automáticas por cliente, multi-atendente, integraciones con tu sistema contable, gerente de cuenta dedicado— armamos un plan exacto para tu caso. Cotizamos según tu operación, cartera y objetivos.</p>
     </div>
-    <button class="btn btn--ghost custom-plan__cta" data-open-form data-open-form-source="plan-custom">Hablemos <span aria-hidden="true">→</span></button>
+    <button class="btn btn--ghost custom-plan__cta" data-open-form data-open-form-source="plan-custom" data-i18n-html="price.custom.cta">Hablemos <span aria-hidden="true">→</span></button>
   </aside>
 
   <!-- Alcance del plan: lo que entra y lo que se contrata aparte -->
   <aside class="scope-note js-reveal" aria-labelledby="scopeNoteTitle">
     <div class="scope-note__head">
-      <span class="scope-note__eyebrow">Inversión aparte</span>
-      <h3 id="scopeNoteTitle" class="scope-note__title">
+      <span class="scope-note__eyebrow" data-i18n="scope.eyebrow">Inversión aparte</span>
+      <h3 id="scopeNoteTitle" class="scope-note__title" data-i18n="scope.title">
         Nuestros planes cubren el servicio completo de la agencia.
       </h3>
-      <p class="scope-note__sub">
+      <p class="scope-note__sub" data-i18n-html="scope.sub">
         Los ítems marcados con <span class="scope-note__mark" aria-hidden="true">*</span> se contratan directo con cada proveedor — así mantenés control total sobre tu presupuesto, sin intermediarios ni sorpresas.
       </p>
     </div>
@@ -858,8 +864,8 @@
           </svg>
         </span>
         <div class="scope-note__body">
-          <strong>Pauta en Google Ads</strong>
-          <span>Presupuesto de medios pagado directo a Google.</span>
+          <strong data-i18n="scope.i1.t">Pauta en Google Ads</strong>
+          <span data-i18n="scope.i1.d">Presupuesto de medios pagado directo a Google.</span>
         </div>
       </li>
 
@@ -871,8 +877,8 @@
           </svg>
         </span>
         <div class="scope-note__body">
-          <strong>API de WhatsApp Business</strong>
-          <span>Licencia facturada aparte — el costo varía según la cantidad de números y atendentes que operen el sistema.</span>
+          <strong data-i18n="scope.i2.t">API de WhatsApp Business</strong>
+          <span data-i18n="scope.i2.d">Licencia facturada aparte — el costo varía según la cantidad de números y atendentes que operen el sistema.</span>
         </div>
       </li>
 
@@ -884,8 +890,8 @@
           </svg>
         </span>
         <div class="scope-note__body">
-          <strong>Email corporativo profesional</strong>
-          <span>Precio variable según usuarios — base del ecosistema digital de tu estudio.</span>
+          <strong data-i18n="scope.i3.t">Email corporativo profesional</strong>
+          <span data-i18n="scope.i3.d">Precio variable según usuarios — base del ecosistema digital de tu estudio.</span>
         </div>
       </li>
     </ul>
@@ -896,15 +902,15 @@
 <!-- ─── CTA FINAL ─────────────────────────────────────── -->
 <section class="section cta-final" id="contacto">
   <div class="cta-final__box js-reveal">
-    <h2>
+    <h2 data-i18n-html="cta.title">
       Automatizá tu estudio contable.<br/>
       <em>Empezá hoy.</em>
     </h2>
-    <p>Consultoría gratuita. 30 minutos. Te mostramos cómo automatizar tu operación contable.</p>
-    <button class="btn btn--primary btn--lg" data-open-form data-open-form-source="cta-final">
+    <p data-i18n="cta.sub">Consultoría gratuita. 30 minutos. Te mostramos cómo automatizar tu operación contable.</p>
+    <button class="btn btn--primary btn--lg" data-open-form data-open-form-source="cta-final" data-i18n-html="cta.btn">
       Agendar consultoría <span aria-hidden="true">→</span>
     </button>
-    <small>Respuesta por WhatsApp en menos de 2 horas &middot; 100% gratuito</small>
+    <small data-i18n="cta.trust">Respuesta por WhatsApp en menos de 2 horas · 100% gratuito</small>
   </div>
 </section>
 
@@ -918,24 +924,24 @@
       </svg>
       <span class="logo__text">
         <strong>PUNTO ALTO</strong>
-        <small>Para Contadores</small>
+        <small data-i18n="footer.sub">Para Contadores</small>
       </span>
     </div>
     <div class="footer__links">
-      <a href="index.html">Punto Alto Marketing</a>
-      <span>&middot;</span>
-      <a href="#servicios">Servicios</a>
-      <span>&middot;</span>
-      <a href="#noticias">Noticias</a>
+      <a href="index.html" data-i18n="footer.l1">Punto Alto Marketing</a>
+      <span>·</span>
+      <a href="inmobiliario.html" data-i18n="footer.l2">Para Inmobiliarias</a>
+      <span>·</span>
+      <a href="#servicios" data-i18n="nav.services">Servicios</a>
     </div>
-    <p class="footer__copy">&copy; 2026 Punto Alto &mdash; Asunci&oacute;n, Paraguay. Automatizaci&oacute;n contable con IA.</p>
+    <p class="footer__copy" data-i18n="footer.copy">© 2026 Punto Alto — Asunción, Paraguay. Automatización contable con IA.</p>
   </div>
 </footer>
 
 </main>
 
 <!-- ─── FORM OVERLAY ──────────────────────────────────── -->
-<div class="formx" id="formx" aria-modal="true" role="dialog" aria-label="Consultoría gratuita" hidden>
+<div class="formx" id="formx" aria-modal="true" role="dialog" aria-label="Consultoría gratuita" data-i18n-aria="form.overlay.aria" hidden>
   <div class="formx__bg" aria-hidden="true"></div>
 
   <div class="formx__progress"><div class="formx__bar" id="fxBar"></div></div>
@@ -950,75 +956,91 @@
   <div class="formx__stage" id="fxStage">
 
     <div class="fxstep" data-step="1">
-      <p class="fxstep__label">Pregunta 1 / 5</p>
-      <h2>¿Cómo te llamamos?</h2>
-      <input type="text" id="f-name" class="fxinput" placeholder="Tu nombre" autocomplete="given-name"/>
-      <small class="fxhint">Presioná <kbd>Enter ↵</kbd> para continuar</small>
+      <p class="fxstep__label" data-i18n="form.s1.label">Pregunta 1 / 6</p>
+      <h2 data-i18n="form.s1.q">¿Cómo te llamamos?</h2>
+      <input type="text" id="f-name" class="fxinput" placeholder="Tu nombre" autocomplete="given-name" data-i18n-ph="form.s1.ph"/>
+      <small class="fxhint" data-i18n-html="form.hint.enter">Presioná <kbd>Enter ↵</kbd> para continuar</small>
       <span class="fxerror" id="e-name"></span>
-      <button class="btn btn--primary fxnext" data-next>Continuar →</button>
+      <button class="btn btn--primary fxnext" data-next data-i18n="form.next">Continuar →</button>
     </div>
 
     <div class="fxstep" data-step="2">
-      <p class="fxstep__label">Pregunta 2 / 5</p>
-      <h2>¿Tu número de WhatsApp?</h2>
+      <p class="fxstep__label" data-i18n="form.s2.label">Pregunta 2 / 6</p>
+      <h2 data-i18n="form.s2.q">¿Tu número de WhatsApp?</h2>
       <div class="fxphone-simple">
         <span class="fxphone-prefix">+595</span>
-        <input type="tel" id="f-phone" class="fxinput" placeholder="981 123 456" autocomplete="tel"/>
+        <input type="tel" id="f-phone" class="fxinput" placeholder="981 123 456" autocomplete="tel" data-i18n-ph="form.s2.ph"/>
       </div>
-      <small class="fxhint">Te contactamos ahí con la agenda</small>
+      <small class="fxhint" data-i18n="form.s2.hint">Te contactamos ahí con la agenda</small>
       <span class="fxerror" id="e-phone"></span>
-      <button class="btn btn--primary fxnext" data-next>Continuar →</button>
+      <button class="btn btn--primary fxnext" data-next data-i18n="form.next">Continuar →</button>
     </div>
 
     <div class="fxstep" data-step="3">
-      <p class="fxstep__label">Pregunta 3 / 5</p>
-      <h2>¿Nombre de tu estudio contable?</h2>
-      <input type="text" id="f-company" class="fxinput" placeholder="Tu estudio o firma" autocomplete="organization"/>
+      <p class="fxstep__label" data-i18n="form.s3.label">Pregunta 3 / 6</p>
+      <h2 data-i18n="form.s3.q">¿Nombre de tu estudio contable?</h2>
+      <input type="text" id="f-company" class="fxinput" placeholder="Tu estudio o firma" autocomplete="organization" data-i18n-ph="form.s3.ph"/>
       <span class="fxerror" id="e-company"></span>
-      <button class="btn btn--primary fxnext" data-next>Continuar →</button>
+      <button class="btn btn--primary fxnext" data-next data-i18n="form.next">Continuar →</button>
     </div>
 
     <div class="fxstep" data-step="4">
-      <p class="fxstep__label">Pregunta 4 / 5</p>
-      <h2>¿Cuántos clientes manejás?</h2>
-      <p class="fxsub">Para recomendarte el plan ideal.</p>
+      <p class="fxstep__label" data-i18n="form.s4.label">Pregunta 4 / 6</p>
+      <h2 data-i18n="form.s4.q">¿Cuántos clientes manejás?</h2>
+      <p class="fxsub" data-i18n="form.s4.sub">Para dimensionar el plan ideal.</p>
       <div class="fxradios" id="rg-clients">
-        <label><input type="radio" name="clients" value="1-10"/><span>1 – 10 clientes</span></label>
-        <label><input type="radio" name="clients" value="11-30"/><span>11 – 30 clientes</span></label>
-        <label><input type="radio" name="clients" value="31-50"/><span>31 – 50 clientes</span></label>
-        <label><input type="radio" name="clients" value="50+"/><span>Más de 50</span></label>
+        <label><input type="radio" name="clients" value="1-10"/><span data-i18n="form.s4.o1">1 – 10 clientes</span></label>
+        <label><input type="radio" name="clients" value="11-30"/><span data-i18n="form.s4.o2">11 – 30 clientes</span></label>
+        <label><input type="radio" name="clients" value="31-50"/><span data-i18n="form.s4.o3">31 – 50 clientes</span></label>
+        <label><input type="radio" name="clients" value="50+"/><span data-i18n="form.s4.o4">Más de 50</span></label>
       </div>
       <span class="fxerror" id="e-clients"></span>
     </div>
 
     <div class="fxstep" data-step="5">
-      <p class="fxstep__label">Última pregunta</p>
-      <h2>¿Qué te interesa automatizar primero?</h2>
-      <p class="fxsub">Elegí uno — seguimos automáticamente.</p>
-      <div class="fxradios" id="rg-interest">
-        <label><input type="radio" name="interest" value="factura"/><span>Facturación electrónica</span></label>
-        <label><input type="radio" name="interest" value="conciliacion"/><span>Conciliación bancaria</span></label>
-        <label><input type="radio" name="interest" value="declaraciones"/><span>Declaraciones juradas</span></label>
-        <label><input type="radio" name="interest" value="noticias"/><span>Monitoreo de noticias</span></label>
-        <label><input type="radio" name="interest" value="todo"/><span>Todo lo anterior</span></label>
+      <p class="fxstep__label" data-i18n="form.s5.label">Pregunta 5 / 6</p>
+      <h2 data-i18n="form.s5.q">¿Qué software contable usás hoy?</h2>
+      <p class="fxsub" data-i18n="form.s5.sub">Para entender de dónde partimos.</p>
+      <div class="fxradios" id="rg-software">
+        <label><input type="radio" name="software" value="excel"/><span data-i18n="form.s5.o1">Excel / planillas</span></label>
+        <label><input type="radio" name="software" value="tango"/><span data-i18n="form.s5.o2">Tango Gestión</span></label>
+        <label><input type="radio" name="software" value="bejerman"/><span data-i18n="form.s5.o3">Bejerman</span></label>
+        <label><input type="radio" name="software" value="memory"/><span data-i18n="form.s5.o4">Memory</span></label>
+        <label><input type="radio" name="software" value="mixto"/><span data-i18n="form.s5.o5">Excel + algún sistema</span></label>
+        <label><input type="radio" name="software" value="ninguno"/><span data-i18n="form.s5.o6">Ninguno por ahora</span></label>
       </div>
-      <span class="fxerror" id="e-interest"></span>
+      <span class="fxerror" id="e-software"></span>
     </div>
 
-    <div class="fxstep fxstep--ok" data-step="6">
+    <div class="fxstep" data-step="6">
+      <p class="fxstep__label" data-i18n="form.s6.label">Última pregunta</p>
+      <h2 data-i18n="form.s6.q">¿Cuál es tu mayor desafío hoy?</h2>
+      <p class="fxsub" data-i18n="form.s6.sub">Elegí el principal — seguimos automáticamente.</p>
+      <div class="fxradios" id="rg-pain">
+        <label><input type="radio" name="pain" value="sobrecarga"/><span data-i18n="form.s6.o1">Mi equipo está sobrecargado</span></label>
+        <label><input type="radio" name="pain" value="sifen"/><span data-i18n="form.s6.o2">Migrar a factura electrónica (SIFEN)</span></label>
+        <label><input type="radio" name="pain" value="conciliacion"/><span data-i18n="form.s6.o3">Conciliación bancaria manual</span></label>
+        <label><input type="radio" name="pain" value="dnit"/><span data-i18n="form.s6.o4">Cumplir plazos del DNIT</span></label>
+        <label><input type="radio" name="pain" value="captacion"/><span data-i18n="form.s6.o5">Captar más clientes</span></label>
+        <label><input type="radio" name="pain" value="modernizar"/><span data-i18n="form.s6.o6">Modernizar todo el estudio</span></label>
+      </div>
+      <span class="fxerror" id="e-pain"></span>
+    </div>
+
+    <div class="fxstep fxstep--ok" data-step="7">
       <svg class="fxcheck" viewBox="0 0 52 52" aria-hidden="true">
         <circle cx="26" cy="26" r="24" fill="none"/>
         <path fill="none" d="M14 27l8 8 16-16"/>
       </svg>
-      <h2>¡Perfecto, <span id="fxOkName"></span>!</h2>
-      <p class="fxsub">Te escribimos por WhatsApp en menos de 2 horas para agendar tu consultoría gratuita.</p>
-      <button class="btn btn--ghost" id="fxDone">Volver al sitio</button>
+      <h2 data-i18n-html="form.ok.title">¡Perfecto, <span id="fxOkName"></span>!</h2>
+      <p class="fxsub" data-i18n="form.ok.sub">Te escribimos por WhatsApp en menos de 2 horas para agendar tu consultoría gratuita.</p>
+      <button class="btn btn--ghost" id="fxDone" data-i18n="form.ok.btn">Volver al sitio</button>
     </div>
 
   </div>
 
   <div class="formx__nav">
-    <button class="fxback" id="fxBack">← Volver</button>
+    <button class="fxback" id="fxBack" data-i18n="form.back">← Volver</button>
     <div class="fxdots" id="fxDots" aria-hidden="true"></div>
   </div>
 </div>

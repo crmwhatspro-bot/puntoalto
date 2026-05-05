@@ -98,7 +98,7 @@ const state = {
   leads:     [],
   sessions:  [],
   pageViews: [],
-  filters:   { search: '', source: '', status: '' },
+  filters:   { search: '', source: '', status: '', software: '', pain: '', operation: '', origin: '' },
   sort:      { key: 'created_at', dir: 'desc' },
   period:    30,
   unsub:         null,
@@ -383,6 +383,28 @@ function renderCharts() {
   renderDonut('chartSource',    groupBy(leadsCur, 'source'));
   renderDonut('chartCta',       groupBy(sessionsCur, 'cta_origin'));
   renderDonut('chartUtm',       groupBy(sessionsCur, 'utm_source', 'directo'));
+
+  // Niche-specific donuts
+  const contadoresLeads   = leadsCur.filter((l) => l.source === 'landing-contadores');
+  const inmobiliarioLeads = leadsCur.filter((l) => l.source === 'landing-inmobiliario');
+
+  renderDonut('chartClients',   groupBy(contadoresLeads, 'clients'));
+  renderDonut('chartSoftware',  groupBy(contadoresLeads, 'software'));
+  renderDonut('chartPain',      groupBy(contadoresLeads, 'pain'));
+  renderDonut('chartOperation', groupBy(inmobiliarioLeads, 'operation'));
+  renderDonut('chartTeam',      groupBy(inmobiliarioLeads, 'team'));
+  renderDonut('chartOrigin',    groupBy(inmobiliarioLeads, 'origin'));
+
+  // Visibility toggle by current source filter
+  const filter = state.filters.source;
+  document.querySelectorAll('[data-niche]').forEach((el) => {
+    const niche = el.dataset.niche;
+    let visible = false;
+    if (filter === 'landing-contadores')   visible = (niche === 'contadores');
+    else if (filter === 'landing-inmobiliario') visible = (niche === 'inmobiliario');
+    el.hidden = !visible;
+  });
+
   renderFunnel();
 }
 
@@ -621,7 +643,7 @@ function renderTable() {
   const rows  = applyFiltersAndSort(state.leads);
 
   if (rows.length === 0) {
-    tbody.innerHTML = '<tr class="leads__empty"><td colspan="7">Sin resultados.</td></tr>';
+    tbody.innerHTML = '<tr class="leads__empty"><td colspan="8">Sin resultados.</td></tr>';
     $('leadsCount').textContent = `0 de ${state.leads.length}`;
     return;
   }
@@ -629,12 +651,14 @@ function renderTable() {
   tbody.innerHTML = rows.map((l) => {
     const ms     = l.created_at?.toMillis?.();
     const when   = ms ? tzFmt.format(new Date(ms)) : '—';
-    const source = (l.source || '').replace('landing-', '');
     const status = l.status || 'new';
     const waOk   = l.crm_whatspro?.primary?.ok || l.crm_whatspro?.fallback?.ok;
     const waAtt  = !!l.crm_whatspro;
     const waCls  = !waAtt ? 'wa--wait' : (waOk ? 'wa--ok' : 'wa--fail');
     const waIco  = !waAtt ? '…' : (waOk ? '✓' : '✗');
+    const badge  = sourceBadge(l.source);
+    const score  = qualificationScore(l);
+    const dots   = qualificationDots(score);
 
     return `
       <tr data-id="${l.id}">
@@ -642,14 +666,41 @@ function renderTable() {
         <td><strong>${escapeHtml(l.name || '—')}</strong></td>
         <td>${escapeHtml(l.phone || '—')}</td>
         <td>${escapeHtml(l.company || '—')}</td>
-        <td>${escapeHtml(source || '—')}</td>
+        <td>${badge}</td>
+        <td><button class="msg-copy" data-id="${l.id}" title="Calidad ${score}/3 — clic para copiar mensaje WhatsApp">${dots}</button></td>
         <td><span class="wa ${waCls}" title="WhatsApp">${waIco}</span></td>
         <td><span class="pill pill--${status}">${statusLabel(status)}</span></td>
       </tr>`;
   }).join('');
 
   tbody.querySelectorAll('tr[data-id]').forEach((tr) => {
-    tr.addEventListener('click', () => openDrawer(tr.dataset.id));
+    tr.addEventListener('click', (e) => {
+      // Don't open drawer if user clicked the copy button
+      if (e.target.closest('.msg-copy')) return;
+      openDrawer(tr.dataset.id);
+    });
+  });
+
+  tbody.querySelectorAll('.msg-copy').forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const lead = state.leads.find((l) => l.id === btn.dataset.id);
+      if (!lead) return;
+      const text = buildWhatsAppMessage(lead);
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.classList.add('is-copied');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>';
+        toast('Mensaje copiado.');
+        setTimeout(() => {
+          btn.classList.remove('is-copied');
+          btn.innerHTML = orig;
+        }, 1800);
+      } catch (err) {
+        toast('No se pudo copiar: ' + err.message, 'error');
+      }
+    });
   });
 
   $('leadsCount').textContent = rows.length === state.leads.length
@@ -658,11 +709,15 @@ function renderTable() {
 }
 
 function applyFiltersAndSort(leads) {
-  const { search, source, status } = state.filters;
+  const { search, source, status, software, pain, operation, origin } = state.filters;
   const s = search.trim().toLowerCase();
   let out = leads.filter((l) => {
     if (source && l.source !== source) return false;
     if (status && (l.status || 'new') !== status) return false;
+    if (software  && l.software  !== software)  return false;
+    if (pain      && l.pain      !== pain)      return false;
+    if (operation && l.operation !== operation) return false;
+    if (origin    && l.origin    !== origin)    return false;
     if (!s) return true;
     return (
       (l.name    || '').toLowerCase().includes(s) ||
@@ -700,6 +755,102 @@ function statusLabel(s) {
   })[s] || s;
 }
 
+/* ── Niche helpers ───────────────────────────────────── */
+function leadNiche(source) {
+  if (source === 'landing-contadores')   return 'contadores';
+  if (source === 'landing-inmobiliario') return 'inmobiliario';
+  return 'marketing';
+}
+
+/* Qualification score: 0-3 niche-specific fields filled */
+function qualificationScore(l) {
+  const niche = leadNiche(l.source);
+  const fields = ({
+    'contadores':   ['clients', 'software', 'pain'],
+    'inmobiliario': ['operation', 'team', 'origin'],
+    'marketing':    ['sector', 'challenge', 'budget']
+  })[niche];
+  return fields.reduce((n, f) => n + (l[f] ? 1 : 0), 0);
+}
+
+function qualificationDots(score) {
+  let html = '<span class="msg-dots">';
+  for (let i = 0; i < 3; i++) {
+    html += `<i class="msg-dot${i < score ? ' is-on' : ''}"></i>`;
+  }
+  html += '</span>';
+  return html;
+}
+
+function sourceBadge(source) {
+  const n = leadNiche(source);
+  const label = ({
+    'contadores':   'Contadores',
+    'inmobiliario': 'Inmobiliario',
+    'marketing':    (source || '—').replace('landing-', '') || '—'
+  })[n];
+  return `<span class="badge badge--${n}">${escapeHtml(label)}</span>`;
+}
+
+/* Human labels for niche-specific values */
+const VALUE_LABELS = {
+  // Contadores
+  software: {
+    'excel': 'Excel / planillas', 'tango': 'Tango Gestión', 'bejerman': 'Bejerman',
+    'memory': 'Memory', 'mixto': 'Excel + algún sistema', 'ninguno': 'Ninguno por ahora'
+  },
+  pain: {
+    'sobrecarga': 'Equipo sobrecargado', 'sifen': 'Migrar a SIFEN',
+    'conciliacion': 'Conciliación bancaria manual', 'dnit': 'Cumplir plazos del DNIT',
+    'captacion': 'Captar más clientes', 'modernizar': 'Modernizar todo el estudio'
+  },
+  // Inmobiliario
+  operation: {
+    'venta-nueva': 'Venta de inmuebles nuevos', 'venta-usado': 'Venta de usados',
+    'alquiler': 'Alquiler', 'inversion': 'Inversión / renta', 'mixto': 'Mixto (varios)'
+  },
+  team: {
+    '1': 'Solo el dueño', '2-5': '2 – 5 corredores',
+    '6-15': '6 – 15 corredores', '15+': 'Cadena 15+ corredores'
+  },
+  origin: {
+    'meta': 'Meta Ads', 'google': 'Google Ads',
+    'portales': 'Portales (InfoCasas)', 'indicacion': 'Solo indicación',
+    'walkin': 'Walk-in / cartel', 'nada': 'Nada estructurado'
+  }
+};
+function labelOf(field, raw) {
+  if (!raw) return '';
+  return (VALUE_LABELS[field] && VALUE_LABELS[field][raw]) || raw;
+}
+
+/* WhatsApp first-message templates per niche */
+function buildWhatsAppMessage(l) {
+  const firstName = (l.name || '').split(' ')[0] || 'allá';
+  const niche = leadNiche(l.source);
+
+  if (niche === 'contadores') {
+    const sw   = labelOf('software', l.software);
+    const cli  = l.clients ? `${l.clients} clientes` : '';
+    const pain = labelOf('pain', l.pain);
+    const ctx  = [cli, sw && `usan ${sw}`].filter(Boolean).join(' y ');
+    const dor  = pain ? ` Sobre ${pain.toLowerCase()} — tenemos varios casos ya resueltos.` : '';
+    return `Hola ${firstName}! Soy de Punto Alto, vi que llenaste el diagnóstico para tu estudio${ctx ? ` (${ctx})` : ''}.${dor}\n\n¿Te queda bien una llamada de 30 min esta semana? Te muestro cómo quedaría tu operación automatizada y qué números esperar.`;
+  }
+
+  if (niche === 'inmobiliario') {
+    const op   = labelOf('operation', l.operation);
+    const team = labelOf('team', l.team);
+    const orig = labelOf('origin', l.origin);
+    const ctx  = [op && op.toLowerCase(), team && team.toLowerCase()].filter(Boolean).join(', ');
+    const cap  = orig ? ` Hoy captás vía ${orig.toLowerCase()} — podemos potenciar eso o agregar canales nuevos.` : '';
+    return `Hola ${firstName}! Soy de Punto Alto, vi que pediste el diagnóstico para tu inmobiliaria${ctx ? ` (${ctx})` : ''}.${cap}\n\n¿Te queda bien una llamada de 30 min esta semana? Te muestro el funnel completo y qué números esperar en los próximos 90 días.`;
+  }
+
+  // marketing
+  return `Hola ${firstName}! Soy de Punto Alto, vi que pediste tu diagnóstico digital. ¿Te queda bien una llamada de 30 min esta semana?`;
+}
+
 function escapeHtml(s) {
   return String(s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -729,11 +880,39 @@ $('searchInput').addEventListener('input', (e) => {
 });
 $('filterSource').addEventListener('change', (e) => {
   state.filters.source = e.target.value;
+
+  // Toggle visibility of niche-specific filter dropdowns
+  const sourceVal = e.target.value;
+  const nicheActive = sourceVal === 'landing-contadores' ? 'contadores'
+                    : sourceVal === 'landing-inmobiliario' ? 'inmobiliario'
+                    : null;
+
+  document.querySelectorAll('[data-niche-filter]').forEach((el) => {
+    const show = el.dataset.nicheFilter === nicheActive;
+    el.hidden = !show;
+    if (!show) el.value = '';   // reset when hidden
+  });
+
+  // Clear niche filters that no longer apply
+  if (nicheActive !== 'contadores')   { state.filters.software = ''; state.filters.pain = ''; }
+  if (nicheActive !== 'inmobiliario') { state.filters.operation = ''; state.filters.origin = ''; }
+
   renderTable();
+  renderCharts();
 });
 $('filterStatus').addEventListener('change', (e) => {
   state.filters.status = e.target.value;
   renderTable();
+});
+
+['filterSoftware', 'filterPain', 'filterOperation', 'filterOrigin'].forEach((id) => {
+  const el = $(id);
+  if (!el) return;
+  const key = id.replace('filter', '').toLowerCase();
+  el.addEventListener('change', (e) => {
+    state.filters[key] = e.target.value;
+    renderTable();
+  });
 });
 
 document.querySelectorAll('.leads thead th[data-sort]').forEach((th) => {
@@ -820,6 +999,23 @@ function openDrawer(id) {
       toast('Error: ' + err.code, 'error');
     }
   });
+
+  const copyBtn = drawerBody.querySelector('.copy-wa-btn');
+  if (copyBtn) copyBtn.addEventListener('click', async () => {
+    const text = copyBtn.dataset.waText || '';
+    try {
+      await navigator.clipboard.writeText(text);
+      copyBtn.classList.add('is-copied');
+      copyBtn.querySelector('span').textContent = '✓ Copiado al portapapeles';
+      toast('Mensaje copiado.');
+      setTimeout(() => {
+        copyBtn.classList.remove('is-copied');
+        copyBtn.querySelector('span').textContent = 'Copiar mensaje personalizado';
+      }, 2200);
+    } catch (err) {
+      toast('No se pudo copiar: ' + err.message, 'error');
+    }
+  });
 }
 
 function closeDrawer() {
@@ -858,9 +1054,45 @@ function drawerMarkup(l) {
       <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">Sin intento registrado aún.</p>
     </div>`;
 
+  const niche = leadNiche(l.source);
+  const nicheBadge = sourceBadge(l.source);
+  const waMessage  = buildWhatsAppMessage(l);
+
+  // Niche-specific qualification block
+  let qualBlock = '';
+  if (niche === 'contadores') {
+    qualBlock = `
+    <div class="drawer__section">
+      <h3>Cualificación · Contadores</h3>
+      ${row('Tamaño del estudio', l.clients)}
+      ${row('Software actual', labelOf('software', l.software))}
+      ${row('Mayor desafío', labelOf('pain', l.pain))}
+    </div>`;
+  } else if (niche === 'inmobiliario') {
+    qualBlock = `
+    <div class="drawer__section">
+      <h3>Cualificación · Inmobiliario</h3>
+      ${row('Tipo de operación', labelOf('operation', l.operation))}
+      ${row('Tamaño del equipo', labelOf('team', l.team))}
+      ${row('Origen actual de leads', labelOf('origin', l.origin))}
+    </div>`;
+  } else {
+    qualBlock = `
+    <div class="drawer__section">
+      <h3>Cualificación</h3>
+      ${row('Sector', l.sector)}
+      ${row('Desafío', l.challenge)}
+      ${row('Presupuesto', l.budget)}
+    </div>`;
+  }
+
   return `
     <div class="drawer__section">
       <h3>Estado</h3>
+      <div style="display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap; margin-bottom: 0.6rem;">
+        ${nicheBadge}
+        <span class="pill pill--${status}">${statusLabel(status)}</span>
+      </div>
       <select class="status-picker">
         ${['new', 'contacted', 'qualified', 'converted', 'lost'].map(s =>
           `<option value="${s}" ${s === status ? 'selected' : ''}>${statusLabel(s)}</option>`
@@ -876,13 +1108,18 @@ function drawerMarkup(l) {
       ${row('Empresa', l.company)}
     </div>
 
+    ${qualBlock}
+
     <div class="drawer__section">
-      <h3>Cualificación</h3>
-      ${row('Sector', l.sector)}
-      ${row('Desafío', l.challenge)}
-      ${row('Presupuesto', l.budget)}
-      ${l.clients  ? row('Clientes',  l.clients)  : ''}
-      ${l.interest ? row('Interés',   l.interest) : ''}
+      <h3>Primera mensaje WhatsApp</h3>
+      <button class="copy-wa-btn" data-wa-text="${escapeHtml(waMessage)}">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+        <span>Copiar mensaje personalizado</span>
+      </button>
+      <div class="copy-wa-preview">${escapeHtml(waMessage)}</div>
     </div>
 
     ${waBlock}
@@ -891,7 +1128,7 @@ function drawerMarkup(l) {
       <h3>Meta</h3>
       ${row('Creado', when, true)}
       ${row('Origen', l.source)}
-      ${row('Idioma', l.locale)}
+      ${row('Idioma', l.locale || l.lang)}
       ${row('Página', l.page_url, true)}
       ${row('Referrer', l.referrer, true)}
       ${row('User Agent', l.user_agent, true)}

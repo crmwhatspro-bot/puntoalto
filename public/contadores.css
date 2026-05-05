@@ -194,6 +194,43 @@ h1, h2, h3 {
 .nav__links a:hover { color: var(--text); }
 .nav__cta { margin-left: auto; height: 42px; padding: 0 1.1rem; font-size: 0.85rem; }
 
+/* Lang switcher (shared by contadores + inmobiliario pages) */
+.lang {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.lang__btn {
+  font-family: var(--ff-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding: 5px 10px;
+  border-radius: 7px;
+  transition: background 0.2s, color 0.2s;
+}
+.lang__btn:hover { color: var(--text); }
+.lang__btn.is-active {
+  background: var(--orange-soft);
+  color: var(--orange-dk);
+}
+[data-theme="dark"] .lang__btn.is-active {
+  background: rgba(255, 106, 61, 0.18);
+  color: #FFB596;
+}
+@media (max-width: 768px) {
+  .lang { padding: 2px; }
+  .lang__btn { padding: 4px 7px; font-size: 0.65rem; }
+}
+@media (max-width: 500px) {
+  .lang__btn { padding: 3px 6px; font-size: 0.62rem; letter-spacing: 0.05em; }
+}
+
 /* Theme toggle */
 .theme-toggle {
   width: 38px; height: 38px;

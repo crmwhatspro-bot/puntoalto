@@ -47,7 +47,7 @@ const I18N = {
   es: {
     'logo.sub': 'PARA INMOBILIARIAS',
     'nav.services': 'Servicios', 'nav.whatsapp': 'WhatsApp', 'nav.financing': 'Financiación',
-    'nav.map': 'Mapa de leads', 'nav.pricing': 'Precios', 'nav.cta': 'Diagnóstico gratis →',
+    'nav.map': 'Mapa de leads', 'nav.panel': 'Panel', 'nav.pricing': 'Precios', 'nav.cta': 'Diagnóstico gratis →',
 
     'hero.pill': 'Captación inmobiliaria · Paraguay',
     'hero.title1': 'Vendé más inmuebles.',
@@ -150,6 +150,30 @@ const I18N = {
     'map.l.hot': 'Lead caliente', 'map.l.warm': 'Lead tibio', 'map.l.cold': 'Lead frío',
     'map.l.live': 'en vivo · últimos 7 días',
 
+    'panel.eyebrow': 'Panel propio · Mobile first',
+    'panel.title': 'Subí fotos desde el celular. <em>Tu sitio se actualiza solo.</em>',
+    'panel.sub': 'Después de cada visita técnica, sacás las fotos con el celular y las subís en 30 segundos. El inmueble queda publicado en tu sitio — listo para WhatsApp, Ads y para que tu corredor lo comparta. Sin esperar al equipo de marketing.',
+    'panel.app': 'Punto Alto · Admin',
+    'panel.property': 'Edif. Las Lomas · 3 dorm.',
+    'panel.zone': 'Tocá para subir fotos',
+    'panel.photos': 'fotos publicadas',
+    'panel.live': 'SYNC · EN VIVO',
+    'panel.uploading': 'Subiendo',
+    'panel.land.title': 'Edif. Las Lomas · 3 dormitorios',
+    'panel.land.zone': 'Villa Morra · 95m²',
+    'panel.land.cuota': 'o desde USD 870/mes',
+    'panel.land.cta': 'Agendar visita por WhatsApp →',
+    'panel.f1.t': 'Optimización automática',
+    'panel.f1.d': 'Resize, compresión y conversión a WebP en el servidor. Cada foto carga en menos de 200ms.',
+    'panel.f2.t': 'Watermark con tu logo',
+    'panel.f2.d': 'Marca de agua opcional en cada foto. Protegé tu inventario contra el competidor que copia.',
+    'panel.f3.t': 'WhatsApp con preview rico',
+    'panel.f3.d': 'Compartí el link y aparece foto, precio y zona automáticamente. Cero esfuerzo del corredor.',
+    'panel.f4.t': 'Multi-corredor con permisos',
+    'panel.f4.d': 'Cada corredor ve solo sus inmuebles. El dueño ve todo. Cada lead atribuido al responsable.',
+    'panel.included': 'Incluído en todos los planes · Hosting, CDN y optimización <strong>sin costo adicional</strong>.',
+    'panel.room.living': 'Living', 'panel.room.bedroom': 'Dormitorio', 'panel.room.bath': 'Baño', 'panel.room.ext': 'Fachada',
+
     'price.eyebrow': 'Inversión',
     'price.title': 'Cada plan, hecho a medida.',
     'price.sub': 'No vendemos paquetes cerrados. Armamos el plan exacto según el tamaño de tu inmobiliaria, tu cartera de inmuebles y los procesos que necesitás automatizar.',
@@ -190,11 +214,15 @@ const I18N = {
     'form.s2.label': 'Pregunta 2 / 5', 'form.s2.q': '¿Tu número de WhatsApp?', 'form.s2.ph': '981 123 456',
     'form.s2.hint': 'Te contactamos ahí con la agenda',
     'form.s3.label': 'Pregunta 3 / 5', 'form.s3.q': '¿Nombre de tu inmobiliaria?', 'form.s3.ph': 'Tu inmobiliaria o equipo',
-    'form.s4.label': 'Pregunta 4 / 5', 'form.s4.q': '¿Cuántos corredores son en el equipo?', 'form.s4.sub': 'Para dimensionar el plan ideal.',
-    'form.s4.o1': 'Solo yo', 'form.s4.o2': '2 – 5 corredores', 'form.s4.o3': '6 – 15 corredores', 'form.s4.o4': 'Más de 15',
-    'form.s5.label': 'Última pregunta', 'form.s5.q': '¿Cuál es tu mayor desafío hoy?', 'form.s5.sub': 'Elegí uno — seguimos automáticamente.',
-    'form.s5.o1': 'Conseguir leads cualificados', 'form.s5.o2': 'Responder WhatsApp a tiempo',
-    'form.s5.o3': 'Convertir leads en visitas', 'form.s5.o4': 'Organizar el funnel del equipo', 'form.s5.o5': 'Todo lo anterior',
+    'form.s4.label': 'Pregunta 4 / 6', 'form.s4.q': '¿Qué tipo de operación principal tenés?', 'form.s4.sub': 'Para adaptar el funnel a tu realidad.',
+    'form.s4.o1': 'Venta de inmuebles nuevos', 'form.s4.o2': 'Venta de usados', 'form.s4.o3': 'Alquiler',
+    'form.s4.o4': 'Inversión / renta', 'form.s4.o5': 'Mixto (varios)',
+    'form.s5.label': 'Pregunta 5 / 6', 'form.s5.q': '¿Cuántos corredores son en el equipo?', 'form.s5.sub': 'Para dimensionar el plan ideal.',
+    'form.s5.o1': 'Solo yo', 'form.s5.o2': '2 – 5 corredores', 'form.s5.o3': '6 – 15 corredores', 'form.s5.o4': 'Cadena 15+ corredores',
+    'form.s6.label': 'Última pregunta', 'form.s6.q': '¿De dónde vienen tus leads HOY?', 'form.s6.sub': 'El origen principal — seguimos automáticamente.',
+    'form.s6.o1': 'Meta Ads (Facebook / Instagram)', 'form.s6.o2': 'Google Ads',
+    'form.s6.o3': 'Portales (InfoCasas, Clasipar)', 'form.s6.o4': 'Solo indicación / boca-a-boca',
+    'form.s6.o5': 'Walk-in / cartel en obra', 'form.s6.o6': 'Nada estructurado todavía',
     'form.next': 'Continuar →', 'form.back': '← Volver',
     'form.hint.enter': 'Presioná <kbd>Enter ↵</kbd> para continuar',
     'form.ok.title': '¡Perfecto, <span id="fxOkName"></span>!',
@@ -205,7 +233,7 @@ const I18N = {
   en: {
     'logo.sub': 'FOR REAL ESTATE',
     'nav.services': 'Services', 'nav.whatsapp': 'WhatsApp', 'nav.financing': 'Financing',
-    'nav.map': 'Lead map', 'nav.pricing': 'Pricing', 'nav.cta': 'Free diagnosis →',
+    'nav.map': 'Lead map', 'nav.panel': 'Panel', 'nav.pricing': 'Pricing', 'nav.cta': 'Free diagnosis →',
 
     'hero.pill': 'Real estate lead-gen · Paraguay',
     'hero.title1': 'Sell more properties.',
@@ -308,6 +336,30 @@ const I18N = {
     'map.l.hot': 'Hot lead', 'map.l.warm': 'Warm lead', 'map.l.cold': 'Cold lead',
     'map.l.live': 'live · last 7 days',
 
+    'panel.eyebrow': 'Your own panel · Mobile first',
+    'panel.title': 'Upload photos from your phone. <em>Your site updates itself.</em>',
+    'panel.sub': 'After each property visit, take photos with your phone and upload them in 30 seconds. The listing goes live on your site — ready for WhatsApp, Ads and for your broker to share. No waiting on the marketing team.',
+    'panel.app': 'Punto Alto · Admin',
+    'panel.property': 'Las Lomas Bldg. · 3 BR',
+    'panel.zone': 'Tap to upload photos',
+    'panel.photos': 'published photos',
+    'panel.live': 'SYNC · LIVE',
+    'panel.uploading': 'Uploading',
+    'panel.land.title': 'Las Lomas Building · 3 bedrooms',
+    'panel.land.zone': 'Villa Morra · 95m²',
+    'panel.land.cuota': 'or from USD 870/mo',
+    'panel.land.cta': 'Book visit on WhatsApp →',
+    'panel.f1.t': 'Automatic optimization',
+    'panel.f1.d': 'Resize, compression and WebP conversion on the server. Every photo loads in under 200ms.',
+    'panel.f2.t': 'Watermark with your logo',
+    'panel.f2.d': 'Optional watermark on every photo. Protect your inventory from competitors who copy.',
+    'panel.f3.t': 'Rich WhatsApp preview',
+    'panel.f3.d': 'Share the link and the photo, price and zone appear automatically. Zero effort for the broker.',
+    'panel.f4.t': 'Multi-broker with permissions',
+    'panel.f4.d': 'Each broker sees only their listings. The owner sees everything. Every lead attributed to the right person.',
+    'panel.included': 'Included in every plan · Hosting, CDN and optimization at <strong>no extra cost</strong>.',
+    'panel.room.living': 'Living', 'panel.room.bedroom': 'Bedroom', 'panel.room.bath': 'Bathroom', 'panel.room.ext': 'Exterior',
+
     'price.eyebrow': 'Investment',
     'price.title': 'Every plan, tailor-made.',
     'price.sub': 'We don\'t sell closed packages. We build the exact plan based on the size of your agency, your inventory and the processes you need to automate.',
@@ -348,11 +400,15 @@ const I18N = {
     'form.s2.label': 'Question 2 / 5', 'form.s2.q': 'Your WhatsApp number?', 'form.s2.ph': '981 123 456',
     'form.s2.hint': 'We\'ll reach you there to schedule',
     'form.s3.label': 'Question 3 / 5', 'form.s3.q': 'Name of your real estate agency?', 'form.s3.ph': 'Your agency or team',
-    'form.s4.label': 'Question 4 / 5', 'form.s4.q': 'How many brokers in your team?', 'form.s4.sub': 'To size the right plan.',
-    'form.s4.o1': 'Just me', 'form.s4.o2': '2 – 5 brokers', 'form.s4.o3': '6 – 15 brokers', 'form.s4.o4': 'More than 15',
-    'form.s5.label': 'Last question', 'form.s5.q': 'What\'s your biggest challenge today?', 'form.s5.sub': 'Pick one — we continue automatically.',
-    'form.s5.o1': 'Getting qualified leads', 'form.s5.o2': 'Replying WhatsApp on time',
-    'form.s5.o3': 'Converting leads into visits', 'form.s5.o4': 'Organizing the team funnel', 'form.s5.o5': 'All of the above',
+    'form.s4.label': 'Question 4 / 6', 'form.s4.q': 'What\'s your main type of operation?', 'form.s4.sub': 'To tailor the funnel to your reality.',
+    'form.s4.o1': 'New property sales', 'form.s4.o2': 'Used property sales', 'form.s4.o3': 'Rentals',
+    'form.s4.o4': 'Investment / yield', 'form.s4.o5': 'Mixed (several)',
+    'form.s5.label': 'Question 5 / 6', 'form.s5.q': 'How many brokers in your team?', 'form.s5.sub': 'To size the right plan.',
+    'form.s5.o1': 'Just me', 'form.s5.o2': '2 – 5 brokers', 'form.s5.o3': '6 – 15 brokers', 'form.s5.o4': 'Chain of 15+ brokers',
+    'form.s6.label': 'Last question', 'form.s6.q': 'Where do your leads come from TODAY?', 'form.s6.sub': 'The main source — we continue automatically.',
+    'form.s6.o1': 'Meta Ads (Facebook / Instagram)', 'form.s6.o2': 'Google Ads',
+    'form.s6.o3': 'Portals (InfoCasas, Clasipar)', 'form.s6.o4': 'Word of mouth / referrals only',
+    'form.s6.o5': 'Walk-in / on-site signage', 'form.s6.o6': 'Nothing structured yet',
     'form.next': 'Continue →', 'form.back': '← Back',
     'form.hint.enter': 'Press <kbd>Enter ↵</kbd> to continue',
     'form.ok.title': 'Perfect, <span id="fxOkName"></span>!',
@@ -363,7 +419,7 @@ const I18N = {
   pt: {
     'logo.sub': 'PARA IMOBILIÁRIAS',
     'nav.services': 'Serviços', 'nav.whatsapp': 'WhatsApp', 'nav.financing': 'Financiamento',
-    'nav.map': 'Mapa de leads', 'nav.pricing': 'Preços', 'nav.cta': 'Diagnóstico grátis →',
+    'nav.map': 'Mapa de leads', 'nav.panel': 'Painel', 'nav.pricing': 'Preços', 'nav.cta': 'Diagnóstico grátis →',
 
     'hero.pill': 'Captação imobiliária · Paraguai',
     'hero.title1': 'Venda mais imóveis.',
@@ -466,6 +522,30 @@ const I18N = {
     'map.l.hot': 'Lead quente', 'map.l.warm': 'Lead morno', 'map.l.cold': 'Lead frio',
     'map.l.live': 'ao vivo · últimos 7 dias',
 
+    'panel.eyebrow': 'Painel próprio · Mobile first',
+    'panel.title': 'Suba fotos pelo celular. <em>Seu site se atualiza sozinho.</em>',
+    'panel.sub': 'Depois de cada visita técnica, tire as fotos pelo celular e suba em 30 segundos. O imóvel fica publicado no seu site — pronto pra WhatsApp, Ads e pro corretor compartilhar. Sem esperar a equipe de marketing.',
+    'panel.app': 'Punto Alto · Admin',
+    'panel.property': 'Edif. Las Lomas · 3 dorm.',
+    'panel.zone': 'Toque para subir fotos',
+    'panel.photos': 'fotos publicadas',
+    'panel.live': 'SYNC · AO VIVO',
+    'panel.uploading': 'Enviando',
+    'panel.land.title': 'Edif. Las Lomas · 3 dormitórios',
+    'panel.land.zone': 'Villa Morra · 95m²',
+    'panel.land.cuota': 'ou desde USD 870/mês',
+    'panel.land.cta': 'Agendar visita por WhatsApp →',
+    'panel.f1.t': 'Otimização automática',
+    'panel.f1.d': 'Resize, compressão e conversão pra WebP no servidor. Cada foto carrega em menos de 200ms.',
+    'panel.f2.t': 'Watermark com seu logo',
+    'panel.f2.d': 'Marca d\'água opcional em cada foto. Protege seu inventário do concorrente que copia.',
+    'panel.f3.t': 'WhatsApp com preview rico',
+    'panel.f3.d': 'Compartilhe o link e aparece foto, preço e zona automaticamente. Zero esforço do corretor.',
+    'panel.f4.t': 'Multi-corretor com permissões',
+    'panel.f4.d': 'Cada corretor vê só seus imóveis. O dono vê tudo. Cada lead atribuído ao responsável.',
+    'panel.included': 'Incluso em todos os planos · Hospedagem, CDN e otimização <strong>sem custo adicional</strong>.',
+    'panel.room.living': 'Sala', 'panel.room.bedroom': 'Quarto', 'panel.room.bath': 'Banheiro', 'panel.room.ext': 'Fachada',
+
     'price.eyebrow': 'Investimento',
     'price.title': 'Cada plano, sob medida.',
     'price.sub': 'Não vendemos pacotes fechados. Montamos o plano exato conforme o tamanho da imobiliária, sua carteira de imóveis e os processos que precisa automatizar.',
@@ -506,11 +586,15 @@ const I18N = {
     'form.s2.label': 'Pergunta 2 / 5', 'form.s2.q': 'Seu número de WhatsApp?', 'form.s2.ph': '981 123 456',
     'form.s2.hint': 'Vamos te contatar lá com a agenda',
     'form.s3.label': 'Pergunta 3 / 5', 'form.s3.q': 'Nome da sua imobiliária?', 'form.s3.ph': 'Sua imobiliária ou equipe',
-    'form.s4.label': 'Pergunta 4 / 5', 'form.s4.q': 'Quantos corretores na equipe?', 'form.s4.sub': 'Para dimensionar o plano ideal.',
-    'form.s4.o1': 'Só eu', 'form.s4.o2': '2 – 5 corretores', 'form.s4.o3': '6 – 15 corretores', 'form.s4.o4': 'Mais de 15',
-    'form.s5.label': 'Última pergunta', 'form.s5.q': 'Qual seu maior desafio hoje?', 'form.s5.sub': 'Escolha uma — seguimos automaticamente.',
-    'form.s5.o1': 'Conseguir leads qualificados', 'form.s5.o2': 'Responder WhatsApp a tempo',
-    'form.s5.o3': 'Converter leads em visitas', 'form.s5.o4': 'Organizar o funil da equipe', 'form.s5.o5': 'Tudo acima',
+    'form.s4.label': 'Pergunta 4 / 6', 'form.s4.q': 'Qual seu tipo de operação principal?', 'form.s4.sub': 'Para adaptar o funil à sua realidade.',
+    'form.s4.o1': 'Venda de imóveis novos', 'form.s4.o2': 'Venda de usados', 'form.s4.o3': 'Aluguel',
+    'form.s4.o4': 'Investimento / renda', 'form.s4.o5': 'Misto (vários)',
+    'form.s5.label': 'Pergunta 5 / 6', 'form.s5.q': 'Quantos corretores na equipe?', 'form.s5.sub': 'Para dimensionar o plano ideal.',
+    'form.s5.o1': 'Só eu', 'form.s5.o2': '2 – 5 corretores', 'form.s5.o3': '6 – 15 corretores', 'form.s5.o4': 'Rede com 15+ corretores',
+    'form.s6.label': 'Última pergunta', 'form.s6.q': 'De onde vêm seus leads HOJE?', 'form.s6.sub': 'A origem principal — seguimos automaticamente.',
+    'form.s6.o1': 'Meta Ads (Facebook / Instagram)', 'form.s6.o2': 'Google Ads',
+    'form.s6.o3': 'Portais (InfoCasas, Clasipar)', 'form.s6.o4': 'Só indicação / boca-a-boca',
+    'form.s6.o5': 'Walk-in / placa na obra', 'form.s6.o6': 'Nada estruturado ainda',
     'form.next': 'Continuar →', 'form.back': '← Voltar',
     'form.hint.enter': 'Aperte <kbd>Enter ↵</kbd> para continuar',
     'form.ok.title': 'Perfeito, <span id="fxOkName"></span>!',
@@ -656,6 +740,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFinanceCalc();
   initRoiCalc();
   initMapLeads();
+  initPanelDemo();
   initFormOverlay();
 });
 
@@ -1184,16 +1269,151 @@ function initMapLeads() {
 }
 
 /* ════════════════════════════════════════════════════════
+   Panel del corredor — upload → live sync animation
+   ════════════════════════════════════════════════════════ */
+function initPanelDemo() {
+  const zone     = document.getElementById('panelZone');
+  const dropIcon = document.getElementById('panelDropIcon');
+  const progWrap = document.getElementById('panelProgressWrap');
+  const progFill = document.getElementById('panelProgressFill');
+  const progLabel= document.getElementById('panelProgressLabel');
+  const countEl  = document.getElementById('panelCount');
+  const gallery  = document.getElementById('panelGallery');
+  if (!zone || !gallery) return;
+
+  const ROOMS = ['living', 'bedroom', 'bath', 'ext'];
+  let cycleIdx = 0;
+  let countVal = 0;
+  let timeouts = [];
+  let started = false;
+
+  const wait = (ms) => new Promise(res => {
+    const t = setTimeout(res, ms);
+    timeouts.push(t);
+  });
+  const stopAll = () => { timeouts.forEach(t => clearTimeout(t)); timeouts = []; };
+
+  function dict() { return I18N[currentLang] || I18N.es; }
+
+  function reset() {
+    countVal = 0;
+    countEl.textContent = '0';
+    gallery.querySelectorAll('.panel-slot').forEach(slot => {
+      slot.classList.remove('is-filled');
+      slot.innerHTML = '';
+    });
+    zone.querySelectorAll('.panel-photo').forEach(p => p.remove());
+    progWrap.classList.remove('is-visible');
+    progFill.style.width = '0%';
+    zone.classList.remove('is-active');
+    if (dropIcon) dropIcon.style.opacity = '';
+  }
+
+  async function uploadPhoto(slotIdx) {
+    const room = ROOMS[slotIdx % ROOMS.length];
+    const roomLabel = dict()['panel.room.' + room] || room;
+
+    // Step 1: photo card pops into the upload zone
+    zone.classList.add('is-active');
+    const photo = document.createElement('div');
+    photo.className = 'panel-photo panel-photo--' + room;
+    photo.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>' + roomLabel;
+    zone.appendChild(photo);
+
+    // Step 2: progress bar fills 0 → 100
+    progWrap.classList.add('is-visible');
+    const progName = dict()['panel.uploading'] || 'Subiendo';
+    const ticks = 12;
+    for (let i = 1; i <= ticks; i++) {
+      const pct = Math.round((i / ticks) * 100);
+      progFill.style.width = pct + '%';
+      progLabel.textContent = progName + '… ' + pct + '%';
+      await wait(90);
+    }
+
+    // Step 3: photo "flies" to the gallery on the right
+    photo.classList.add('is-flying');
+
+    // Simultaneously: slot in landing fills
+    const slot = gallery.querySelector('[data-slot="' + slotIdx + '"]');
+    if (slot) {
+      const slotPhoto = document.createElement('div');
+      slotPhoto.className = 'panel-slot__photo panel-slot__photo--' + room;
+      slotPhoto.textContent = roomLabel;
+      // Delay just enough to feel like network sync
+      await wait(420);
+      slot.classList.add('is-filled');
+      slot.appendChild(slotPhoto);
+    }
+
+    // Step 4: bump counter
+    countVal++;
+    countEl.textContent = countVal;
+    countEl.classList.add('is-bumping');
+    await wait(420);
+    countEl.classList.remove('is-bumping');
+
+    // Cleanup
+    photo.remove();
+    progWrap.classList.remove('is-visible');
+    progFill.style.width = '0%';
+    zone.classList.remove('is-active');
+  }
+
+  async function loop() {
+    while (started) {
+      reset();
+      await wait(500);
+      for (let i = 0; i < 4; i++) {
+        if (!started) return;
+        await uploadPhoto(i);
+        await wait(700);
+      }
+      // Pause to admire the result, then loop
+      await wait(2800);
+    }
+  }
+
+  function start() {
+    if (started) return;
+    started = true;
+    loop();
+  }
+
+  function stop() {
+    started = false;
+    stopAll();
+  }
+
+  // Lazy start when panel section comes into view
+  const section = document.getElementById('panel');
+  if (!section) return;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) start();
+      else stop();
+    });
+  }, { threshold: 0.15 });
+  obs.observe(section);
+
+  // Pause when tab hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stop();
+  });
+}
+
+/* ════════════════════════════════════════════════════════
    Form overlay (5 perguntas)
    ════════════════════════════════════════════════════════ */
 function initFormOverlay() {
   const STEPS = [
-    { id: 1, field: 'f-name',    type: 'text'  },
-    { id: 2, field: 'f-phone',   type: 'tel'   },
-    { id: 3, field: 'f-company', type: 'text'  },
-    { id: 4, field: 'rg-team',   type: 'radio' },
-    { id: 5, field: 'rg-challenge', type: 'radio' },
-    { id: 6, field: null,        type: 'success' },
+    { id: 1, field: 'f-name',      type: 'text'  },
+    { id: 2, field: 'f-phone',     type: 'tel'   },
+    { id: 3, field: 'f-company',   type: 'text'  },
+    { id: 4, field: 'rg-operation',type: 'radio' },
+    { id: 5, field: 'rg-team',     type: 'radio' },
+    { id: 6, field: 'rg-origin',   type: 'radio' },
+    { id: 7, field: null,          type: 'success' },
   ];
   const TOTAL = STEPS.filter(s => s.type !== 'success').length;
 
@@ -1375,11 +1595,12 @@ function initFormOverlay() {
     goTo(STEPS.length);
 
     const payload = {
-      name:    document.getElementById('f-name')?.value || '',
-      phone:   document.getElementById('f-phone')?.value || '',
-      company: document.getElementById('f-company')?.value || '',
-      team:    overlay.querySelector('#rg-team input:checked')?.value || '',
-      challenge: overlay.querySelector('#rg-challenge input:checked')?.value || '',
+      name:      document.getElementById('f-name')?.value || '',
+      phone:     document.getElementById('f-phone')?.value || '',
+      company:   document.getElementById('f-company')?.value || '',
+      operation: overlay.querySelector('#rg-operation input:checked')?.value || '',
+      team:      overlay.querySelector('#rg-team input:checked')?.value || '',
+      origin:    overlay.querySelector('#rg-origin input:checked')?.value || '',
       source: 'landing-inmobiliario',
       lang: currentLang,
       ts: Date.now(),

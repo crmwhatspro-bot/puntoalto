@@ -174,6 +174,64 @@
           <canvas id="chartUtm"></canvas>
         </div>
       </article>
+
+      <!-- Contadores-specific donuts (visible when filter = contadores) -->
+      <article class="panel" data-niche="contadores" hidden>
+        <header class="panel__head">
+          <h3>Tamaño del estudio</h3>
+          <span class="panel__sub badge badge--contadores">Contadores</span>
+        </header>
+        <div class="panel__body panel__body--donut">
+          <canvas id="chartClients"></canvas>
+        </div>
+      </article>
+      <article class="panel" data-niche="contadores" hidden>
+        <header class="panel__head">
+          <h3>Software actual</h3>
+          <span class="panel__sub badge badge--contadores">Contadores</span>
+        </header>
+        <div class="panel__body panel__body--donut">
+          <canvas id="chartSoftware"></canvas>
+        </div>
+      </article>
+      <article class="panel" data-niche="contadores" hidden>
+        <header class="panel__head">
+          <h3>Mayor desafío</h3>
+          <span class="panel__sub badge badge--contadores">Contadores</span>
+        </header>
+        <div class="panel__body panel__body--donut">
+          <canvas id="chartPain"></canvas>
+        </div>
+      </article>
+
+      <!-- Inmobiliario-specific donuts (visible when filter = inmobiliario) -->
+      <article class="panel" data-niche="inmobiliario" hidden>
+        <header class="panel__head">
+          <h3>Tipo de operación</h3>
+          <span class="panel__sub badge badge--inmobiliario">Inmobiliario</span>
+        </header>
+        <div class="panel__body panel__body--donut">
+          <canvas id="chartOperation"></canvas>
+        </div>
+      </article>
+      <article class="panel" data-niche="inmobiliario" hidden>
+        <header class="panel__head">
+          <h3>Tamaño del equipo</h3>
+          <span class="panel__sub badge badge--inmobiliario">Inmobiliario</span>
+        </header>
+        <div class="panel__body panel__body--donut">
+          <canvas id="chartTeam"></canvas>
+        </div>
+      </article>
+      <article class="panel" data-niche="inmobiliario" hidden>
+        <header class="panel__head">
+          <h3>Origen de leads</h3>
+          <span class="panel__sub badge badge--inmobiliario">Inmobiliario</span>
+        </header>
+        <div class="panel__body panel__body--donut">
+          <canvas id="chartOrigin"></canvas>
+        </div>
+      </article>
     </section>
 
     <!-- Leads table -->
@@ -186,7 +244,46 @@
             <option value="">Todos los orígenes</option>
             <option value="landing-puntoalto">Landing principal</option>
             <option value="landing-contadores">Contadores</option>
+            <option value="landing-inmobiliario">Inmobiliario</option>
           </select>
+
+          <select class="input" id="filterSoftware" data-niche-filter="contadores" hidden>
+            <option value="">Todos los software</option>
+            <option value="excel">Excel / planillas</option>
+            <option value="tango">Tango Gestión</option>
+            <option value="bejerman">Bejerman</option>
+            <option value="memory">Memory</option>
+            <option value="mixto">Excel + algún sistema</option>
+            <option value="ninguno">Ninguno</option>
+          </select>
+          <select class="input" id="filterPain" data-niche-filter="contadores" hidden>
+            <option value="">Todos los desafíos</option>
+            <option value="sobrecarga">Sobrecarga</option>
+            <option value="sifen">Migrar a SIFEN</option>
+            <option value="conciliacion">Conciliación</option>
+            <option value="dnit">Plazos del DNIT</option>
+            <option value="captacion">Captar clientes</option>
+            <option value="modernizar">Modernizar</option>
+          </select>
+
+          <select class="input" id="filterOperation" data-niche-filter="inmobiliario" hidden>
+            <option value="">Toda operación</option>
+            <option value="venta-nueva">Venta nueva</option>
+            <option value="venta-usado">Venta usado</option>
+            <option value="alquiler">Alquiler</option>
+            <option value="inversion">Inversión</option>
+            <option value="mixto">Mixto</option>
+          </select>
+          <select class="input" id="filterOrigin" data-niche-filter="inmobiliario" hidden>
+            <option value="">Todo origen</option>
+            <option value="meta">Meta Ads</option>
+            <option value="google">Google Ads</option>
+            <option value="portales">Portales (InfoCasas)</option>
+            <option value="indicacion">Solo indicación</option>
+            <option value="walkin">Walk-in</option>
+            <option value="nada">Nada estructurado</option>
+          </select>
+
           <select class="input" id="filterStatus">
             <option value="">Todos los estados</option>
             <option value="new">Nuevo</option>
@@ -214,12 +311,13 @@
               <th data-sort="phone">Teléfono</th>
               <th data-sort="company">Empresa</th>
               <th data-sort="source">Origen</th>
+              <th title="Calidad del lead — clic para copiar mensaje WhatsApp">Msj</th>
               <th>WA</th>
               <th data-sort="status">Estado</th>
             </tr>
           </thead>
           <tbody id="leadsBody">
-            <tr class="leads__empty"><td colspan="7">Cargando…</td></tr>
+            <tr class="leads__empty"><td colspan="8">Cargando…</td></tr>
           </tbody>
         </table>
       </div>
