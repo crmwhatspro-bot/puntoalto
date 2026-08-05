@@ -88,14 +88,14 @@ h1,h2,h3{font-family:var(--ff-display);color:var(--text);letter-spacing:-.02em;l
 
 <!-- styles.css: load non-blocking; o critical acima cobre o above-fold.
      O swap onload promove para stylesheet assim que o arquivo termina. -->
-<link rel="preload" as="style" href="styles.css"
+<link rel="preload" as="style" href="styles.css?v=2"
       onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="styles.css"></noscript>
+<noscript><link rel="stylesheet" href="styles.css?v=2"></noscript>
 
 <!-- GSAP + ScrollTrigger são carregados dinamicamente pelo script.js
      depois do LCP (via requestIdleCallback), tirando ~90 KB do caminho crítico. -->
 <script type="module" src="firebase-init.js"></script>
-<script defer src="script.js"></script>
+<script defer src="script.js?v=3"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -322,9 +322,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/>
         </svg>
       </div>
-      <h3 data-i18n="svc.2.t">Google & Meta Ads</h3>
-      <p data-i18n="svc.2.d">Setup completo, creativos que detienen el scroll y optimización semanal con data.</p>
-      <span class="card__tag" data-i18n="svc.2.tag">Performance real</span>
+      <h3 data-i18n="svc.2.t">Google Ads con intención de compra</h3>
+      <p data-i18n="svc.2.d">Le hablamos a quien ya te está buscando, no a quien scrollea distraído. Esa intención de compra ya existe en el buscador — la convertimos en venta con estrategia y optimización semanal.</p>
+      <span class="card__tag" data-i18n="svc.2.tag">Búsqueda con intención real</span>
     </article>
 
     <article class="card js-reveal">
@@ -356,7 +356,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="section__head">
     <span class="eyebrow js-reveal" data-i18n="cases.eyebrow">Nuestros casos</span>
     <h2 class="js-reveal" data-i18n="cases.title">Empresas que ya crecen con nosotros.</h2>
-    <p class="js-reveal" data-i18n="cases.sub">Dos funnels. Dos rubros distintos. La misma obsesión por
+    <p class="js-reveal" data-i18n="cases.sub">Funnels reales. Rubros distintos. La misma obsesión por
     medir, optimizar y cerrar.</p>
   </div>
 
@@ -442,6 +442,86 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </a>
 
+    <a class="case js-reveal" href="https://nandobarros.com/imoveis" target="_blank" rel="noopener">
+      <div class="case__browser">
+        <div class="case__chrome">
+          <span class="case__dot"></span>
+          <span class="case__dot"></span>
+          <span class="case__dot"></span>
+          <div class="case__url">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            nandobarros.com/imoveis
+          </div>
+        </div>
+        <div class="case__preview case__preview--nando">
+          <div class="case__preview-inner">
+            <span class="case__tag-top" data-i18n="case.nando.tag">VENTA DE INMUEBLES</span>
+            <h4>NANDO BARROS</h4>
+            <div class="case__mock-bar"></div>
+            <div class="case__mock-bar case__mock-bar--sm"></div>
+          </div>
+        </div>
+      </div>
+      <div class="case__body">
+        <div class="case__head">
+          <h3>Nando Barros</h3>
+          <span class="case__sector" data-i18n="case.nando.sector">Inmobiliario</span>
+        </div>
+        <p data-i18n="case.nando.p">Marca personal de un agente inmobiliario. Construimos su propio
+        sistema de gestión de propiedades en /imoveis, para que publique, edite
+        y muestre sus inmuebles sin depender de portales externos — todo
+        integrado a su funnel de ventas.</p>
+        <ul class="case__features">
+          <li data-i18n="case.nando.f1">Sistema propio de gestión de inmuebles (/imoveis)</li>
+          <li data-i18n="case.nando.f2">Publicación y edición sin depender de portales externos</li>
+          <li data-i18n="case.nando.f3">Funnel listo para escalar 10×</li>
+        </ul>
+        <span class="case__link" data-i18n-html="case.link">Visitar sitio <span aria-hidden="true">→</span></span>
+      </div>
+    </a>
+
+    <a class="case js-reveal" href="https://crmwhatspro.com" target="_blank" rel="noopener">
+      <div class="case__browser">
+        <div class="case__chrome">
+          <span class="case__dot"></span>
+          <span class="case__dot"></span>
+          <span class="case__dot"></span>
+          <div class="case__url">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            crmwhatspro.com
+          </div>
+        </div>
+        <div class="case__preview case__preview--crmwp">
+          <div class="case__preview-inner">
+            <span class="case__tag-top" data-i18n="case.crm.tag">CRM MULTICANAL CON IA</span>
+            <h4>CRM WHATS PRO</h4>
+            <div class="case__mock-bar"></div>
+            <div class="case__mock-bar case__mock-bar--sm"></div>
+          </div>
+        </div>
+      </div>
+      <div class="case__body">
+        <div class="case__head">
+          <h3>CRM Whats Pro</h3>
+          <span class="case__sector" data-i18n="case.crm.sector">SaaS · CRM</span>
+        </div>
+        <p data-i18n="case.crm.p">CRM que centraliza equipos, múltiples números de WhatsApp y redes
+        sociales en una sola bandeja, con automatizaciones e IA. Optimizamos
+        a fondo la velocidad de carga del sitio — el resultado: más visitas
+        orgánicas y más leads escribiendo todos los días.</p>
+        <ul class="case__features">
+          <li data-i18n="case.crm.f1">Equipos, números y redes sociales en un solo chat</li>
+          <li data-i18n="case.crm.f2">Automatizaciones e IA integradas</li>
+          <li data-i18n="case.crm.f3">Sitio ultrarrápido — más visitas, más leads</li>
+        </ul>
+        <span class="case__link" data-i18n-html="case.link">Visitar sitio <span aria-hidden="true">→</span></span>
+      </div>
+    </a>
+
   </div>
 </section>
 
@@ -450,7 +530,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="paraguay">
     <div class="paraguay__text js-reveal">
       <span class="eyebrow" data-i18n="par.eyebrow">Por qué ahora</span>
-      <h2 data-i18n-html="par.title">El Paraguay del mundo<br/>ya empezó. <em>¿Y tu empresa?</em></h2>
+      <h2 data-i18n-html="par.title">El mejor momento del Paraguay<br/>ya empezó. <em>¿Y tu empresa?</em></h2>
       <p data-i18n="par.p1">
         Leyes claras. Impuestos entre los más bajos del planeta. Y uno de los
         mayores potenciales de crecimiento de la próxima década.
@@ -548,7 +628,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="pricing-card__unit" data-i18n="prices.budget.unit">/día</span>
       </div>
       <span class="pricing-card__tag pricing-card__tag--alt" data-i18n="prices.budget.min">Mínimo recomendado</span>
-      <p data-i18n="prices.budget.desc">Para que Google y Meta tengan datos suficientes para optimizar y traer leads cualificados. Este presupuesto se paga directo a la plataforma — fuera de la mensualidad de Punto Alto.</p>
+      <p data-i18n="prices.budget.desc">Para que Google tenga datos suficientes y capture esa intención de búsqueda en leads cualificados. Este presupuesto se paga directo a la plataforma — fuera de la mensualidad de Punto Alto.</p>
     </div>
   </article>
 
@@ -586,20 +666,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="scope-note__body">
           <strong data-i18n="prices.scope.i1.t">Pauta en Google Ads</strong>
           <span data-i18n="prices.scope.i1.d">Presupuesto de medios pagado directo a Google.</span>
-        </div>
-      </li>
-
-      <li class="scope-note__item">
-        <span class="scope-note__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/>
-            <circle cx="12" cy="12" r="5"/>
-            <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
-          </svg>
-        </span>
-        <div class="scope-note__body">
-          <strong data-i18n="prices.scope.i2.t">Pauta en Meta Ads</strong>
-          <span data-i18n="prices.scope.i2.d">Presupuesto pagado directo a Meta (Instagram y Facebook).</span>
         </div>
       </li>
 
@@ -644,7 +710,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button class="btn btn--primary btn--lg" data-open-form data-open-form-source="cta-final" data-i18n-html="cta.btn">
       Empezar ahora <span aria-hidden="true">→</span>
     </button>
-    <small data-i18n="cta.small">Respuesta por WhatsApp en menos de 2 horas · 100% gratuito</small>
+    <small data-i18n="cta.small">Hablá por WhatsApp y recibí un diagnóstico gratuito de tu marketing digital</small>
   </div>
 </section>
 
@@ -957,6 +1023,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button class="btn btn--primary confirm-toast__btn" id="confirmToastOk" data-i18n="toast.btn">Entendido ✓</button>
   </div>
 </div>
+
+<!-- ─── WhatsApp flotante ─────────────────────────────── -->
+<a class="wa-float" id="waFloat"
+   href="https://wa.me/595993356250?text=Hola%20Punto%20Alto%2C%20quiero%20saber%20m%C3%A1s"
+   target="_blank" rel="noopener"
+   aria-label="Escribinos por WhatsApp" data-i18n-aria="wa.float.aria">
+  <span class="wa-float__ring" aria-hidden="true"></span>
+  <span class="wa-float__label" data-i18n="wa.float.label">Escribinos por WhatsApp</span>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.148-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.507 3.625 1.393 5.13L2.5 22l4.98-1.307a9.96 9.96 0 0 0 4.524 1.086c5.518 0 10.004-4.486 10.004-10.004S17.522 2 12.004 2zm0 18.163a8.1 8.1 0 0 1-4.13-1.13l-.296-.176-3.058.803.816-2.98-.193-.306a8.11 8.11 0 1 1 6.861 3.789z"/>
+  </svg>
+</a>
 
 <!-- ─── Scripts ───────────────────────────────────────── -->
 <!-- Scripts movidos para o <head> com defer (melhor perf) -->
