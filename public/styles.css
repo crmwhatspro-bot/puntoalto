@@ -2319,6 +2319,14 @@ h1, h2, h3 {
 .fxstep--ok.is-active .fxcheck path { stroke-dashoffset: 0; }
 .fxstep--ok h2 { margin-bottom: 0.75rem; }
 .fxstep--ok .btn { margin-top: 1.5rem; }
+.fxok-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
+.fxok-actions .btn { margin-top: 0; }
 
 /* ── Booking picker (step 8 com agendamento) ───────── */
 .fxstep--book { text-align: center; }
