@@ -237,6 +237,10 @@
           cta_origin: ctaOrigin
         });
       }
+      window.paTrack?.('form_open', {
+        cta_origin:      ctaOrigin,
+        form_session_id: sessionId
+      });
       showStep(1, true);
     }
 
@@ -270,6 +274,12 @@
       window.paFirebase?.trackFormEvent?.('abandoned', {
         sessionId,
         durationMs: elapsed()
+      });
+      window.paTrack?.('form_abandoned', {
+        cta_origin:      ctaOrigin,
+        max_step:        maxStep,
+        duration_ms:     elapsed(),
+        form_session_id: sessionId
       });
     }
 
@@ -317,6 +327,11 @@
           maxStep,
           path:        pathArr,
           durationMs:  elapsed()
+        });
+        window.paTrack?.('form_step', {
+          cta_origin:      ctaOrigin,
+          step_number:     target,
+          form_session_id: sessionId
         });
       }
 
@@ -472,6 +487,14 @@
 
     hasSubmitted = true;
     showStep(SUCCESS_STEP);
+
+    window.paTrack?.('generate_lead', {
+      cta_origin:      ctaOrigin,
+      lead_sector:     payload.sector,
+      lead_challenge:  payload.challenge,
+      lead_budget:     payload.budget,
+      form_session_id: sessionId
+    });
 
     const leadId = await window.paFirebase?.addLead?.(payload);
 

@@ -3,6 +3,16 @@
    ════════════════════════════════════════════════════════ */
 
 /* ════════════════════════════════════════════════════════
+   GTM/GA4 — helper único de tracking
+   Usado por este arquivo e por form.js (lazy-loaded).
+   Sempre disponível, mesmo se o GTM externo for bloqueado.
+   ════════════════════════════════════════════════════════ */
+window.paTrack = function (event, params) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(Object.assign({ event: event }, params || {}));
+};
+
+/* ════════════════════════════════════════════════════════
    THEME — light (default) · dark
    Aplicado lo más temprano posible para evitar flash.
    ════════════════════════════════════════════════════════ */
@@ -731,6 +741,19 @@ document.addEventListener('DOMContentLoaded', () => {
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  /* ── Tracking: clique em WhatsApp (delegado — cobre
+     o botão flutuante e qualquer link wa.me futuro) ── */
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="https://wa.me/"]');
+    if (!link) return;
+    const numberMatch = link.href.match(/wa\.me\/(\d+)/);
+    window.paTrack('whatsapp_click', {
+      wa_source:     link.dataset.waSource || link.id || 'unknown',
+      wa_number:     numberMatch ? numberMatch[1] : '',
+      page_location: window.location.href
+    });
+  });
+
   /* ── GSAP: injetado dinamicamente após o LCP ─────────
      Tira ~90 KB (gsap + ScrollTrigger) do caminho crítico.
      Scripts baixam via requestIdleCallback, depois do FCP/LCP. */
@@ -1078,7 +1101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (_formLoadPromise) return _formLoadPromise;
     _formLoadPromise = new Promise((resolve, reject) => {
       const s = document.createElement('script');
-      s.src     = 'form.js';
+      s.src     = 'form.js?v=2';
       s.defer   = true;
       s.onload  = resolve;
       s.onerror = reject;

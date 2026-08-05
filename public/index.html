@@ -95,7 +95,7 @@ h1,h2,h3{font-family:var(--ff-display);color:var(--text);letter-spacing:-.02em;l
 <!-- GSAP + ScrollTrigger são carregados dinamicamente pelo script.js
      depois do LCP (via requestIdleCallback), tirando ~90 KB do caminho crítico. -->
 <script type="module" src="firebase-init.js"></script>
-<script defer src="script.js?v=5"></script>
+<script defer src="script.js?v=6"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -918,7 +918,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <a class="btn btn--ghost fxbook__ai-btn" id="fxAiBtn"
          href="https://wa.me/595993356250?text=Hablar%20con%20IA"
-         target="_blank" rel="noopener"
+         target="_blank" rel="noopener" data-wa-source="form_step8_ai_button"
          data-i18n-html="f.book.ai">
         Hablar con IA ahora <span aria-hidden="true">→</span>
       </a>
@@ -1028,7 +1028,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ─── WhatsApp flotante ─────────────────────────────── -->
 <a class="wa-float" id="waFloat"
    href="https://wa.me/595993356250?text=Hola%20Punto%20Alto%2C%20quiero%20saber%20m%C3%A1s"
-   target="_blank" rel="noopener"
+   target="_blank" rel="noopener" data-wa-source="floating_button"
    aria-label="Escribinos por WhatsApp" data-i18n-aria="wa.float.aria">
   <span class="wa-float__ring" aria-hidden="true"></span>
   <span class="wa-float__label" data-i18n="wa.float.label">Escribinos por WhatsApp</span>
