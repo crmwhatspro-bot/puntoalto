@@ -1735,6 +1735,7 @@ h1, h2, h3 {
   text-align: center;
 }
 .footer__copy { color: var(--muted); font-size: 0.85rem; }
+.footer__sponsor { color: var(--muted); font-size: 0.72rem; opacity: 0.7; margin-top: -0.75rem; }
 
 /* ── WhatsApp flotante ──────────────────────────────── */
 .wa-float {

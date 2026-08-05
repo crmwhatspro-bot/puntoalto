@@ -200,6 +200,7 @@ const I18N = {
 
     'foot.logo': 'Marketing · Ventas',
     'foot.copy': '© 2026 Punto Alto — Asunción, Paraguay. Llevamos tu empresa al punto más alto.',
+    'foot.sponsor': 'Punto Alto está patrocinado por CRM Whats Pro — CNPJ 59.599.590/0001-63',
 
     'f.close':  'Cerrar formulario',
     'f.next':   'Continuar →',
@@ -401,6 +402,7 @@ const I18N = {
 
     'foot.logo': 'Marketing · Sales',
     'foot.copy': '© 2026 Punto Alto — Asunción, Paraguay. We take your company to the highest point.',
+    'foot.sponsor': 'Punto Alto is sponsored by CRM Whats Pro — CNPJ 59.599.590/0001-63',
 
     'f.close':  'Close form',
     'f.next':   'Continue →',
@@ -602,6 +604,7 @@ const I18N = {
 
     'foot.logo': 'Marketing · Vendas',
     'foot.copy': '© 2026 Punto Alto — Assunção, Paraguai. Levamos sua empresa ao ponto mais alto.',
+    'foot.sponsor': 'Punto Alto é patrocinada pela CRM Whats Pro — CNPJ 59.599.590/0001-63',
 
     'f.close':  'Fechar formulário',
     'f.next':   'Continuar →',

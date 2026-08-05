@@ -88,14 +88,14 @@ h1,h2,h3{font-family:var(--ff-display);color:var(--text);letter-spacing:-.02em;l
 
 <!-- styles.css: load non-blocking; o critical acima cobre o above-fold.
      O swap onload promove para stylesheet assim que o arquivo termina. -->
-<link rel="preload" as="style" href="styles.css?v=2"
+<link rel="preload" as="style" href="styles.css?v=3"
       onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="styles.css?v=2"></noscript>
+<noscript><link rel="stylesheet" href="styles.css?v=3"></noscript>
 
 <!-- GSAP + ScrollTrigger são carregados dinamicamente pelo script.js
      depois do LCP (via requestIdleCallback), tirando ~90 KB do caminho crítico. -->
 <script type="module" src="firebase-init.js"></script>
-<script defer src="script.js?v=3"></script>
+<script defer src="script.js?v=4"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -728,6 +728,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </span>
     </div>
     <p class="footer__copy" data-i18n="foot.copy">© 2026 Punto Alto — Asunción, Paraguay. Llevamos tu empresa al punto más alto.</p>
+    <p class="footer__sponsor" data-i18n="foot.sponsor">Punto Alto está patrocinado por CRM Whats Pro — CNPJ 59.599.590/0001-63</p>
   </div>
 </footer>
 
