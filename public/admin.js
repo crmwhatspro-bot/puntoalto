@@ -529,7 +529,7 @@ function renderTrendChart() {
   });
 
   const sub = $('trendSub');
-  if (sub) sub.textContent = `visitas, aperturas y leads — ${periodLabel()}`;
+  if (sub) sub.textContent = `visitas, aperturas y leads (${periodLabel()})`;
 }
 
 function renderFunnel() {
@@ -667,7 +667,7 @@ function renderTable() {
         <td>${escapeHtml(l.phone || '—')}</td>
         <td>${escapeHtml(l.company || '—')}</td>
         <td>${badge}</td>
-        <td><button class="msg-copy" data-id="${l.id}" title="Calidad ${score}/3 — clic para copiar mensaje WhatsApp">${dots}</button></td>
+        <td><button class="msg-copy" data-id="${l.id}" title="Calidad ${score}/3. Clic para copiar mensaje de WhatsApp">${dots}</button></td>
         <td><span class="wa ${waCls}" title="WhatsApp">${waIco}</span></td>
         <td><span class="pill pill--${status}">${statusLabel(status)}</span></td>
       </tr>`;
@@ -834,7 +834,7 @@ function buildWhatsAppMessage(l) {
     const cli  = l.clients ? `${l.clients} clientes` : '';
     const pain = labelOf('pain', l.pain);
     const ctx  = [cli, sw && `usan ${sw}`].filter(Boolean).join(' y ');
-    const dor  = pain ? ` Sobre ${pain.toLowerCase()} — tenemos varios casos ya resueltos.` : '';
+    const dor  = pain ? ` Sobre ${pain.toLowerCase()}, tenemos varios casos ya resueltos.` : '';
     return `Hola ${firstName}! Soy de Punto Alto, vi que llenaste el diagnóstico para tu estudio${ctx ? ` (${ctx})` : ''}.${dor}\n\n¿Te queda bien una llamada de 30 min esta semana? Te muestro cómo quedaría tu operación automatizada y qué números esperar.`;
   }
 
@@ -843,7 +843,7 @@ function buildWhatsAppMessage(l) {
     const team = labelOf('team', l.team);
     const orig = labelOf('origin', l.origin);
     const ctx  = [op && op.toLowerCase(), team && team.toLowerCase()].filter(Boolean).join(', ');
-    const cap  = orig ? ` Hoy captás vía ${orig.toLowerCase()} — podemos potenciar eso o agregar canales nuevos.` : '';
+    const cap  = orig ? ` Hoy captás vía ${orig.toLowerCase()}, podemos potenciar eso o agregar canales nuevos.` : '';
     return `Hola ${firstName}! Soy de Punto Alto, vi que pediste el diagnóstico para tu inmobiliaria${ctx ? ` (${ctx})` : ''}.${cap}\n\n¿Te queda bien una llamada de 30 min esta semana? Te muestro el funnel completo y qué números esperar en los próximos 90 días.`;
   }
 

@@ -25,7 +25,7 @@
       </svg>
     </div>
     <h1 class="login__title">Punto Alto <span>Admin</span></h1>
-    <p class="login__sub">Acceso restringido — sólo administradores.</p>
+    <p class="login__sub">Acceso restringido: solo administradores.</p>
 
     <form class="login__form" id="loginForm" novalidate>
       <label class="field">
@@ -111,7 +111,7 @@
     <section class="panel panel--chart" aria-label="Tendencias">
       <header class="panel__head">
         <h2>Tendencias</h2>
-        <span class="panel__sub" id="trendSub">visitas, aperturas y leads — últimos 30 días</span>
+        <span class="panel__sub" id="trendSub">visitas, aperturas y leads (últimos 30 días)</span>
       </header>
       <div class="panel__body">
         <canvas id="chartTrends"></canvas>
@@ -311,7 +311,7 @@
               <th data-sort="phone">Teléfono</th>
               <th data-sort="company">Empresa</th>
               <th data-sort="source">Origen</th>
-              <th title="Calidad del lead — clic para copiar mensaje WhatsApp">Msj</th>
+              <th title="Calidad del lead. Clic para copiar mensaje de WhatsApp">Msj</th>
               <th>WA</th>
               <th data-sort="status">Estado</th>
             </tr>
@@ -348,6 +348,6 @@
 <!-- Toast -->
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
-<script type="module" src="admin.js"></script>
+<script type="module" src="admin.js?v=2"></script>
 </body>
 </html>
