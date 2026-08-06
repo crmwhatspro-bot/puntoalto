@@ -363,8 +363,11 @@ function detectLang() {
     const saved = localStorage.getItem(I18N_KEY);
     if (saved && I18N[saved]) return saved;
   } catch(e){}
-  const nav = (navigator.language || 'es').slice(0,2).toLowerCase();
-  return I18N[nav] ? nav : 'es';
+  // Sem auto-detecção por navigator.language: evita que crawlers/bots
+  // (locale padrão en-US) troquem o idioma sozinhos e causem reprovação
+  // "Idioma não suportado" em campanhas de Ads apontando pra versão em
+  // espanhol. Fica em espanhol até o usuário escolher outro no seletor.
+  return 'es';
 }
 
 if (document.readyState !== 'loading') {
