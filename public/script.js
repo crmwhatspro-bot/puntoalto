@@ -266,6 +266,14 @@ const I18N = {
     'f.err.tel':   'Ingresá un número válido.',
     'f.err.email': 'Ingresá un email válido.',
     'f.err.radio': 'Elegí una opción.',
+
+    'exit.eyebrow': 'Ey, esperá un segundo 👋',
+    'exit.title':   'Pedí prestados <em>8 años</em> de experiencia con grandes marcas de LatAm.',
+    'exit.sub':     'Diagnóstico 100% gratis + planes desde Gs. 1.500.000/mes. Una inversión ridícula al lado de lo que tu empresa puede vender en Paraguay.',
+    'exit.cta':     'Quiero mi diagnóstico gratis <span aria-hidden="true">→</span>',
+    'exit.dismiss': 'No gracias, prefiero seguir adivinando',
+    'exit.trust':   'Sin compromiso · Respondemos en minutos · 100% gratis',
+    'exit.wa.msg':  '¡Hola! Vi el pop-up de salida en la web de Punto Alto y quiero mi diagnóstico digital gratuito 🚀',
   },
 
   en: {
@@ -469,6 +477,14 @@ const I18N = {
     'f.err.tel':   'Please enter a valid number.',
     'f.err.email': 'Please enter a valid email.',
     'f.err.radio': 'Please pick an option.',
+
+    'exit.eyebrow': 'Hey, wait a sec 👋',
+    'exit.title':   'Borrow <em>8 years</em> of experience growing big LatAm brands.',
+    'exit.sub':     'Free diagnosis + plans starting at Gs. 1,500,000/mo. A ridiculously small investment next to what your business can sell in Paraguay.',
+    'exit.cta':     'I want my free diagnosis <span aria-hidden="true">→</span>',
+    'exit.dismiss': 'No thanks, I\'ll keep guessing',
+    'exit.trust':   'No commitment · We reply in minutes · 100% free',
+    'exit.wa.msg':  'Hi! I saw the exit pop-up on the Punto Alto site and I want my free digital diagnosis 🚀',
   },
 
   pt: {
@@ -672,6 +688,14 @@ const I18N = {
     'f.err.tel':   'Digite um número válido.',
     'f.err.email': 'Digite um email válido.',
     'f.err.radio': 'Escolha uma opção.',
+
+    'exit.eyebrow': 'Ei, espera um segundo 👋',
+    'exit.title':   'Pegue emprestados <em>8 anos</em> de experiência com grandes marcas da LatAm.',
+    'exit.sub':     'Diagnóstico 100% grátis + planos a partir de Gs. 1.500.000/mês. Um investimento ridículo perto do que sua empresa pode vender no Paraguai.',
+    'exit.cta':     'Quero meu diagnóstico grátis <span aria-hidden="true">→</span>',
+    'exit.dismiss': 'Não, obrigado, prefiro continuar no achismo',
+    'exit.trust':   'Sem compromisso · Respondemos em minutos · 100% grátis',
+    'exit.wa.msg':  'Oi! Vi o pop-up de saída no site da Punto Alto e quero meu diagnóstico digital gratuito 🚀',
   }
 };
 
@@ -760,6 +784,88 @@ document.addEventListener('DOMContentLoaded', () => {
       page_location: window.location.href
     });
   });
+
+  /* ── Popup de salida (exit-intent) ──────────────────
+     Desktop: dispara quando o mouse sai por cima da viewport
+     (intenção de fechar aba / digitar URL). Mobile: não existe
+     mouseleave, então usa um scroll rápido de volta ao topo
+     depois de ter lido boa parte da página como proxy de saída.
+     Mostra no máximo 1× por sessão e nunca para quem já converteu. ── */
+  (function () {
+    const popup = document.getElementById('exitPopup');
+    if (!popup) return;
+
+    const LEAD_KEY  = 'pa-lead-submitted';
+    const SHOWN_KEY = 'pa-exit-shown';
+    const WA_NUMBER = '595993356250';
+
+    const waBtn      = document.getElementById('exitPopupWaBtn');
+    const closeBtn    = document.getElementById('exitPopupClose');
+    const dismissBtn  = document.getElementById('exitPopupDismiss');
+
+    function alreadyConverted() {
+      try { return !!localStorage.getItem(LEAD_KEY); } catch(e) { return false; }
+    }
+    function alreadyShown() {
+      try { return sessionStorage.getItem(SHOWN_KEY) === '1'; } catch(e) { return false; }
+    }
+    function markShown() {
+      try { sessionStorage.setItem(SHOWN_KEY, '1'); } catch(e) {}
+    }
+    function isFormOpen() {
+      const overlay = document.getElementById('formx');
+      return !!(overlay && overlay.classList.contains('is-open'));
+    }
+    function updateWaHref() {
+      const dict = I18N[currentLang] || I18N.es;
+      const msg  = dict['exit.wa.msg'] || I18N.es['exit.wa.msg'];
+      waBtn.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+    }
+
+    function openPopup() {
+      if (alreadyShown() || alreadyConverted() || isFormOpen()) return;
+      updateWaHref();
+      markShown();
+      popup.removeAttribute('hidden');
+      requestAnimationFrame(() => popup.classList.add('is-open'));
+      document.addEventListener('keydown', onKey);
+      window.paTrack('exit_popup_shown', { page_location: window.location.href });
+    }
+    function closePopup() {
+      popup.classList.remove('is-open');
+      document.removeEventListener('keydown', onKey);
+      setTimeout(() => popup.setAttribute('hidden', ''), 420);
+    }
+    function onKey(e) { if (e.key === 'Escape') closePopup(); }
+
+    closeBtn.addEventListener('click', closePopup);
+    dismissBtn.addEventListener('click', closePopup);
+    popup.addEventListener('click', (e) => { if (e.target === popup) closePopup(); });
+    document.querySelectorAll('.lang__btn').forEach(btn => btn.addEventListener('click', updateWaHref));
+
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      // Desktop
+      document.addEventListener('mouseleave', (e) => {
+        if (e.clientY <= 0) openPopup();
+      });
+    } else {
+      // Mobile fallback
+      let maxScroll = 0, lastY = window.scrollY, lastT = Date.now();
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        const now = Date.now();
+        maxScroll = Math.max(maxScroll, y);
+        const dt = now - lastT;
+        const dy = lastY - y; // positivo = subindo
+        if (maxScroll > window.innerHeight * 0.6 && y < window.innerHeight * 0.5 &&
+            dt > 0 && dt < 250 && dy > 80) {
+          openPopup();
+        }
+        lastY = y;
+        lastT = now;
+      }, { passive: true });
+    }
+  })();
 
   /* ── GSAP: injetado dinamicamente após o LCP ─────────
      Tira ~90 KB (gsap + ScrollTrigger) do caminho crítico.

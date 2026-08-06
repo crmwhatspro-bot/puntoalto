@@ -88,14 +88,14 @@ h1,h2,h3{font-family:var(--ff-display);color:var(--text);letter-spacing:-.02em;l
 
 <!-- styles.css: load non-blocking; o critical acima cobre o above-fold.
      O swap onload promove para stylesheet assim que o arquivo termina. -->
-<link rel="preload" as="style" href="styles.css?v=4"
+<link rel="preload" as="style" href="styles.css?v=5"
       onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="styles.css?v=4"></noscript>
+<noscript><link rel="stylesheet" href="styles.css?v=5"></noscript>
 
 <!-- GSAP + ScrollTrigger são carregados dinamicamente pelo script.js
      depois do LCP (via requestIdleCallback), tirando ~90 KB do caminho crítico. -->
 <script type="module" src="firebase-init.js"></script>
-<script defer src="script.js?v=8"></script>
+<script defer src="script.js?v=9"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1055,6 +1055,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.507 3.625 1.393 5.13L2.5 22l4.98-1.307a9.96 9.96 0 0 0 4.524 1.086c5.518 0 10.004-4.486 10.004-10.004S17.522 2 12.004 2zm0 18.163a8.1 8.1 0 0 1-4.13-1.13l-.296-.176-3.058.803.816-2.98-.193-.306a8.11 8.11 0 1 1 6.861 3.789z"/>
   </svg>
 </a>
+
+<!-- ─── Popup de salida (exit-intent) ───────────────────── -->
+<div class="exit-popup" id="exitPopup" role="dialog" aria-modal="true"
+     aria-label="Diagnóstico digital gratuito" data-i18n-aria="exit.eyebrow" hidden>
+  <div class="exit-popup__pop">
+    <button class="exit-popup__close" id="exitPopupClose" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <div class="exit-popup__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2c2.5 2.5 4 6 4 10 0 1.5-.5 3-1 4l-3 3-3-3c-.5-1-1-2.5-1-4 0-4 1.5-7.5 4-10z"/>
+        <circle cx="12" cy="9" r="1.5"/>
+        <path d="M8 15l-3 3 1 3 3-1"/>
+        <path d="M16 15l3 3-1 3-3-1"/>
+      </svg>
+    </div>
+
+    <p class="exit-popup__eyebrow" data-i18n="exit.eyebrow">Ey, esperá un segundo 👋</p>
+    <h3 class="exit-popup__title" data-i18n-html="exit.title">Pedí prestados <em>8 años</em> de experiencia con grandes marcas de LatAm.</h3>
+    <p class="exit-popup__sub" data-i18n="exit.sub">Diagnóstico 100% gratis + planes desde Gs. 1.500.000/mes. Una inversión ridícula al lado de lo que tu empresa puede vender en Paraguay.</p>
+
+    <a class="btn btn--primary exit-popup__cta" id="exitPopupWaBtn"
+       href="https://wa.me/595993356250" target="_blank" rel="noopener" data-wa-source="exit_popup">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M21 11.5a8.38 8.38 0 0 1-12.8 7.1L3 21l2.5-5.2A8.38 8.38 0 1 1 21 11.5z"/>
+      </svg>
+      <span data-i18n-html="exit.cta">Quiero mi diagnóstico gratis <span aria-hidden="true">→</span></span>
+    </a>
+
+    <button class="exit-popup__dismiss" id="exitPopupDismiss" data-i18n="exit.dismiss">No gracias, prefiero seguir adivinando</button>
+    <p class="exit-popup__trust" data-i18n="exit.trust">Sin compromiso · Respondemos en minutos · 100% gratis</p>
+  </div>
+</div>
 
 <!-- ─── Scripts ───────────────────────────────────────── -->
 <!-- Scripts movidos para o <head> com defer (melhor perf) -->
