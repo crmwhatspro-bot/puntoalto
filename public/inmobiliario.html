@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Punto Alto para Inmobiliarias · Captación, WhatsApp y CRM para corredores</title>
-<meta name="description" content="Sistema completo de captación para corredores e inmobiliarias del Paraguay. Leads cualificados desde Meta y Google, WhatsApp comercial que cierra visitas, simulador de financiación BNF y CRM con deal stage."/>
+<title>Punto Alto para Inmobiliarias · Página por emprendimiento + Catálogo CMS de inmuebles</title>
+<meta name="description" content="Página de ventas dedicada para cada emprendimiento y un catálogo de inmuebles disponibles en formato CMS, siempre actualizado. Subís las fotos desde el celular, hosting y optimización incluidos."/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="inmobiliario.css"/>
 
 <script type="module" src="firebase-init.js"></script>
-<script defer src="inmobiliario.js?v=3"></script>
+<script defer src="inmobiliario.js?v=4"></script>
 </head>
 <body>
 
@@ -43,10 +43,7 @@
 
     <nav class="nav__links">
       <a href="#servicios" data-i18n="nav.services">Servicios</a>
-      <a href="#whatsapp" data-i18n="nav.whatsapp">WhatsApp</a>
-      <a href="#financiacion" data-i18n="nav.financing">Financiación</a>
-      <a href="#mapa" data-i18n="nav.map">Mapa de leads</a>
-      <a href="#panel" data-i18n="nav.panel">Panel</a>
+      <a href="#como-funciona" data-i18n="nav.how">Cómo funciona</a>
       <a href="#precios" data-i18n="nav.pricing">Precios</a>
     </nav>
 
@@ -87,10 +84,7 @@
 <div class="nav-mobile" id="navMobile" hidden>
   <nav class="nav-mobile__links">
     <a href="#servicios" data-i18n="nav.services">Servicios</a>
-    <a href="#whatsapp" data-i18n="nav.whatsapp">WhatsApp</a>
-    <a href="#financiacion" data-i18n="nav.financing">Financiación</a>
-    <a href="#mapa" data-i18n="nav.map">Mapa de leads</a>
-    <a href="#panel" data-i18n="nav.panel">Panel</a>
+    <a href="#como-funciona" data-i18n="nav.how">Cómo funciona</a>
     <a href="#precios" data-i18n="nav.pricing">Precios</a>
     <button class="btn btn--primary" data-open-form data-open-form-source="navbar-mobile" data-i18n="nav.cta">Diagnóstico gratis →</button>
   </nav>
@@ -112,49 +106,57 @@
   <div class="hero__content">
     <div class="hero__text">
       <span class="pill js-reveal">
-        <span class="pill__dot"></span> <span data-i18n="hero.pill">Captación inmobiliaria · Paraguay</span>
+        <span class="pill__dot"></span> <span data-i18n="hero.pill">Página por emprendimiento + catálogo CMS · Paraguay</span>
       </span>
 
       <h1 class="hero__title">
-        <span class="js-line" data-i18n="hero.title1">Vendé más inmuebles.</span>
-        <span class="js-line" data-i18n-html="hero.title2"><em>Perdé menos tiempo.</em></span>
+        <span class="js-line" data-i18n="hero.title1">Cada proyecto, su página.</span>
+        <span class="js-line" data-i18n-html="hero.title2"><em>Cada inmueble, siempre visible.</em></span>
       </h1>
 
       <p class="hero__sub js-reveal" data-i18n="hero.sub">
-        Captación con leads pre-cualificados, WhatsApp comercial que agenda visitas solo, simulador de financiación integrado y CRM con deal stage.
-        Tu equipo deja de correr atrás de curiosos, y se enfoca en quien viene a comprar.
+        Una página de ventas dedicada para cada emprendimiento, y un catálogo de inmuebles disponibles que vos mismo actualizás desde el celular.
+        Sin depender de nadie para cambiar una foto o un precio.
       </p>
 
       <div class="hero__ctas js-reveal">
         <button class="btn btn--primary btn--lg" data-open-form data-open-form-source="hero" data-i18n="hero.cta1">
-          Quiero más leads cualificados →
+          Quiero mi página + catálogo →
         </button>
-        <a href="#whatsapp" class="btn btn--ghost btn--lg" data-i18n="hero.cta2">Ver demo en vivo</a>
+        <a href="#como-funciona" class="btn btn--ghost btn--lg" data-i18n="hero.cta2">Ver cómo funciona</a>
       </div>
     </div>
 
-    <!-- WhatsApp chat mockup animado -->
-    <div class="wa-mock js-reveal" aria-hidden="true">
-      <div class="wa-mock__chrome">
-        <div class="wa-mock__avatar">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.3 0-9.8 1.7-9.8 4.9v2.4h19.6v-2.4c0-3.2-6.5-4.9-9.8-4.9z"/></svg>
-        </div>
-        <div class="wa-mock__head">
-          <strong data-i18n="wa.contact">Carla · Edificio Las Lomas</strong>
-          <small data-i18n="wa.online">en línea</small>
-        </div>
-        <div class="wa-mock__icons" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-        </div>
+    <!-- Mockup estático: página de venta de un emprendimiento -->
+    <div class="hero-mock js-reveal" aria-hidden="true">
+      <div class="hero-mock__badge">
+        <span class="panel-sync__pulse"></span>
+        <span data-i18n="hero.badge">Catálogo actualizado hace 2 min</span>
       </div>
-      <div class="wa-mock__body" id="waMockBody">
-        <!-- mensagens injetadas via JS -->
-      </div>
-      <div class="wa-mock__input">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
-        <span data-i18n="wa.placeholder">Escribí un mensaje…</span>
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      <div class="panel-landing">
+        <div class="panel-landing__chrome">
+          <span class="panel-landing__dot"></span>
+          <span class="panel-landing__dot"></span>
+          <span class="panel-landing__dot"></span>
+          <code class="panel-landing__url">puntoalto.com.py/las-lomas</code>
+        </div>
+        <div class="panel-landing__page">
+          <div class="panel-landing__head">
+            <h4 data-i18n="hero.mock.title">Edif. Las Lomas · 3 dormitorios</h4>
+            <span class="panel-landing__zone" data-i18n="hero.mock.zone">Villa Morra · 95m²</span>
+          </div>
+          <div class="panel-landing__price">
+            <strong>USD 145.000</strong>
+            <small data-i18n="hero.mock.cuota">3 unidades disponibles</small>
+          </div>
+          <div class="panel-landing__gallery">
+            <div class="panel-slot is-filled"><div class="panel-slot__photo panel-slot__photo--living" data-i18n="panel.room.living">Living</div></div>
+            <div class="panel-slot is-filled"><div class="panel-slot__photo panel-slot__photo--bedroom" data-i18n="panel.room.bedroom">Dormitorio</div></div>
+            <div class="panel-slot is-filled"><div class="panel-slot__photo panel-slot__photo--bath" data-i18n="panel.room.bath">Baño</div></div>
+            <div class="panel-slot is-filled"><div class="panel-slot__photo panel-slot__photo--ext" data-i18n="panel.room.ext">Fachada</div></div>
+          </div>
+          <div class="panel-landing__cta" data-i18n="panel.land.cta">Agendar visita por WhatsApp →</div>
+        </div>
       </div>
     </div>
   </div>
@@ -164,129 +166,51 @@
 <section class="stats">
   <div class="stats__inner">
     <div class="stat js-reveal">
-      <strong data-counter="3" data-suffix="×">0</strong>
-      <span data-i18n="stats.s1">Más visitas agendadas</span>
+      <strong data-counter="5" data-suffix=" min">0</strong>
+      <span data-i18n="stats.s1">Para publicar un inmueble nuevo</span>
     </div>
     <div class="stat js-reveal">
-      <strong data-counter="60" data-suffix="seg">0</strong>
-      <span data-i18n="stats.s2">Tiempo de respuesta al lead</span>
+      <strong data-counter="100" data-suffix="%">0</strong>
+      <span data-i18n="stats.s2">Catálogo que vos mismo actualizás</span>
     </div>
     <div class="stat js-reveal">
-      <strong data-counter="68" data-suffix="%">0</strong>
-      <span data-i18n="stats.s3">Leads pre-cualificados</span>
+      <strong data-counter="24" data-suffix="h">0</strong>
+      <span data-i18n="stats.s3">De fotos a página publicada</span>
     </div>
     <div class="stat js-reveal">
-      <strong data-counter="48" data-suffix="h">0</strong>
-      <span data-i18n="stats.s4">De contrato a primera campaña</span>
+      <strong data-counter="0" data-suffix="">0</strong>
+      <span data-i18n="stats.s4">Intermediarios para cambiar un precio</span>
     </div>
   </div>
 </section>
 
-<!-- ─── DORES (antes/depois) ──────────────────────────── -->
+<!-- ─── DORES ─────────────────────────────────────────── -->
 <section class="section section--dark" id="dores">
   <div class="section__head">
-    <span class="eyebrow js-reveal" data-i18n="pain.eyebrow">El problema real del corredor</span>
-    <h2 class="js-reveal" data-i18n-html="pain.title">El 70% de tus leads no son <em>compradores</em>.</h2>
-    <p class="js-reveal" data-i18n="pain.sub">Son curiosos, vecinos chusmeando precios, gente que "está mirando". Tu equipo agota su día respondiendo a quien nunca va a comprar, y los compradores reales se duermen sin respuesta.</p>
+    <span class="eyebrow js-reveal" data-i18n="pain.eyebrow">El problema real</span>
+    <h2 class="js-reveal" data-i18n-html="pain.title">Tu proyecto y tu catálogo se merecen <em>algo mejor</em> que esto.</h2>
+    <p class="js-reveal" data-i18n="pain.sub">No es falta de inmuebles buenos. Es que nadie los está mostrando como corresponde.</p>
   </div>
 
-  <div class="funnel-cmp js-reveal">
-    <div class="funnel-cmp__col funnel-cmp__col--bad">
-      <div class="funnel-cmp__head">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-        <strong data-i18n="pain.bad.title">Tu funnel hoy</strong>
-      </div>
-      <ul class="funnel-cmp__list">
-        <li><span class="funnel-cmp__num">100</span><span data-i18n="pain.bad.l1">Leads desde Meta/Google</span></li>
-        <li><span class="funnel-cmp__num">40</span><span data-i18n="pain.bad.l2">Respuesta más de 1 hora</span></li>
-        <li><span class="funnel-cmp__num">12</span><span data-i18n="pain.bad.l3">Realmente conversaron</span></li>
-        <li><span class="funnel-cmp__num funnel-cmp__num--final">2</span><span data-i18n="pain.bad.l4">Visitas agendadas</span></li>
-        <li><span class="funnel-cmp__num funnel-cmp__num--zero">0</span><span data-i18n="pain.bad.l5">Cierres en el mes</span></li>
-      </ul>
-    </div>
-
-    <svg class="funnel-cmp__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-      <path d="M5 12h14M12 5l7 7-7 7"/>
-    </svg>
-
-    <div class="funnel-cmp__col funnel-cmp__col--good">
-      <div class="funnel-cmp__head">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-        <strong data-i18n="pain.good.title">Funnel con Punto Alto</strong>
-      </div>
-      <ul class="funnel-cmp__list">
-        <li><span class="funnel-cmp__num">100</span><span data-i18n="pain.good.l1">Leads desde Meta/Google</span></li>
-        <li><span class="funnel-cmp__num">100</span><span data-i18n="pain.good.l2">Respuesta &lt;60 segundos</span></li>
-        <li><span class="funnel-cmp__num">68</span><span data-i18n="pain.good.l3">Pre-cualificados por bot</span></li>
-        <li><span class="funnel-cmp__num funnel-cmp__num--final">18</span><span data-i18n="pain.good.l4">Visitas agendadas</span></li>
-        <li><span class="funnel-cmp__num funnel-cmp__num--good">3</span><span data-i18n="pain.good.l5">Cierres en el mes</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ─── SERVICIOS ─────────────────────────────────────── -->
-<section class="section" id="servicios">
-  <div class="section__head">
-    <span class="eyebrow js-reveal" data-i18n="svc.eyebrow">Lo que armamos para tu inmobiliaria</span>
-    <h2 class="js-reveal" data-i18n-html="svc.title">El sistema completo: del <em>primer clic</em> al cierre.</h2>
-    <p class="js-reveal" data-i18n="svc.sub">No vendemos creativos sueltos. Armamos la operación entera: ads, captación, qualification, CRM, financiación, cierre. Todo medido, todo conectado.</p>
-  </div>
-
-  <div class="grid grid--3">
+  <div class="grid grid--2">
     <article class="card js-reveal">
       <div class="card__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
         </svg>
       </div>
-      <h3 data-i18n="svc.1.t">Ads geo-segmentados</h3>
-      <p data-i18n="svc.1.d">Meta y Google con targeting por barrio, nivel socioeconómico y comportamiento de compra. Lookalike de compradores reales, no de curiosos.</p>
-      <span class="card__tag" data-i18n="svc.1.tag">Meta · Google · Lookalike</span>
+      <h3 data-i18n="pain.1.t">Todos tus proyectos comparten una página genérica.</h3>
+      <p data-i18n="pain.1.d">El mismo sitio institucional para todo: ninguno destaca, ninguno convierte.</p>
     </article>
 
     <article class="card js-reveal">
       <div class="card__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-          <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/>
         </svg>
       </div>
-      <h3 data-i18n="svc.2.t">WhatsApp que pre-califica</h3>
-      <p data-i18n="svc.2.d">Bot conversacional que filtra: presupuesto, plazo de compra, financiación aprobada, zona. Solo te entrega leads listos para visita.</p>
-      <span class="card__tag card__tag--live" data-i18n="svc.2.tag">Auto-respuesta &lt;60 seg</span>
-    </article>
-
-    <article class="card js-reveal">
-      <div class="card__icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-          <path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/>
-        </svg>
-      </div>
-      <h3 data-i18n="svc.3.t">CRM con deal stage</h3>
-      <p data-i18n="svc.3.d">Funnel real del inmueble: contacto → visita agendada → visita hecha → propuesta → cierre. Cada lead, cada etapa, cada corredor.</p>
-      <span class="card__tag" data-i18n="svc.3.tag">Pipeline · Reportes · Alertas</span>
-    </article>
-
-    <article class="card js-reveal">
-      <div class="card__icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
-        </svg>
-      </div>
-      <h3 data-i18n="svc.4.t">Landing por emprendimiento</h3>
-      <p data-i18n="svc.4.d">Una página dedicada por proyecto premium: galería, planta, simulador de financiación, agenda de visita. No un sitio institucional inútil.</p>
-      <span class="card__tag" data-i18n="svc.4.tag">Una por proyecto</span>
-    </article>
-
-    <article class="card js-reveal">
-      <div class="card__icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-        </svg>
-      </div>
-      <h3 data-i18n="svc.5.t">Simulador de financiación</h3>
-      <p data-i18n="svc.5.d">BNF, BCP, Itaú, Continental: el lead simula su cuota antes de hablar con vos. Llega ya sabiendo cuánto puede pagar.</p>
-      <span class="card__tag card__tag--live" data-i18n="svc.5.tag">Bancos PY integrados</span>
+      <h3 data-i18n="pain.2.t">Tu catálogo vive en un Excel que nadie actualiza.</h3>
+      <p data-i18n="pain.2.d">El inmueble que ya se vendió sigue publicado, y el nuevo tarda semanas en aparecer.</p>
     </article>
 
     <article class="card js-reveal">
@@ -295,248 +219,89 @@
           <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
         </svg>
       </div>
-      <h3 data-i18n="svc.6.t">Drip de nurturing 90 días</h3>
-      <p data-i18n="svc.6.d">El lead que no compra hoy compra en 6 meses. WhatsApp y email automático con nuevos inmuebles, contenido del barrio, alertas de oportunidad.</p>
-      <span class="card__tag" data-i18n="svc.6.tag">Long-cycle automation</span>
+      <h3 data-i18n="pain.3.t">Cambiar un precio implica escribirle a la agencia y esperar.</h3>
+      <p data-i18n="pain.3.d">Días de ida y vuelta para actualizar algo que debería tardar un minuto.</p>
+    </article>
+
+    <article class="card js-reveal">
+      <div class="card__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <path d="M21 21l-4.35-4.35"/><circle cx="11" cy="11" r="8"/>
+        </svg>
+      </div>
+      <h3 data-i18n="pain.4.t">El comprador no encuentra la info del proyecto que le interesa.</h3>
+      <p data-i18n="pain.4.d">Se va a la competencia, donde sí hay una página clara con lo que busca.</p>
     </article>
   </div>
 </section>
 
-<!-- ─── WHATSAPP DEMO ─────────────────────────────────── -->
-<section class="section section--dark" id="whatsapp">
+<!-- ─── LOS 2 PILARES ─────────────────────────────────── -->
+<section class="section" id="servicios">
   <div class="section__head">
-    <span class="eyebrow js-reveal" data-i18n="wa.eyebrow">Demo en vivo</span>
-    <h2 class="js-reveal" data-i18n-html="wa.title">Probá el bot que <em>pre-califica</em> tus leads.</h2>
-    <p class="js-reveal" data-i18n="wa.sub">Así conversa con un lead frío que vino desde Meta Ads. Antes de pasarle el contacto a tu corredor, ya sabe presupuesto, zona, plazo y si tiene financiación aprobada.</p>
+    <span class="eyebrow js-reveal" data-i18n="svc.eyebrow">Lo que armamos, y nada más</span>
+    <h2 class="js-reveal" data-i18n-html="svc.title">Dos sistemas. <em>Uno solo funcionando.</em></h2>
+    <p class="js-reveal" data-i18n="svc.sub">Nada de creativos sueltos ni funcionalidades que no vas a usar. La página que vende tu proyecto, y el catálogo que nunca se queda atrás.</p>
   </div>
 
-  <div class="wa-demo js-reveal">
-    <div class="wa-demo__phone">
-      <div class="wa-demo__chrome">
-        <div class="wa-mock__avatar">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.3 0-9.8 1.7-9.8 4.9v2.4h19.6v-2.4c0-3.2-6.5-4.9-9.8-4.9z"/></svg>
-        </div>
-        <div class="wa-mock__head">
-          <strong data-i18n="wa.demo.contact">Inmobiliaria Demo</strong>
-          <small data-i18n="wa.demo.bot">bot · respuesta automática</small>
-        </div>
+  <div class="pillars">
+    <article class="card pillar js-reveal">
+      <div class="card__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+        </svg>
       </div>
-      <div class="wa-demo__body" id="waDemoBody"></div>
-      <div class="wa-demo__quick" id="waDemoQuick"></div>
-    </div>
-
-    <aside class="wa-demo__panel">
-      <header>
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        <strong data-i18n="wa.panel.title">Lo que el bot ya capturó</strong>
-      </header>
-      <ul class="wa-demo__captured" id="waDemoCaptured">
-        <li data-key="zona"><span data-i18n="wa.cap.zone">Zona de interés</span><strong>—</strong></li>
-        <li data-key="tipo"><span data-i18n="wa.cap.type">Tipo de inmueble</span><strong>—</strong></li>
-        <li data-key="presupuesto"><span data-i18n="wa.cap.budget">Presupuesto</span><strong>—</strong></li>
-        <li data-key="plazo"><span data-i18n="wa.cap.deadline">Plazo de compra</span><strong>—</strong></li>
-        <li data-key="financiacion"><span data-i18n="wa.cap.financing">Financiación</span><strong>—</strong></li>
+      <h3 data-i18n="svc.1.t">Página de ventas por emprendimiento</h3>
+      <p data-i18n="svc.1.d">Una página propia para cada proyecto: galería, planta, ubicación, avance de obra y unidades disponibles. Nada de sitio institucional genérico.</p>
+      <ul class="pillar__list">
+        <li>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          <span data-i18n="svc.1.l1">Galería, planta y avance de obra</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          <span data-i18n="svc.1.l2">Precio y unidades disponibles, siempre al día</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          <span data-i18n="svc.1.l3">Botón directo a WhatsApp, sin formularios eternos</span>
+        </li>
       </ul>
-      <div class="wa-demo__score" id="waDemoScore">
-        <div class="wa-demo__score-bar"><div class="wa-demo__score-fill" id="waScoreFill"></div></div>
-        <span><strong id="waScoreVal">0</strong> / 100 · <span data-i18n="wa.score.label">Score de calificación</span></span>
+      <span class="card__tag" data-i18n="svc.1.tag">Una página por proyecto</span>
+    </article>
+
+    <article class="card pillar js-reveal">
+      <div class="card__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+        </svg>
       </div>
-      <button class="btn btn--ghost wa-demo__reset" id="waResetBtn" data-i18n="wa.reset">↻ Reiniciar conversación</button>
-    </aside>
+      <h3 data-i18n="svc.2.t">Catálogo CMS de inmuebles disponibles</h3>
+      <p data-i18n="svc.2.d">Cada inmueble con su propia ficha, filtros por zona y precio, y un panel para publicar vos mismo en minutos. Sin depender del equipo de marketing.</p>
+      <ul class="pillar__list">
+        <li>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          <span data-i18n="svc.2.l1">Ficha individual por inmueble</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          <span data-i18n="svc.2.l2">Filtros por zona, tipo y precio</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          <span data-i18n="svc.2.l3">Subís fotos desde el celular, se publica solo</span>
+        </li>
+      </ul>
+      <span class="card__tag card__tag--live" data-i18n="svc.2.tag">Catálogo siempre actualizado</span>
+    </article>
   </div>
 </section>
 
-<!-- ─── FINANCIACIÓN ──────────────────────────────────── -->
-<section class="section" id="financiacion">
+<!-- ─── CÓMO FUNCIONA (demo panel de carga) ───────────── -->
+<section class="section section--dark" id="como-funciona">
   <div class="section__head">
-    <span class="eyebrow js-reveal" data-i18n="fin.eyebrow">Calculadora integrada</span>
-    <h2 class="js-reveal" data-i18n-html="fin.title">Tu lead simula la <em>cuota mensual</em> antes de llamarte.</h2>
-    <p class="js-reveal" data-i18n="fin.sub">Calculadora con tasas reales de bancos paraguayos (BNF, BCP, Itaú, Continental). El lead llega sabiendo cuánto puede pagar y por cuántos años, vos solo tenés que cerrar.</p>
-  </div>
-
-  <div class="fin-calc js-reveal">
-    <div class="fin-calc__form">
-      <h3>
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <span data-i18n="fin.form.title">Datos del inmueble</span>
-      </h3>
-
-      <div class="fin-field">
-        <label for="finPrice" data-i18n="fin.f.price">Precio del inmueble (USD)</label>
-        <div class="fin-slider-wrap">
-          <input type="range" id="finPrice" min="30000" max="500000" step="5000" value="120000"/>
-          <strong id="finPriceVal">USD 120.000</strong>
-        </div>
-      </div>
-
-      <div class="fin-field">
-        <label for="finDown" data-i18n="fin.f.down">Entrada (%)</label>
-        <div class="fin-slider-wrap">
-          <input type="range" id="finDown" min="10" max="50" step="5" value="20"/>
-          <strong id="finDownVal">20%</strong>
-        </div>
-      </div>
-
-      <div class="fin-field">
-        <label for="finYears" data-i18n="fin.f.years">Plazo (años)</label>
-        <div class="fin-slider-wrap">
-          <input type="range" id="finYears" min="5" max="30" step="1" value="20"/>
-          <strong id="finYearsVal">20 años</strong>
-        </div>
-      </div>
-
-      <div class="fin-field">
-        <label data-i18n="fin.f.bank">Banco</label>
-        <div class="fin-banks" id="finBanks">
-          <button class="fin-bank is-active" data-bank="bnf"   data-rate="9.5">BNF <small>9.5%</small></button>
-          <button class="fin-bank"            data-bank="bcp"   data-rate="11.2">BCP <small>11.2%</small></button>
-          <button class="fin-bank"            data-bank="itau"  data-rate="10.8">Itaú <small>10.8%</small></button>
-          <button class="fin-bank"            data-bank="cont"  data-rate="11.5">Continental <small>11.5%</small></button>
-        </div>
-      </div>
-    </div>
-
-    <div class="fin-calc__result">
-      <span class="fin-calc__eyebrow" data-i18n="fin.result.eyebrow">Cuota mensual estimada</span>
-      <strong class="fin-calc__amount" id="finMonthly">USD 1.025</strong>
-      <small class="fin-calc__hint" id="finBankHint">BNF · 9.5% TEA · 20 años</small>
-
-      <div class="fin-calc__breakdown">
-        <div>
-          <span data-i18n="fin.b.principal">Capital financiado</span>
-          <strong id="finPrincipal">USD 96.000</strong>
-        </div>
-        <div>
-          <span data-i18n="fin.b.interest">Intereses totales</span>
-          <strong id="finInterest">USD 150.165</strong>
-        </div>
-        <div>
-          <span data-i18n="fin.b.total">Pagado al final</span>
-          <strong id="finTotal">USD 246.165</strong>
-        </div>
-      </div>
-
-      <small class="fin-calc__disclaimer" data-i18n="fin.disclaimer">Cálculo referencial con tasas promedio del mercado paraguayo. La aprobación y tasa final dependen de cada banco y del perfil del cliente.</small>
-    </div>
-  </div>
-</section>
-
-<!-- ─── ROI INVESTIDOR ────────────────────────────────── -->
-<section class="section section--dark" id="roi">
-  <div class="section__head">
-    <span class="eyebrow js-reveal" data-i18n="roi.eyebrow">Para inmuebles de inversión</span>
-    <h2 class="js-reveal" data-i18n-html="roi.title">Atraé al inversionista con <em>números, no con fotos</em>.</h2>
-    <p class="js-reveal" data-i18n="roi.sub">Calculadora de retorno mensual y anual. El lead investidor ve directamente el cap rate, el alquiler estimado de la zona y el ROI a 5 años, y agenda la visita con la decisión casi tomada.</p>
-  </div>
-
-  <div class="roi-calc js-reveal">
-    <div class="roi-calc__inputs">
-      <div class="roi-field">
-        <label data-i18n="roi.f.price">Precio del inmueble</label>
-        <div class="roi-input-group"><span>USD</span><input type="number" id="roiPrice" value="80000"/></div>
-      </div>
-      <div class="roi-field">
-        <label data-i18n="roi.f.rent">Alquiler mensual estimado</label>
-        <div class="roi-input-group"><span>USD</span><input type="number" id="roiRent" value="650"/></div>
-      </div>
-      <div class="roi-field">
-        <label data-i18n="roi.f.fees">Gastos mensuales (mantenimiento, expensas)</label>
-        <div class="roi-input-group"><span>USD</span><input type="number" id="roiFees" value="80"/></div>
-      </div>
-      <div class="roi-field">
-        <label data-i18n="roi.f.appreciation">Apreciación anual estimada</label>
-        <div class="roi-input-group"><span>%</span><input type="number" id="roiAppr" value="6" step="0.5"/></div>
-      </div>
-    </div>
-
-    <div class="roi-calc__output">
-      <div class="roi-card">
-        <span data-i18n="roi.r.cap">Cap Rate anual</span>
-        <strong id="roiCap">8.55%</strong>
-      </div>
-      <div class="roi-card">
-        <span data-i18n="roi.r.cashflow">Cash flow mensual</span>
-        <strong id="roiCash">USD 570</strong>
-      </div>
-      <div class="roi-card roi-card--big">
-        <span data-i18n="roi.r.5y">Retorno total a 5 años</span>
-        <strong id="roi5y">USD 41.940</strong>
-        <small id="roi5yPct">+52.4%</small>
-      </div>
-      <div class="roi-card">
-        <span data-i18n="roi.r.payback">Payback estimado</span>
-        <strong id="roiPayback">9.5 años</strong>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── MAPA DE LEADS ─────────────────────────────────── -->
-<section class="section" id="mapa">
-  <div class="section__head">
-    <span class="eyebrow js-reveal" data-i18n="map.eyebrow">Visibilidad geográfica</span>
-    <h2 class="js-reveal" data-i18n-html="map.title">Mirá <em>desde dónde</em> vienen tus leads.</h2>
-    <p class="js-reveal" data-i18n="map.sub">Cada punto en el mapa es un lead real captado en la última semana. Filtrá por barrio, presupuesto o tipo de inmueble, y ajustá tus campañas hacia las zonas que más responden.</p>
-  </div>
-
-  <div class="map-leads js-reveal">
-    <div class="map-leads__filters">
-      <button class="map-filter is-active" data-filter="all" data-i18n="map.f.all">Todos los leads</button>
-      <button class="map-filter" data-filter="hot" data-i18n="map.f.hot">🔥 Hot (&gt;USD 150k)</button>
-      <button class="map-filter" data-filter="invest" data-i18n="map.f.invest">Inversión</button>
-      <button class="map-filter" data-filter="primera" data-i18n="map.f.first">Primera vivienda</button>
-    </div>
-
-    <div class="map-leads__viz" id="mapViz" aria-label="Mapa de Asunción con leads">
-      <!-- mapa SVG estilizado de barrios de Asunción -->
-      <svg viewBox="0 0 600 400" class="map-leads__svg" aria-hidden="true">
-        <!-- Río Paraguay decorativo -->
-        <path d="M0 80 Q 100 60 200 90 T 400 100 Q 500 110 600 80 L 600 0 L 0 0 Z" fill="rgba(27, 95, 168, 0.15)"/>
-
-        <!-- Distritos/Barrios estilizados -->
-        <g class="map-districts">
-          <path d="M120 130 L 250 120 L 280 200 L 200 230 L 130 200 Z" data-district="centro"/>
-          <path d="M280 200 L 380 180 L 410 260 L 320 290 L 280 250 Z" data-district="villa-morra"/>
-          <path d="M380 180 L 480 170 L 510 240 L 410 260 Z" data-district="recoleta"/>
-          <path d="M200 230 L 280 250 L 320 290 L 250 340 L 180 320 Z" data-district="trinidad"/>
-          <path d="M320 290 L 410 260 L 480 320 L 400 360 Z" data-district="lambare"/>
-          <path d="M130 200 L 200 230 L 180 320 L 90 290 Z" data-district="san-antonio"/>
-          <path d="M480 170 L 560 160 L 580 220 L 510 240 Z" data-district="luque"/>
-        </g>
-
-        <g class="map-labels">
-          <text x="195" y="180">Centro</text>
-          <text x="335" y="240">Villa Morra</text>
-          <text x="445" y="220">Recoleta</text>
-          <text x="240" y="295">Trinidad</text>
-          <text x="395" y="320">Lambaré</text>
-          <text x="135" y="265">San Antonio</text>
-          <text x="525" y="205">Luque</text>
-        </g>
-      </svg>
-
-      <!-- Os pontos de leads são injetados via JS -->
-      <div class="map-leads__dots" id="mapDots"></div>
-
-      <!-- Tooltip flutuante -->
-      <div class="map-leads__tooltip" id="mapTooltip" hidden></div>
-    </div>
-
-    <div class="map-leads__legend">
-      <span><i class="map-dot-legend map-dot-legend--hot"></i> <span data-i18n="map.l.hot">Lead caliente</span></span>
-      <span><i class="map-dot-legend map-dot-legend--warm"></i> <span data-i18n="map.l.warm">Lead tibio</span></span>
-      <span><i class="map-dot-legend map-dot-legend--cold"></i> <span data-i18n="map.l.cold">Lead frío</span></span>
-      <span class="map-leads__live"><i class="map-pulse"></i> <span data-i18n="map.l.live">en vivo · últimos 7 días</span></span>
-    </div>
-  </div>
-</section>
-
-<!-- ─── PANEL DEL CORREDOR ────────────────────────────── -->
-<section class="section section--dark" id="panel">
-  <div class="section__head">
-    <span class="eyebrow js-reveal" data-i18n="panel.eyebrow">Panel propio · Mobile first</span>
-    <h2 class="js-reveal" data-i18n-html="panel.title">Subí fotos desde el celular. <em>Tu sitio se actualiza solo.</em></h2>
-    <p class="js-reveal" data-i18n="panel.sub">Después de cada visita técnica, sacás las fotos con el celular y las subís en 30 segundos. El inmueble queda publicado en tu sitio, listo para WhatsApp, Ads y para que tu corredor lo comparta. Sin esperar al equipo de marketing.</p>
+    <span class="eyebrow js-reveal" data-i18n="panel.eyebrow">Cómo funciona · Mobile first</span>
+    <h2 class="js-reveal" data-i18n-html="panel.title">Subís fotos desde el celular. <em>Tu catálogo se actualiza solo.</em></h2>
+    <p class="js-reveal" data-i18n="panel.sub">Sacás las fotos con el celular y las subís en 30 segundos. El inmueble queda publicado en tu página y en tu catálogo, listo para compartir por WhatsApp. Sin esperar a nadie.</p>
   </div>
 
   <div class="panel-demo js-reveal">
@@ -596,7 +361,7 @@
         </div>
         <div class="panel-landing__price">
           <strong>USD 145.000</strong>
-          <small data-i18n="panel.land.cuota">o desde USD 870/mes</small>
+          <small data-i18n="panel.land.cuota">3 unidades disponibles</small>
         </div>
         <div class="panel-landing__gallery" id="panelGallery">
           <div class="panel-slot" data-slot="0"></div>
@@ -641,7 +406,7 @@
         </svg>
       </div>
       <strong data-i18n="panel.f3.t">WhatsApp con preview rico</strong>
-      <p data-i18n="panel.f3.d">Compartí el link y aparece foto, precio y zona automáticamente. Cero esfuerzo del corredor.</p>
+      <p data-i18n="panel.f3.d">Compartí el link y aparece foto, precio y zona automáticamente. Cero esfuerzo extra.</p>
     </article>
 
     <article class="panel-feature js-reveal">
@@ -652,8 +417,8 @@
           <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
         </svg>
       </div>
-      <strong data-i18n="panel.f4.t">Multi-corredor con permisos</strong>
-      <p data-i18n="panel.f4.d">Cada corredor ve solo sus inmuebles. El dueño ve todo. Cada lead atribuido al responsable.</p>
+      <strong data-i18n="panel.f4.t">Multi-usuario con permisos</strong>
+      <p data-i18n="panel.f4.d">Cada corredor ve solo sus inmuebles. El dueño o developer ve todo el catálogo.</p>
     </article>
   </div>
 
@@ -661,7 +426,7 @@
     <span class="panel-included__check" aria-hidden="true">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
     </span>
-    Incluído en todos los planes · Hosting, CDN y optimización <strong>sin costo adicional</strong>.
+    Incluído en el plan · Hosting, CDN y optimización <strong>sin costo adicional</strong>.
   </p>
 </section>
 
@@ -669,20 +434,20 @@
 <section class="section" id="precios">
   <div class="section__head">
     <span class="eyebrow js-reveal" data-i18n="price.eyebrow">Inversión</span>
-    <h2 class="js-reveal" data-i18n="price.title">Cada plan, hecho a medida.</h2>
-    <p class="js-reveal" data-i18n="price.sub">No vendemos paquetes cerrados. Armamos el plan exacto según el tamaño de tu inmobiliaria, tu cartera de inmuebles y los procesos que necesitás automatizar.</p>
+    <h2 class="js-reveal" data-i18n="price.title">Un plan simple, sin letra chica.</h2>
+    <p class="js-reveal" data-i18n="price.sub">Página de tu emprendimiento + catálogo completo de inmuebles disponibles. Si tenés varios proyectos, armamos el plan a medida.</p>
   </div>
 
   <article class="pricing-card js-reveal" aria-labelledby="starterCardTitle">
     <div class="pricing-card__col pricing-card__col--starter">
-      <span class="pricing-card__eyebrow" data-i18n="price.start.eyebrow">Plan inicio · desde</span>
-      <h3 id="starterCardTitle" class="pricing-card__title" data-i18n="price.start.title">Empezá a captar como agencia, no como corredor solo.</h3>
+      <span class="pricing-card__eyebrow" data-i18n="price.start.eyebrow">Plan único · desde</span>
+      <h3 id="starterCardTitle" class="pricing-card__title" data-i18n="price.start.title">Tu página de emprendimiento + catálogo completo de inmuebles.</h3>
       <div class="pricing-card__price">
         <strong>Gs. 1.800.000</strong>
         <span class="pricing-card__unit">/mes</span>
       </div>
       <span class="pricing-card__tag" data-i18n="price.start.tag">IVA incluido</span>
-      <p data-i18n="price.start.desc">El piso para profesionalizar tu operación: landing por proyecto, ads geo-segmentados, WhatsApp con auto-respuesta, simulador de financiación y reporte mensual.</p>
+      <p data-i18n="price.start.desc">Incluye la página de ventas de tu proyecto, catálogo CMS para toda tu cartera de inmuebles, panel para publicar vos mismo desde el celular, hosting, CDN y optimización de fotos.</p>
       <button class="btn btn--primary" data-open-form data-open-form-source="plan-starter" data-i18n="price.start.cta">Empezar con este plan →</button>
     </div>
 
@@ -690,21 +455,21 @@
 
     <div class="pricing-card__col pricing-card__col--budget">
       <span class="pricing-card__eyebrow" data-i18n="price.ads.eyebrow">Verba sugerida en ads</span>
-      <h3 class="pricing-card__title" data-i18n="price.ads.title">Lo recomendado para inmuebles.</h3>
+      <h3 class="pricing-card__title" data-i18n="price.ads.title">Para llevar tráfico a tu página.</h3>
       <div class="pricing-card__price pricing-card__price--alt">
         <strong>Gs. 80.000</strong>
         <span class="pricing-card__unit">/día</span>
       </div>
       <span class="pricing-card__tag pricing-card__tag--alt" data-i18n="price.ads.tag">Mínimo recomendado</span>
-      <p data-i18n="price.ads.desc">El ticket inmobiliario es alto, entonces la inversión en ads tiene que ser proporcional. Este presupuesto se paga directo a Meta/Google, fuera de la mensualidad de Punto Alto.</p>
+      <p data-i18n="price.ads.desc">El ticket inmobiliario es alto, así que la inversión en ads tiene que ser proporcional. Este presupuesto se paga directo a Meta/Google, fuera de la mensualidad de Punto Alto.</p>
     </div>
   </article>
 
   <aside class="custom-plan js-reveal" aria-labelledby="customPlanTitle">
     <div class="custom-plan__head">
       <span class="custom-plan__eyebrow" data-i18n="price.custom.eyebrow">Plan a tu medida</span>
-      <h3 id="customPlanTitle" class="custom-plan__title" data-i18n="price.custom.title">¿Sos developer, fideicomiso o tenés varios proyectos?</h3>
-      <p data-i18n="price.custom.desc">Para operaciones complejas (múltiples emprendimientos, equipo de 5+ corredores, IA en WhatsApp 24/7 multi-idioma, integración con CRM existente, gerente de cuenta dedicado), armamos un plan exacto. Cotizamos según operación, cartera y objetivos.</p>
+      <h3 id="customPlanTitle" class="custom-plan__title" data-i18n="price.custom.title">¿Sos developer o tenés varios emprendimientos?</h3>
+      <p data-i18n="price.custom.desc">Para varios proyectos en simultáneo, catálogos grandes (100+ unidades), fotos profesionales o render 3D, y gerente de cuenta dedicado, armamos un plan exacto. Cotizamos según la cantidad de proyectos y el tamaño de tu cartera.</p>
     </div>
     <button class="btn btn--ghost custom-plan__cta" data-open-form data-open-form-source="plan-custom" data-i18n="price.custom.cta">Hablemos →</button>
   </aside>
@@ -712,7 +477,7 @@
   <aside class="scope-note js-reveal" aria-labelledby="scopeNoteTitle">
     <div class="scope-note__head">
       <span class="scope-note__eyebrow" data-i18n="scope.eyebrow">Inversión aparte</span>
-      <h3 id="scopeNoteTitle" class="scope-note__title" data-i18n="scope.title">Nuestros planes cubren el servicio completo de la agencia.</h3>
+      <h3 id="scopeNoteTitle" class="scope-note__title" data-i18n="scope.title">Nuestro plan cubre el servicio completo de la página y el catálogo.</h3>
       <p class="scope-note__sub" data-i18n-html="scope.sub">Los ítems marcados con <span class="scope-note__mark" aria-hidden="true">*</span> se contratan directo con cada proveedor, así mantenés control total sobre tu presupuesto, sin intermediarios ni sorpresas.</p>
     </div>
     <ul class="scope-note__items" role="list">
@@ -730,12 +495,12 @@
       <li class="scope-note__item">
         <span class="scope-note__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 20l1.5-4A8 8 0 1 1 9 20.5L4 20z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/>
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
           </svg>
         </span>
         <div class="scope-note__body">
-          <strong data-i18n="scope.i2.t">API de WhatsApp Business</strong>
-          <span data-i18n="scope.i2.d">Licencia oficial de Meta: varía según números y atendentes que operen el bot.</span>
+          <strong data-i18n="scope.i2.t">Fotos profesionales o render 3D</strong>
+          <span data-i18n="scope.i2.d">Para emprendimientos en pozo o que necesitan producción visual de mayor nivel: cotización aparte según proyecto.</span>
         </div>
       </li>
       <li class="scope-note__item">
@@ -746,7 +511,7 @@
         </span>
         <div class="scope-note__body">
           <strong data-i18n="scope.i3.t">Hosting y dominio premium</strong>
-          <span data-i18n="scope.i3.d">Recomendamos hosting dedicado para landings de proyectos grandes: costo aparte según tráfico.</span>
+          <span data-i18n="scope.i3.d">Recomendamos hosting dedicado para lanzamientos con tráfico alto: costo aparte según tráfico.</span>
         </div>
       </li>
     </ul>
@@ -756,8 +521,8 @@
 <!-- ─── CTA FINAL ─────────────────────────────────────── -->
 <section class="section cta-final" id="contacto">
   <div class="cta-final__box js-reveal">
-    <h2 data-i18n-html="cta.title">Captá leads que <em>realmente compran.</em></h2>
-    <p data-i18n="cta.sub">Diagnóstico gratuito de 30 minutos. Te mostramos cómo armar el funnel completo para tu inmobiliaria, y qué números podés esperar en los próximos 90 días.</p>
+    <h2 data-i18n-html="cta.title">Tu próximo emprendimiento, con página propia <em>desde el día uno.</em></h2>
+    <p data-i18n="cta.sub">Diagnóstico gratuito de 30 minutos. Te mostramos cómo se ve tu página y tu catálogo, y cuánto tarda en estar en vivo.</p>
     <button class="btn btn--primary btn--lg" data-open-form data-open-form-source="cta-final" data-i18n="cta.btn">Agendar diagnóstico →</button>
     <small data-i18n="cta.trust">Respuesta por WhatsApp en menos de 2 horas · 100% gratuito</small>
   </div>
@@ -783,7 +548,7 @@
       <span>·</span>
       <a href="#servicios" data-i18n="nav.services">Servicios</a>
     </div>
-    <p class="footer__copy" data-i18n="footer.copy">© 2026 Punto Alto, Asunción, Paraguay. Captación inmobiliaria con datos.</p>
+    <p class="footer__copy" data-i18n="footer.copy">© 2026 Punto Alto, Asunción, Paraguay. Página por emprendimiento y catálogo de inmuebles.</p>
   </div>
 </footer>
 
@@ -827,35 +592,34 @@
 
     <div class="fxstep" data-step="3">
       <p class="fxstep__label" data-i18n="form.s3.label">Pregunta 3 / 6</p>
-      <h2 data-i18n="form.s3.q">¿Nombre de tu inmobiliaria?</h2>
-      <input type="text" id="f-company" class="fxinput" placeholder="Tu inmobiliaria o equipo" autocomplete="organization" data-i18n-ph="form.s3.ph"/>
+      <h2 data-i18n="form.s3.q">¿Nombre de tu inmobiliaria o emprendimiento?</h2>
+      <input type="text" id="f-company" class="fxinput" placeholder="Tu inmobiliaria, developer o proyecto" autocomplete="organization" data-i18n-ph="form.s3.ph"/>
       <span class="fxerror" id="e-company"></span>
       <button class="btn btn--primary fxnext" data-next data-i18n="form.next">Continuar →</button>
     </div>
 
     <div class="fxstep" data-step="4">
       <p class="fxstep__label" data-i18n="form.s4.label">Pregunta 4 / 6</p>
-      <h2 data-i18n="form.s4.q">¿Qué tipo de operación principal tenés?</h2>
-      <p class="fxsub" data-i18n="form.s4.sub">Para adaptar el funnel a tu realidad.</p>
+      <h2 data-i18n="form.s4.q">¿Qué necesitás primero?</h2>
+      <p class="fxsub" data-i18n="form.s4.sub">Elegí uno y seguimos automáticamente.</p>
       <div class="fxradios" id="rg-operation">
-        <label><input type="radio" name="operation" value="venta-nueva"/><span data-i18n="form.s4.o1">Venta de inmuebles nuevos</span></label>
-        <label><input type="radio" name="operation" value="venta-usado"/><span data-i18n="form.s4.o2">Venta de usados</span></label>
-        <label><input type="radio" name="operation" value="alquiler"/><span data-i18n="form.s4.o3">Alquiler</span></label>
-        <label><input type="radio" name="operation" value="inversion"/><span data-i18n="form.s4.o4">Inversión / renta</span></label>
-        <label><input type="radio" name="operation" value="mixto"/><span data-i18n="form.s4.o5">Mixto (varios)</span></label>
+        <label><input type="radio" name="operation" value="pagina-emprendimiento"/><span data-i18n="form.s4.o1">Página para un emprendimiento específico</span></label>
+        <label><input type="radio" name="operation" value="catalogo"/><span data-i18n="form.s4.o2">Catálogo de inmuebles disponibles</span></label>
+        <label><input type="radio" name="operation" value="ambos"/><span data-i18n="form.s4.o3">Ambos</span></label>
+        <label><input type="radio" name="operation" value="no-se"/><span data-i18n="form.s4.o4">Todavía no estoy seguro</span></label>
       </div>
       <span class="fxerror" id="e-operation"></span>
     </div>
 
     <div class="fxstep" data-step="5">
       <p class="fxstep__label" data-i18n="form.s5.label">Pregunta 5 / 6</p>
-      <h2 data-i18n="form.s5.q">¿Cuántos corredores son en el equipo?</h2>
-      <p class="fxsub" data-i18n="form.s5.sub">Para dimensionar el plan ideal.</p>
+      <h2 data-i18n="form.s5.q">¿Cuántos inmuebles o unidades tenés para publicar?</h2>
+      <p class="fxsub" data-i18n="form.s5.sub">Para dimensionar el catálogo.</p>
       <div class="fxradios" id="rg-team">
-        <label><input type="radio" name="team" value="1"/><span data-i18n="form.s5.o1">Solo yo</span></label>
-        <label><input type="radio" name="team" value="2-5"/><span data-i18n="form.s5.o2">2 – 5 corredores</span></label>
-        <label><input type="radio" name="team" value="6-15"/><span data-i18n="form.s5.o3">6 – 15 corredores</span></label>
-        <label><input type="radio" name="team" value="15+"/><span data-i18n="form.s5.o4">Cadena 15+ corredores</span></label>
+        <label><input type="radio" name="team" value="menos-10"/><span data-i18n="form.s5.o1">Menos de 10</span></label>
+        <label><input type="radio" name="team" value="10-30"/><span data-i18n="form.s5.o2">Entre 10 y 30</span></label>
+        <label><input type="radio" name="team" value="30-100"/><span data-i18n="form.s5.o3">Entre 30 y 100</span></label>
+        <label><input type="radio" name="team" value="100+"/><span data-i18n="form.s5.o4">Más de 100</span></label>
       </div>
       <span class="fxerror" id="e-team"></span>
     </div>
@@ -881,7 +645,7 @@
         <path fill="none" d="M14 27l8 8 16-16"/>
       </svg>
       <h2 data-i18n-html="form.ok.title">¡Perfecto, <span id="fxOkName"></span>!</h2>
-      <p class="fxsub" data-i18n="form.ok.sub">Te escribimos por WhatsApp en menos de 2 horas para agendar tu diagnóstico inmobiliario gratuito.</p>
+      <p class="fxsub" data-i18n="form.ok.sub">Te escribimos por WhatsApp en menos de 2 horas para agendar tu diagnóstico gratuito.</p>
       <button class="btn btn--ghost" id="fxDone" data-i18n="form.ok.btn">Volver al sitio</button>
     </div>
 
