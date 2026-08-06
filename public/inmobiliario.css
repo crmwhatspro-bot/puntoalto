@@ -6,6 +6,21 @@
 /* Lang switcher styles moved to contadores.css (shared base) */
 
 /* ════════════════════════════════════════════════════════
+   Link secundário: signup self-service do Inmobly (app SaaS)
+   ════════════════════════════════════════════════════════ */
+.hero__signup-link {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+}
+.hero__signup-link a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 200ms;
+}
+.hero__signup-link a:hover { color: var(--text); }
+
+/* ════════════════════════════════════════════════════════
    Grid extra + pilares (2 columnas)
    ════════════════════════════════════════════════════════ */
 .grid--2 { grid-template-columns: 1fr; }
