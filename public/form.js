@@ -469,6 +469,7 @@
       budget:    data['budget']      || '',
       locale:    getCurrentLang(),
       source:    'landing-puntoalto',
+      cta_origin: ctaOrigin,
       page_url:  window.location.href,
       referrer:  document.referrer || null,
       user_agent:navigator.userAgent,

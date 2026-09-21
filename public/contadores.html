@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" translate="no">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" href="/favicon.ico" sizes="48x48"/>
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<meta name="theme-color" content="#0B1220"/>
+<meta name="google" content="notranslate"/>
 <title>Punto Alto para Contadores · Automatización contable para Paraguay</title>
 <meta name="description" content="Portal inteligente para contadores paraguayos. Factura legal automática, consulta de RUC, conciliación bancaria con IA y noticias tributarias del DNIT en tiempo real."/>
 
@@ -17,10 +23,10 @@
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
 </noscript>
 
-<link rel="stylesheet" href="contadores.css"/>
+<link rel="stylesheet" href="contadores.css?v=3"/>
 
 <script type="module" src="firebase-init.js"></script>
-<script defer src="contadores.js?v=3"></script>
+<script defer src="contadores.js?v=5"></script>
 </head>
 <body>
 
@@ -28,14 +34,9 @@
 <header class="nav" id="nav">
   <div class="nav__inner">
     <a href="index.html" class="logo" aria-label="Punto Alto">
-      <svg class="logo__mark" viewBox="0 0 60 60" fill="none" aria-hidden="true">
-        <path d="M8 52 L30 10 L52 52" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
-        <circle cx="30" cy="10" r="5" fill="#FF6A3D"/>
-      </svg>
-      <span class="logo__text">
-        <strong>PUNTO ALTO</strong>
-        <small data-i18n="logo.sub">PARA CONTADORES</small>
-      </span>
+      <span class="logo__set logo__set--full"><img class="logo__full theme-img--light" src="/img/logo-light.webp" width="167" height="32" alt=""/><img class="logo__full theme-img--dark" src="/img/logo-dark.webp" width="167" height="32" alt=""/></span>
+      <span class="logo__set logo__set--alt"><img class="logo__mark theme-img--light" src="/img/mark-light.webp" width="36" height="33" alt=""/><img class="logo__mark theme-img--dark" src="/img/mark-dark.webp" width="36" height="33" alt=""/></span>
+      <span class="logo__sub" data-i18n="logo.sub">PARA CONTADORES</span>
     </a>
 
     <nav class="nav__links">
@@ -98,10 +99,7 @@
   <div class="hero__bg" aria-hidden="true">
     <div class="hero__grid"></div>
     <div class="hero__glow"></div>
-    <svg class="hero__chevron" viewBox="0 0 60 60" aria-hidden="true">
-      <path d="M8 52 L30 10 L52 52" stroke="#1B5FA8" stroke-width="3" fill="none" stroke-linejoin="round"/>
-      <circle cx="30" cy="10" r="5" fill="#FF6A3D"/>
-    </svg>
+    <img class="hero__chevron theme-img--light" src="/img/mark-light-lg.webp" width="480" height="440" alt="" aria-hidden="true" decoding="async"/><img class="hero__chevron theme-img--dark" src="/img/mark-dark-lg.webp" width="480" height="440" alt="" aria-hidden="true" decoding="async"/>
   </div>
 
   <div class="hero__content">
@@ -322,10 +320,7 @@
       <div class="factura-doc">
         <div class="factura-doc__header">
           <div class="factura-doc__logo">
-            <svg viewBox="0 0 60 60" width="32" height="32" fill="none">
-              <path d="M8 52 L30 10 L52 52" stroke="#1B5FA8" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
-              <circle cx="30" cy="10" r="5" fill="#FF6A3D"/>
-            </svg>
+            <span class="logo__set"><img class="theme-img--light" src="/img/mark-light.webp" width="32" height="29" alt=""/><img class="theme-img--dark" src="/img/mark-dark.webp" width="32" height="29" alt=""/></span>
             <div>
               <strong>Estudio Contable Demo</strong>
               <small>RUC: 80098765-4</small>
@@ -807,28 +802,28 @@
 
   <article class="pricing-card js-reveal" aria-labelledby="starterCardTitle">
     <div class="pricing-card__col pricing-card__col--starter">
-      <span class="pricing-card__eyebrow" data-i18n="price.start.eyebrow">Plan inicio · desde</span>
-      <h3 id="starterCardTitle" class="pricing-card__title" data-i18n="price.start.title">Empezá con estructura real desde el día uno.</h3>
+      <span class="pricing-card__eyebrow" data-i18n="price.start.eyebrow">Setup único</span>
+      <h3 id="starterCardTitle" class="pricing-card__title" data-i18n="price.start.title">Tu funnel de ventas en Google, listo y rodando.</h3>
       <div class="pricing-card__price">
-        <strong>Gs. 1.500.000</strong>
-        <span class="pricing-card__unit">/mes</span>
+        <strong>USD 500</strong>
+        <span class="pricing-card__unit" data-i18n="price.start.unit">una vez</span>
       </div>
-      <span class="pricing-card__tag" data-i18n="price.start.tag">IVA incluido</span>
-      <p data-i18n="price.start.desc">El piso para automatizar tu estudio: sitio profesional, consulta de RUC integrada, portal tributario y WhatsApp comercial, listo para captar y atender clientes desde el día uno.</p>
+      <span class="pricing-card__tag" data-i18n="price.start.tag">Pago único al arrancar</span>
+      <p data-i18n="price.start.desc">El setup para captar clientes desde Google: páginas conectadas a las búsquedas de mayor volumen de tu rubro, optimizadas para posicionar, con alto rendimiento, consulta de RUC integrada, portal tributario y campañas trayendo tráfico.</p>
       <button class="btn btn--primary" data-open-form data-open-form-source="plan-starter" data-i18n-html="price.start.cta">Empezar con este plan <span aria-hidden="true">→</span></button>
     </div>
 
     <div class="pricing-card__divider" aria-hidden="true"></div>
 
     <div class="pricing-card__col pricing-card__col--budget">
-      <span class="pricing-card__eyebrow" data-i18n="price.ads.eyebrow">Verba sugerida en ads</span>
-      <h3 class="pricing-card__title" data-i18n="price.ads.title">Lo recomendado para arrancar.</h3>
+      <span class="pricing-card__eyebrow" data-i18n="price.ads.eyebrow">Mensualidad · desde</span>
+      <h3 class="pricing-card__title" data-i18n="price.ads.title">El 50% de lo que invertís en ads.</h3>
       <div class="pricing-card__price pricing-card__price--alt">
-        <strong>Gs. 50.000</strong>
-        <span class="pricing-card__unit">/día</span>
+        <strong>USD 300</strong>
+        <span class="pricing-card__unit" data-i18n="price.ads.unit">/mes</span>
       </div>
-      <span class="pricing-card__tag pricing-card__tag--alt" data-i18n="price.ads.tag">Mínimo recomendado</span>
-      <p data-i18n="price.ads.desc">Para que Google y Meta tengan datos suficientes para optimizar y traer clientes cualificados a tu estudio. Este presupuesto se paga directo a la plataforma, fuera de la mensualidad de Punto Alto.</p>
+      <span class="pricing-card__tag pricing-card__tag--alt" data-i18n="price.ads.tag">Mínimo mensual</span>
+      <p data-i18n="price.ads.desc">Nuestra mensualidad equivale al 50% de tu inversión en anuncios, con un piso de USD 300. Con hasta USD 600/mes en ads pagás el mínimo. Ese presupuesto se paga directo a Google o Meta, fuera de la mensualidad de Punto Alto.</p>
     </div>
   </article>
 
@@ -878,7 +873,7 @@
         </span>
         <div class="scope-note__body">
           <strong data-i18n="scope.i2.t">API de WhatsApp Business</strong>
-          <span data-i18n="scope.i2.d">Licencia facturada aparte: el costo varía según la cantidad de números y atendentes que operen el sistema.</span>
+          <span data-i18n="scope.i2.d">Licencia facturada aparte. La integración con WhatsApp y el equipo de ventas son un servicio adicional, cotizado según tu operación.</span>
         </div>
       </li>
 
@@ -918,14 +913,8 @@
 <footer class="footer">
   <div class="footer__inner">
     <div class="logo">
-      <svg class="logo__mark" viewBox="0 0 60 60" fill="none" aria-hidden="true">
-        <path d="M8 52 L30 10 L52 52" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
-        <circle cx="30" cy="10" r="5" fill="#FF6A3D"/>
-      </svg>
-      <span class="logo__text">
-        <strong>PUNTO ALTO</strong>
-        <small data-i18n="footer.sub">Para Contadores</small>
-      </span>
+      <span class="logo__set logo__set--full"><img class="logo__full theme-img--light" src="/img/logo-light.webp" width="167" height="32" alt="Punto Alto"/><img class="logo__full theme-img--dark" src="/img/logo-dark.webp" width="167" height="32" alt="Punto Alto"/></span>
+      <span class="logo__sub" data-i18n="footer.sub">Para Contadores</span>
     </div>
     <div class="footer__links">
       <a href="index.html" data-i18n="footer.l1">Punto Alto Marketing</a>
@@ -1046,5 +1035,7 @@
 </div>
 
 <!-- Scripts movidos para o <head> com defer -->
+<!-- ─── Chat IA (atención automática) ─── -->
+<script async src="https://access.crmwhatspro.com/native-widget.js" data-embed-key="SRUXOFykYecnlP0ot7UrABl_fq7ZmONFuDjaJXiJTAM"></script>
 </body>
 </html>

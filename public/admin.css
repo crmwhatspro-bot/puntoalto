@@ -139,6 +139,7 @@ select.input option { background: var(--bg-2); color: var(--text); }
   margin: 0 auto 1rem;
 }
 .login__logo svg { width: 100%; height: 100%; }
+.login__logo img { width: 100%; height: 100%; object-fit: contain; }
 .login__title {
   font-size: 1.55rem;
   font-weight: 700;
@@ -558,6 +559,36 @@ select.input option { background: var(--bg-2); color: var(--text); }
   cursor: default;
 }
 
+/* ── Respuestas del formulario en la tabla ───────────── */
+.leads__answers {
+  min-width: 260px;
+  max-width: 380px;
+}
+.answer-chip {
+  display: block;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--text-2);
+  padding: 0.18rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.answer-chip i {
+  display: inline-block;
+  min-width: 8.5em;
+  margin-right: 0.5rem;
+  font-style: normal;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.answer-chip--none {
+  color: var(--muted);
+  font-style: italic;
+}
+
 /* Status pill */
 .pill {
   display: inline-block;
@@ -763,6 +794,81 @@ select.input option { background: var(--bg-2); color: var(--text); }
   font-weight: 600;
   color: var(--muted);
   margin: 0 0 0.6rem;
+}
+
+.drawer__hint {
+  margin: -0.3rem 0 0.85rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ── Pregunta → respuesta completa, en el drawer ─────── */
+.qa {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  counter-reset: qa;
+}
+.qa__item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.qa__item--empty { opacity: 0.55; }
+.qa__num {
+  flex: none;
+  width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--surface-hi);
+  color: var(--muted);
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+}
+.qa__item:not(.qa__item--empty) .qa__num {
+  background: rgba(255,106,61,0.16);
+  color: var(--orange);
+}
+.qa__body { min-width: 0; }
+.qa__q {
+  margin: 0 0 0.2rem;
+  font-size: 0.76rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.qa__a {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+}
+.qa__item--empty .qa__a {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+}
+.qa__raw {
+  margin: 0.3rem 0 0;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.qa__raw code {
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  color: var(--text-2);
+}
+
+/* Filtros por respuesta (se generan por landing) */
+.toolbar__answers {
+  display: contents;
 }
 
 .drawer__row {

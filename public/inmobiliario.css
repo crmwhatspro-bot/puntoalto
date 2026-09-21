@@ -6,19 +6,39 @@
 /* Lang switcher styles moved to contadores.css (shared base) */
 
 /* ════════════════════════════════════════════════════════
-   Link secundário: signup self-service do Inmobly (app SaaS)
+   Trust line abaixo dos CTAs do hero (trial · sem tarjeta)
    ════════════════════════════════════════════════════════ */
-.hero__signup-link {
-  margin-top: 1rem;
-  font-size: 0.88rem;
-}
-.hero__signup-link a {
+.hero__trust {
+  margin-top: 1.1rem;
+  font-size: 0.82rem;
   color: var(--muted);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: color 200ms;
+  letter-spacing: 0.03em;
 }
-.hero__signup-link a:hover { color: var(--text); }
+
+/* ════════════════════════════════════════════════════════
+   CTA final: signup direto + fallback pra hablar con ventas
+   ════════════════════════════════════════════════════════ */
+.cta-final__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* ════════════════════════════════════════════════════════
+   Pricing card de plan único (Inmobly não vende tráfego pago,
+   só o SaaS — sem coluna de verba em ads)
+   ════════════════════════════════════════════════════════ */
+.pricing-card--single {
+  grid-template-columns: 1fr;
+  max-width: 620px;
+}
+
+/* Scope note agora só tem 2 itens (sem o de ads): 2 colunas
+   sempre, pra não deixar uma 3ª coluna vazia no desktop */
+@media (min-width: 900px) {
+  .scope-note__items { grid-template-columns: repeat(2, 1fr); }
+}
 
 /* ════════════════════════════════════════════════════════
    Grid extra + pilares (2 columnas)

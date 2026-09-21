@@ -98,7 +98,7 @@ const state = {
   leads:     [],
   sessions:  [],
   pageViews: [],
-  filters:   { search: '', source: '', status: '', software: '', pain: '', operation: '', origin: '' },
+  filters:   { search: '', source: '', status: '', fields: {} },
   sort:      { key: 'created_at', dir: 'desc' },
   period:    30,
   unsub:         null,
@@ -378,22 +378,22 @@ function renderCharts() {
   const sessionsCur = sessionsInPeriod(currentStart, currentEnd);
 
   renderTrendChart();
-  renderDonut('chartChallenge', groupBy(leadsCur, 'challenge'));
-  renderDonut('chartBudget',    groupBy(leadsCur, 'budget'));
-  renderDonut('chartSource',    groupBy(leadsCur, 'source'));
-  renderDonut('chartCta',       groupBy(sessionsCur, 'cta_origin'));
+  renderDonut('chartChallenge', groupByAnswer(leadsCur, 'challenge'));
+  renderDonut('chartBudget',    groupByAnswer(leadsCur, 'budget'));
+  renderDonut('chartSource',    groupBy(leadsCur, 'source', 'sin origen', sourceLabel));
+  renderDonut('chartCta',       groupBy(sessionsCur, 'cta_origin', 'no identificado', ctaLabel));
   renderDonut('chartUtm',       groupBy(sessionsCur, 'utm_source', 'directo'));
 
   // Niche-specific donuts
   const contadoresLeads   = leadsCur.filter((l) => l.source === 'landing-contadores');
   const inmobiliarioLeads = leadsCur.filter((l) => l.source === 'landing-inmobiliario');
 
-  renderDonut('chartClients',   groupBy(contadoresLeads, 'clients'));
-  renderDonut('chartSoftware',  groupBy(contadoresLeads, 'software'));
-  renderDonut('chartPain',      groupBy(contadoresLeads, 'pain'));
-  renderDonut('chartOperation', groupBy(inmobiliarioLeads, 'operation'));
-  renderDonut('chartTeam',      groupBy(inmobiliarioLeads, 'team'));
-  renderDonut('chartOrigin',    groupBy(inmobiliarioLeads, 'origin'));
+  renderDonut('chartClients',   groupByAnswer(contadoresLeads, 'clients'));
+  renderDonut('chartSoftware',  groupByAnswer(contadoresLeads, 'software'));
+  renderDonut('chartPain',      groupByAnswer(contadoresLeads, 'pain'));
+  renderDonut('chartOperation', groupByAnswer(inmobiliarioLeads, 'operation'));
+  renderDonut('chartTeam',      groupByAnswer(inmobiliarioLeads, 'team'));
+  renderDonut('chartOrigin',    groupByAnswer(inmobiliarioLeads, 'origin'));
 
   // Visibility toggle by current source filter
   const filter = state.filters.source;
@@ -408,14 +408,22 @@ function renderCharts() {
   renderFunnel();
 }
 
-function groupBy(rows, key, fallback = '—') {
+function groupBy(rows, key, fallback = '—', mapLabel = null) {
   const out = {};
   for (const r of rows) {
     const raw = r[key];
-    const v = (raw == null || raw === '') ? fallback : String(raw);
+    const v = (raw == null || raw === '')
+      ? fallback
+      : (mapLabel ? mapLabel(raw) : String(raw));
     out[v] = (out[v] || 0) + 1;
   }
   return out;
+}
+
+/* Agrupa por la respuesta completa del formulario, no por el
+   valor abreviado que se guarda en Firestore. */
+function groupByAnswer(rows, key) {
+  return groupBy(rows, key, 'Sin responder', (raw) => labelOf(key, raw));
 }
 
 function renderTrendChart() {
@@ -643,7 +651,7 @@ function renderTable() {
   const rows  = applyFiltersAndSort(state.leads);
 
   if (rows.length === 0) {
-    tbody.innerHTML = '<tr class="leads__empty"><td colspan="8">Sin resultados.</td></tr>';
+    tbody.innerHTML = '<tr class="leads__empty"><td colspan="9">Sin resultados.</td></tr>';
     $('leadsCount').textContent = `0 de ${state.leads.length}`;
     return;
   }
@@ -666,6 +674,7 @@ function renderTable() {
         <td><strong>${escapeHtml(l.name || '—')}</strong></td>
         <td>${escapeHtml(l.phone || '—')}</td>
         <td>${escapeHtml(l.company || '—')}</td>
+        <td class="leads__answers">${answerChips(l)}</td>
         <td>${badge}</td>
         <td><button class="msg-copy" data-id="${l.id}" title="Calidad ${score}/3. Clic para copiar mensaje de WhatsApp">${dots}</button></td>
         <td><span class="wa ${waCls}" title="WhatsApp">${waIco}</span></td>
@@ -708,22 +717,38 @@ function renderTable() {
     : `${fmtInt(rows.length)} de ${fmtInt(state.leads.length)}`;
 }
 
+/* Chips con la respuesta completa de cada pregunta.
+   El title muestra "Pregunta → Respuesta" al pasar el mouse. */
+function answerChips(l) {
+  const answered = answersOf(l).filter((a) => a.answer);
+  if (answered.length === 0) {
+    return '<span class="answer-chip answer-chip--none">Sin respuestas</span>';
+  }
+  return answered.map((a) => `
+    <span class="answer-chip" title="${escapeHtml(a.question + ' → ' + a.answer)}">
+      <i>${escapeHtml(a.short)}</i>${escapeHtml(a.answer)}
+    </span>`).join('');
+}
+
 function applyFiltersAndSort(leads) {
-  const { search, source, status, software, pain, operation, origin } = state.filters;
+  const { search, source, status, fields } = state.filters;
   const s = search.trim().toLowerCase();
+  const fieldPairs = Object.entries(fields || {});
   let out = leads.filter((l) => {
     if (source && l.source !== source) return false;
     if (status && (l.status || 'new') !== status) return false;
-    if (software  && l.software  !== software)  return false;
-    if (pain      && l.pain      !== pain)      return false;
-    if (operation && l.operation !== operation) return false;
-    if (origin    && l.origin    !== origin)    return false;
+    for (const [key, val] of fieldPairs) {
+      if (l[key] !== val) return false;
+    }
     if (!s) return true;
+    // Busca también dentro de las respuestas ya traducidas
+    const answers = answersOf(l).map((a) => a.answer).join(' ').toLowerCase();
     return (
       (l.name    || '').toLowerCase().includes(s) ||
       (l.phone   || '').toLowerCase().includes(s) ||
       (l.company || '').toLowerCase().includes(s) ||
-      (l.email   || '').toLowerCase().includes(s)
+      (l.email   || '').toLowerCase().includes(s) ||
+      answers.includes(s)
     );
   });
 
@@ -762,15 +787,9 @@ function leadNiche(source) {
   return 'marketing';
 }
 
-/* Qualification score: 0-3 niche-specific fields filled */
+/* Qualification score: cuántas preguntas del formulario respondió */
 function qualificationScore(l) {
-  const niche = leadNiche(l.source);
-  const fields = ({
-    'contadores':   ['clients', 'software', 'pain'],
-    'inmobiliario': ['operation', 'team', 'origin'],
-    'marketing':    ['sector', 'challenge', 'budget']
-  })[niche];
-  return fields.reduce((n, f) => n + (l[f] ? 1 : 0), 0);
+  return fieldsOf(leadNiche(l.source)).reduce((n, f) => n + (l[f.key] ? 1 : 0), 0);
 }
 
 function qualificationDots(score) {
@@ -780,6 +799,36 @@ function qualificationDots(score) {
   }
   html += '</span>';
   return html;
+}
+
+/* Etiquetas legibles para los metadatos del lead */
+function sourceLabel(source) {
+  return ({
+    'landing-puntoalto':    'Landing principal (puntoalto.com.py)',
+    'landing-contadores':   'Landing Contadores',
+    'landing-inmobiliario': 'Landing Inmobiliario'
+  })[source] || source || '';
+}
+
+function ctaLabel(cta) {
+  if (!cta) return '';
+  return ({
+    'navbar':        'Botón del menú superior',
+    'navbar-mobile': 'Botón del menú superior (celular)',
+    'hero':          'Botón principal del inicio',
+    'paraguay':      'Sección "El país ya despegó"',
+    'plan-starter':  'Card de precios · Setup único',
+    'plan-custom':   'Card de precios · Plan a medida',
+    'cta-final':     'Llamado final de la página',
+    'exit_popup':    'Popup de salida',
+    'exit-popup':    'Popup de salida',
+    'unknown':       'No identificado'
+  })[cta] || cta;
+}
+
+function localeLabel(loc) {
+  if (!loc) return '';
+  return ({ es: 'Español', en: 'Inglés', pt: 'Portugués' })[String(loc).slice(0, 2)] || loc;
 }
 
 function sourceBadge(source) {
@@ -792,36 +841,186 @@ function sourceBadge(source) {
   return `<span class="badge badge--${n}">${escapeHtml(label)}</span>`;
 }
 
-/* Human labels for niche-specific values */
-const VALUE_LABELS = {
-  // Contadores
-  software: {
-    'excel': 'Excel / planillas', 'tango': 'Tango Gestión', 'bejerman': 'Bejerman',
-    'memory': 'Memory', 'mixto': 'Excel + algún sistema', 'ninguno': 'Ninguno por ahora'
+/* ══════════════════════════════════════════════════════
+   FORM SCHEMA — la pregunta real de cada landing y la
+   respuesta completa de cada opción, sin abreviaciones.
+   Fuente única de verdad: tabla, drawer, donuts y CSV
+   leen de acá. Los valores marcados (anterior) son de
+   versiones previas del formulario y se mantienen para
+   que los leads viejos sigan siendo legibles.
+   ══════════════════════════════════════════════════════ */
+const FORM_SCHEMA = {
+  marketing: {
+    label: 'Landing principal',
+    fields: [
+      {
+        key: 'sector',
+        short: 'Rubro',
+        question: '¿En qué rubro está tu empresa?',
+        options: {
+          'inmobiliario':   'Inmobiliario',
+          'salud-estetica': 'Salud & Estética',
+          'educacion':      'Educación',
+          'construccion':   'Construcción',
+          'servicios':      'Servicios profesionales',
+          'retail':         'Retail / e-commerce',
+          'importadora':    'Importadora / Distribuidora',
+          'otro':           'Otro'
+        }
+      },
+      {
+        key: 'challenge',
+        short: 'Mayor desafío',
+        question: '¿Cuál es tu mayor desafío hoy?',
+        options: {
+          'sin-web':         'No tiene sitio web profesional',
+          'ads-sin-retorno': 'Hace anuncios pero no ve retorno',
+          'leads-whatsapp':  'Pierde leads en WhatsApp',
+          'sin-datos':       'No sabe qué funciona y qué no',
+          'escalar':         'Quiere escalar pero no tiene estructura'
+        }
+      },
+      {
+        key: 'budget',
+        short: 'Inversión en anuncios',
+        question: '¿Cuánto podés invertir en anuncios por mes?',
+        options: {
+          'ads-hasta-600':  'Hasta USD 600 por mes en anuncios · mensualidad USD 300',
+          'ads-600-1200':   'Entre USD 600 y 1.200 por mes en anuncios · mensualidad USD 300 a 600',
+          'ads-1200-2500':  'Entre USD 1.200 y 2.500 por mes en anuncios · mensualidad USD 600 a 1.250',
+          'ads-2500+':      'Más de USD 2.500 por mes en anuncios · mensualidad USD 1.250 o más',
+          'no-claro':       'Todavía no lo tiene claro',
+          // Rangos del formulario anterior (presupuesto total, no solo ads)
+          '500-1000':  'USD 500 a 1.000 por mes (presupuesto total · formulario anterior)',
+          '1000-2000': 'USD 1.000 a 2.000 por mes (presupuesto total · formulario anterior)',
+          '2000+':     'Más de USD 2.000 por mes (presupuesto total · formulario anterior)'
+        }
+      }
+    ]
   },
-  pain: {
-    'sobrecarga': 'Equipo sobrecargado', 'sifen': 'Migrar a SIFEN',
-    'conciliacion': 'Conciliación bancaria manual', 'dnit': 'Cumplir plazos del DNIT',
-    'captacion': 'Captar más clientes', 'modernizar': 'Modernizar todo el estudio'
+
+  contadores: {
+    label: 'Landing Contadores',
+    fields: [
+      {
+        key: 'clients',
+        short: 'Cartera de clientes',
+        question: '¿Cuántos clientes manejás?',
+        options: {
+          '1-10':  'Entre 1 y 10 clientes',
+          '11-30': 'Entre 11 y 30 clientes',
+          '31-50': 'Entre 31 y 50 clientes',
+          '50+':   'Más de 50 clientes'
+        }
+      },
+      {
+        key: 'software',
+        short: 'Software contable actual',
+        question: '¿Qué software contable usás hoy?',
+        options: {
+          'excel':    'Excel / planillas',
+          'tango':    'Tango Gestión',
+          'bejerman': 'Bejerman',
+          'memory':   'Memory',
+          'mixto':    'Excel combinado con algún sistema',
+          'ninguno':  'Ninguno por ahora'
+        }
+      },
+      {
+        key: 'pain',
+        short: 'Mayor desafío',
+        question: '¿Cuál es tu mayor desafío hoy?',
+        options: {
+          'sobrecarga':   'Su equipo está sobrecargado',
+          'sifen':        'Migrar a factura electrónica (SIFEN)',
+          'conciliacion': 'Conciliación bancaria manual',
+          'dnit':         'Cumplir los plazos del DNIT',
+          'captacion':    'Captar más clientes',
+          'modernizar':   'Modernizar todo el estudio'
+        }
+      }
+    ]
   },
-  // Inmobiliario
-  operation: {
-    'venta-nueva': 'Venta de inmuebles nuevos', 'venta-usado': 'Venta de usados',
-    'alquiler': 'Alquiler', 'inversion': 'Inversión / renta', 'mixto': 'Mixto (varios)'
-  },
-  team: {
-    '1': 'Solo el dueño', '2-5': '2 – 5 corredores',
-    '6-15': '6 – 15 corredores', '15+': 'Cadena 15+ corredores'
-  },
-  origin: {
-    'meta': 'Meta Ads', 'google': 'Google Ads',
-    'portales': 'Portales (InfoCasas)', 'indicacion': 'Solo indicación',
-    'walkin': 'Walk-in / cartel', 'nada': 'Nada estructurado'
+
+  inmobiliario: {
+    label: 'Landing Inmobiliario',
+    fields: [
+      {
+        key: 'operation',
+        short: 'Necesidad principal',
+        question: '¿Qué necesitás primero?',
+        options: {
+          'pagina-emprendimiento': 'Página para un emprendimiento específico',
+          'catalogo':              'Catálogo de inmuebles disponibles',
+          'ambos':                 'Ambos: página del emprendimiento + catálogo',
+          'no-se':                 'Todavía no está seguro',
+          // Opciones del formulario anterior
+          'venta-nueva': 'Venta de inmuebles nuevos (formulario anterior)',
+          'venta-usado': 'Venta de inmuebles usados (formulario anterior)',
+          'alquiler':    'Alquiler (formulario anterior)',
+          'inversion':   'Inversión / renta (formulario anterior)',
+          'mixto':       'Operación mixta (formulario anterior)'
+        }
+      },
+      {
+        key: 'team',
+        short: 'Unidades para publicar',
+        question: '¿Cuántos inmuebles o unidades tenés para publicar?',
+        options: {
+          'menos-10': 'Menos de 10 unidades',
+          '10-30':    'Entre 10 y 30 unidades',
+          '30-100':   'Entre 30 y 100 unidades',
+          '100+':     'Más de 100 unidades',
+          // Tamaño de equipo del formulario anterior
+          '1':    'Solo el dueño (tamaño de equipo · formulario anterior)',
+          '2-5':  'Entre 2 y 5 corredores (formulario anterior)',
+          '6-15': 'Entre 6 y 15 corredores (formulario anterior)',
+          '15+':  'Cadena de más de 15 corredores (formulario anterior)'
+        }
+      },
+      {
+        key: 'origin',
+        short: 'Origen actual de leads',
+        question: '¿De dónde vienen tus leads hoy?',
+        options: {
+          'meta':       'Meta Ads (Facebook / Instagram)',
+          'google':     'Google Ads',
+          'portales':   'Portales (InfoCasas, Clasipar)',
+          'indicacion': 'Solo indicación / boca a boca',
+          'walkin':     'Walk-in / cartel en obra',
+          'nada':       'Nada estructurado todavía'
+        }
+      }
+    ]
   }
 };
+
+/* Todos los campos del schema, indexados por clave */
+const FIELD_INDEX = {};
+for (const niche of Object.keys(FORM_SCHEMA)) {
+  for (const f of FORM_SCHEMA[niche].fields) FIELD_INDEX[f.key] = f;
+}
+
+const fieldsOf = (niche) => (FORM_SCHEMA[niche] || FORM_SCHEMA.marketing).fields;
+
+/* Respuesta completa de un valor crudo. Si el valor no está
+   en el schema (lead viejo, texto libre), se muestra tal cual. */
 function labelOf(field, raw) {
-  if (!raw) return '';
-  return (VALUE_LABELS[field] && VALUE_LABELS[field][raw]) || raw;
+  if (raw == null || raw === '') return '';
+  const def = FIELD_INDEX[field];
+  return (def && def.options[raw]) || String(raw);
+}
+
+/* Pregunta + respuesta de cada campo del formulario que el
+   lead completó, en el orden en que las respondió. */
+function answersOf(lead) {
+  return fieldsOf(leadNiche(lead.source)).map((f) => ({
+    key:      f.key,
+    short:    f.short,
+    question: f.question,
+    raw:      lead[f.key] || '',
+    answer:   labelOf(f.key, lead[f.key])
+  }));
 }
 
 /* WhatsApp first-message templates per niche */
@@ -831,10 +1030,10 @@ function buildWhatsAppMessage(l) {
 
   if (niche === 'contadores') {
     const sw   = labelOf('software', l.software);
-    const cli  = l.clients ? `${l.clients} clientes` : '';
+    const cli  = labelOf('clients', l.clients);
     const pain = labelOf('pain', l.pain);
-    const ctx  = [cli, sw && `usan ${sw}`].filter(Boolean).join(' y ');
-    const dor  = pain ? ` Sobre ${pain.toLowerCase()}, tenemos varios casos ya resueltos.` : '';
+    const ctx  = [cli, sw && `trabajando con ${sw}`].filter(Boolean).join(', ');
+    const dor  = pain ? ` Anotaste como principal desafío: "${pain}". Tenemos varios casos así ya resueltos.` : '';
     return `Hola ${firstName}! Soy de Punto Alto, vi que llenaste el diagnóstico para tu estudio${ctx ? ` (${ctx})` : ''}.${dor}\n\n¿Te queda bien una llamada de 30 min esta semana? Te muestro cómo quedaría tu operación automatizada y qué números esperar.`;
   }
 
@@ -843,12 +1042,20 @@ function buildWhatsAppMessage(l) {
     const team = labelOf('team', l.team);
     const orig = labelOf('origin', l.origin);
     const ctx  = [op && op.toLowerCase(), team && team.toLowerCase()].filter(Boolean).join(', ');
-    const cap  = orig ? ` Hoy captás vía ${orig.toLowerCase()}, podemos potenciar eso o agregar canales nuevos.` : '';
+    const cap  = orig ? ` Hoy captás sobre todo por ${orig.toLowerCase()}: podemos potenciar eso o sumar canales nuevos.` : '';
     return `Hola ${firstName}! Soy de Punto Alto, vi que pediste el diagnóstico para tu inmobiliaria${ctx ? ` (${ctx})` : ''}.${cap}\n\n¿Te queda bien una llamada de 30 min esta semana? Te muestro el funnel completo y qué números esperar en los próximos 90 días.`;
   }
 
-  // marketing
-  return `Hola ${firstName}! Soy de Punto Alto, vi que pediste tu diagnóstico digital. ¿Te queda bien una llamada de 30 min esta semana?`;
+  // Landing principal
+  const sector    = labelOf('sector', l.sector);
+  const challenge = labelOf('challenge', l.challenge);
+  const budget    = labelOf('budget', l.budget);
+  const ctx = sector ? ` para ${sector.toLowerCase()}` : '';
+  const dor = challenge ? ` Anotaste como principal desafío: "${challenge}".` : '';
+  const inv = budget && l.budget !== 'no-claro'
+    ? ' Con la inversión que marcaste ya podemos armar un plan concreto.'
+    : '';
+  return `Hola ${firstName}! Soy de Punto Alto, vi que pediste tu diagnóstico digital${ctx}.${dor}${inv}\n\n¿Te queda bien una llamada de 30 min esta semana? Te muestro cómo quedaría tu sitio y tu funnel, y qué números esperar.`;
 }
 
 function escapeHtml(s) {
@@ -880,23 +1087,8 @@ $('searchInput').addEventListener('input', (e) => {
 });
 $('filterSource').addEventListener('change', (e) => {
   state.filters.source = e.target.value;
-
-  // Toggle visibility of niche-specific filter dropdowns
-  const sourceVal = e.target.value;
-  const nicheActive = sourceVal === 'landing-contadores' ? 'contadores'
-                    : sourceVal === 'landing-inmobiliario' ? 'inmobiliario'
-                    : null;
-
-  document.querySelectorAll('[data-niche-filter]').forEach((el) => {
-    const show = el.dataset.nicheFilter === nicheActive;
-    el.hidden = !show;
-    if (!show) el.value = '';   // reset when hidden
-  });
-
-  // Clear niche filters that no longer apply
-  if (nicheActive !== 'contadores')   { state.filters.software = ''; state.filters.pain = ''; }
-  if (nicheActive !== 'inmobiliario') { state.filters.operation = ''; state.filters.origin = ''; }
-
+  state.filters.fields = {};      // las respuestas cambian según la landing
+  renderAnswerFilters();
   renderTable();
   renderCharts();
 });
@@ -905,15 +1097,38 @@ $('filterStatus').addEventListener('change', (e) => {
   renderTable();
 });
 
-['filterSoftware', 'filterPain', 'filterOperation', 'filterOrigin'].forEach((id) => {
-  const el = $(id);
-  if (!el) return;
-  const key = id.replace('filter', '').toLowerCase();
-  el.addEventListener('change', (e) => {
-    state.filters[key] = e.target.value;
-    renderTable();
+/* Un filtro por pregunta de la landing seleccionada, con las
+   respuestas escritas completas. Sin landing elegida no se
+   muestran, porque cada una pregunta cosas distintas. */
+function renderAnswerFilters() {
+  const box = $('answerFilters');
+  if (!box) return;
+
+  const niche = ({
+    'landing-puntoalto':    'marketing',
+    'landing-contadores':   'contadores',
+    'landing-inmobiliario': 'inmobiliario'
+  })[state.filters.source];
+
+  if (!niche) { box.innerHTML = ''; return; }
+
+  box.innerHTML = fieldsOf(niche).map((f) => `
+    <select class="input" data-answer-filter="${f.key}" aria-label="${escapeHtml(f.question)}" title="${escapeHtml(f.question)}">
+      <option value="">${escapeHtml(f.short)}: todas</option>
+      ${Object.entries(f.options).map(([v, label]) =>
+        `<option value="${escapeHtml(v)}">${escapeHtml(label)}</option>`).join('')}
+    </select>`).join('');
+
+  box.querySelectorAll('[data-answer-filter]').forEach((sel) => {
+    sel.addEventListener('change', (e) => {
+      const key = sel.dataset.answerFilter;
+      if (e.target.value) state.filters.fields[key] = e.target.value;
+      else delete state.filters.fields[key];
+      renderTable();
+    });
   });
-});
+}
+renderAnswerFilters();
 
 document.querySelectorAll('.leads thead th[data-sort]').forEach((th) => {
   th.addEventListener('click', () => {
@@ -932,10 +1147,20 @@ $('exportBtn').addEventListener('click', () => {
   const rows = applyFiltersAndSort(state.leads);
   if (rows.length === 0) { toast('Nada para exportar.', 'error'); return; }
 
+  // Una columna por pregunta de cada landing, con la respuesta
+  // completa. Así el CSV se lee sin necesidad de decodificar nada.
+  const questionCols = [];
+  for (const niche of Object.keys(FORM_SCHEMA)) {
+    for (const f of FORM_SCHEMA[niche].fields) {
+      questionCols.push({ niche, key: f.key, header: `${FORM_SCHEMA[niche].label} — ${f.short}` });
+    }
+  }
+
   const cols = [
-    'id', 'created_at', 'name', 'phone', 'email', 'company',
-    'sector', 'challenge', 'budget', 'source', 'status',
-    'wa_ok', 'locale', 'page_url', 'referrer'
+    'ID', 'Fecha', 'Nombre', 'Teléfono', 'Email', 'Empresa',
+    'Landing de origen', 'Botón que abrió el formulario', 'Estado',
+    ...questionCols.map((c) => c.header),
+    'Preguntas respondidas', 'WhatsApp enviado', 'Idioma', 'Página', 'Referrer'
   ];
   const escape = (s) => {
     const v = s == null ? '' : String(s);
@@ -945,14 +1170,17 @@ $('exportBtn').addEventListener('click', () => {
   for (const l of rows) {
     const ms = l.created_at?.toMillis?.();
     const waOk = !!(l.crm_whatspro?.primary?.ok || l.crm_whatspro?.fallback?.ok);
+    const niche = leadNiche(l.source);
     lines.push([
       l.id,
-      ms ? new Date(ms).toISOString() : '',
+      ms ? tzFmt.format(new Date(ms)) : '',
       l.name, l.phone, l.email, l.company,
-      l.sector, l.challenge, l.budget,
-      l.source, l.status || 'new',
-      waOk ? 'yes' : (l.crm_whatspro ? 'no' : ''),
-      l.locale, l.page_url, l.referrer
+      sourceLabel(l.source), ctaLabel(l.cta_origin), statusLabel(l.status || 'new'),
+      // Solo se llena la columna de la landing a la que pertenece el lead
+      ...questionCols.map((c) => (c.niche === niche ? labelOf(c.key, l[c.key]) : '')),
+      `${qualificationScore(l)} de ${fieldsOf(niche).length}`,
+      waOk ? 'Sí' : (l.crm_whatspro ? 'No' : 'Sin intento'),
+      localeLabel(l.locale || l.lang), l.page_url, l.referrer
     ].map(escape).join(','));
   }
   const blob = new Blob(['\ufeff' + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
@@ -1058,33 +1286,28 @@ function drawerMarkup(l) {
   const nicheBadge = sourceBadge(l.source);
   const waMessage  = buildWhatsAppMessage(l);
 
-  // Niche-specific qualification block
-  let qualBlock = '';
-  if (niche === 'contadores') {
-    qualBlock = `
+  // Preguntas del formulario con la respuesta completa, tal
+  // como el lead las vio y las respondió.
+  const answers   = answersOf(l);
+  const answered  = answers.filter((a) => a.answer).length;
+  const qualBlock = `
     <div class="drawer__section">
-      <h3>Cualificación · Contadores</h3>
-      ${row('Tamaño del estudio', l.clients)}
-      ${row('Software actual', labelOf('software', l.software))}
-      ${row('Mayor desafío', labelOf('pain', l.pain))}
+      <h3>Respuestas del formulario</h3>
+      <p class="drawer__hint">${FORM_SCHEMA[niche].label} · respondió ${answered} de ${answers.length} preguntas</p>
+      <ol class="qa">
+        ${answers.map((a, i) => `
+          <li class="qa__item${a.answer ? '' : ' qa__item--empty'}">
+            <span class="qa__num">${i + 1}</span>
+            <div class="qa__body">
+              <p class="qa__q">${escapeHtml(a.question)}</p>
+              <p class="qa__a">${a.answer ? escapeHtml(a.answer) : 'No respondió esta pregunta'}</p>
+              ${a.raw && a.raw !== a.answer
+                ? `<p class="qa__raw">valor guardado: <code>${escapeHtml(a.raw)}</code></p>`
+                : ''}
+            </div>
+          </li>`).join('')}
+      </ol>
     </div>`;
-  } else if (niche === 'inmobiliario') {
-    qualBlock = `
-    <div class="drawer__section">
-      <h3>Cualificación · Inmobiliario</h3>
-      ${row('Tipo de operación', labelOf('operation', l.operation))}
-      ${row('Tamaño del equipo', labelOf('team', l.team))}
-      ${row('Origen actual de leads', labelOf('origin', l.origin))}
-    </div>`;
-  } else {
-    qualBlock = `
-    <div class="drawer__section">
-      <h3>Cualificación</h3>
-      ${row('Sector', l.sector)}
-      ${row('Desafío', l.challenge)}
-      ${row('Presupuesto', l.budget)}
-    </div>`;
-  }
 
   return `
     <div class="drawer__section">
@@ -1111,7 +1334,7 @@ function drawerMarkup(l) {
     ${qualBlock}
 
     <div class="drawer__section">
-      <h3>Primera mensaje WhatsApp</h3>
+      <h3>Primer mensaje de WhatsApp</h3>
       <button class="copy-wa-btn" data-wa-text="${escapeHtml(waMessage)}">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
           <rect x="9" y="9" width="13" height="13" rx="2"/>
@@ -1127,8 +1350,9 @@ function drawerMarkup(l) {
     <div class="drawer__section">
       <h3>Meta</h3>
       ${row('Creado', when, true)}
-      ${row('Origen', l.source)}
-      ${row('Idioma', l.locale || l.lang)}
+      ${row('Landing de origen', sourceLabel(l.source))}
+      ${row('Botón que abrió el formulario', ctaLabel(l.cta_origin))}
+      ${row('Idioma del visitante', localeLabel(l.locale || l.lang))}
       ${row('Página', l.page_url, true)}
       ${row('Referrer', l.referrer, true)}
       ${row('User Agent', l.user_agent, true)}

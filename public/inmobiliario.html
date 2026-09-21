@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" translate="no">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Punto Alto para Inmobiliarias · Página por emprendimiento + Catálogo CMS de inmuebles</title>
-<meta name="description" content="Página de ventas dedicada para cada emprendimiento y un catálogo de inmuebles disponibles en formato CMS, siempre actualizado. Subís las fotos desde el celular, hosting y optimización incluidos."/>
+<link rel="icon" href="/favicon.ico" sizes="48x48"/>
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<meta name="theme-color" content="#0B1220"/>
+<meta name="google" content="notranslate"/>
+<title>Inmobly · El software para que tu inmobiliaria tenga web propia en minutos</title>
+<meta name="description" content="Inmobly es el SaaS para corredores e inmobiliarias: página de ventas por emprendimiento y catálogo CMS de inmuebles, 100% autoservicio. Subís las fotos desde el celular y se publica solo. Empezá gratis 14 días, sin tarjeta."/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,9 +24,9 @@
 </noscript>
 
 <!-- Reaproveita o design system completo de contadores -->
-<link rel="stylesheet" href="contadores.css"/>
+<link rel="stylesheet" href="contadores.css?v=3"/>
 <!-- Componentes específicos del nicho inmobiliario -->
-<link rel="stylesheet" href="inmobiliario.css"/>
+<link rel="stylesheet" href="inmobiliario.css?v=2"/>
 
 <script type="module" src="firebase-init.js"></script>
 <script defer src="inmobiliario.js?v=4"></script>
@@ -31,18 +37,15 @@
 <header class="nav" id="nav">
   <div class="nav__inner">
     <a href="index.html" class="logo" aria-label="Punto Alto">
-      <svg class="logo__mark" viewBox="0 0 60 60" fill="none" aria-hidden="true">
-        <path d="M8 52 L30 10 L52 52" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
-        <circle cx="30" cy="10" r="5" fill="#FF6A3D"/>
-      </svg>
+      <span class="logo__set"><img class="logo__mark theme-img--light" src="/img/mark-light.webp" width="36" height="33" alt=""/><img class="logo__mark theme-img--dark" src="/img/mark-dark.webp" width="36" height="33" alt=""/></span>
       <span class="logo__text">
-        <strong>PUNTO ALTO</strong>
-        <small data-i18n="logo.sub">PARA INMOBILIARIAS</small>
+        <strong>INMOBLY</strong>
+        <small data-i18n="logo.sub">UN PRODUCTO DE PUNTO ALTO</small>
       </span>
     </a>
 
     <nav class="nav__links">
-      <a href="#servicios" data-i18n="nav.services">Servicios</a>
+      <a href="#servicios" data-i18n="nav.services">Producto</a>
       <a href="#como-funciona" data-i18n="nav.how">Cómo funciona</a>
       <a href="#precios" data-i18n="nav.pricing">Precios</a>
     </nav>
@@ -70,9 +73,9 @@
       </svg>
     </button>
 
-    <button class="btn btn--primary nav__cta" data-open-form data-open-form-source="navbar" data-i18n="nav.cta">
-      Diagnóstico gratis →
-    </button>
+    <a class="btn btn--primary nav__cta" href="https://inmobly-project.web.app/login.html" target="_blank" rel="noopener" data-i18n="nav.cta">
+      Empezar gratis →
+    </a>
 
     <button class="nav__burger" id="navBurger" aria-label="Abrir menú">
       <span></span><span></span><span></span>
@@ -83,10 +86,10 @@
 <!-- Mobile menu -->
 <div class="nav-mobile" id="navMobile" hidden>
   <nav class="nav-mobile__links">
-    <a href="#servicios" data-i18n="nav.services">Servicios</a>
+    <a href="#servicios" data-i18n="nav.services">Producto</a>
     <a href="#como-funciona" data-i18n="nav.how">Cómo funciona</a>
     <a href="#precios" data-i18n="nav.pricing">Precios</a>
-    <button class="btn btn--primary" data-open-form data-open-form-source="navbar-mobile" data-i18n="nav.cta">Diagnóstico gratis →</button>
+    <a class="btn btn--primary" href="https://inmobly-project.web.app/login.html" target="_blank" rel="noopener" data-i18n="nav.cta">Empezar gratis →</a>
   </nav>
 </div>
 
@@ -97,39 +100,34 @@
   <div class="hero__bg" aria-hidden="true">
     <div class="hero__grid"></div>
     <div class="hero__glow"></div>
-    <svg class="hero__chevron" viewBox="0 0 60 60" aria-hidden="true">
-      <path d="M8 52 L30 10 L52 52" stroke="#1B5FA8" stroke-width="3" fill="none" stroke-linejoin="round"/>
-      <circle cx="30" cy="10" r="5" fill="#FF6A3D"/>
-    </svg>
+    <img class="hero__chevron theme-img--light" src="/img/mark-light-lg.webp" width="480" height="440" alt="" aria-hidden="true" decoding="async"/><img class="hero__chevron theme-img--dark" src="/img/mark-dark-lg.webp" width="480" height="440" alt="" aria-hidden="true" decoding="async"/>
   </div>
 
   <div class="hero__content">
     <div class="hero__text">
       <span class="pill js-reveal">
-        <span class="pill__dot"></span> <span data-i18n="hero.pill">Página por emprendimiento + catálogo CMS · Paraguay</span>
+        <span class="pill__dot"></span> <span data-i18n="hero.pill">Inmobly · Software para inmobiliarias · 14 días gratis</span>
       </span>
 
       <h1 class="hero__title">
-        <span class="js-line" data-i18n="hero.title1">Cada proyecto, su página.</span>
-        <span class="js-line" data-i18n-html="hero.title2"><em>Cada inmueble, siempre visible.</em></span>
+        <span class="js-line" data-i18n="hero.title1">Tu inmobiliaria,</span>
+        <span class="js-line" data-i18n-html="hero.title2"><em>online en minutos.</em></span>
       </h1>
 
       <p class="hero__sub js-reveal" data-i18n="hero.sub">
-        Una página de ventas dedicada para cada emprendimiento, y un catálogo de inmuebles disponibles que vos mismo actualizás desde el celular.
-        Sin depender de nadie para cambiar una foto o un precio.
+        Inmobly es el software para armar la página de tu emprendimiento y publicar cada inmueble vos mismo, desde el celular.
+        Sin developers, sin código, sin esperar a nadie.
       </p>
 
       <div class="hero__ctas js-reveal">
-        <button class="btn btn--primary btn--lg" data-open-form data-open-form-source="hero" data-i18n="hero.cta1">
-          Quiero mi página + catálogo →
-        </button>
+        <a class="btn btn--primary btn--lg" href="https://inmobly-project.web.app/login.html" target="_blank" rel="noopener" data-i18n="hero.cta1">
+          Empezar gratis →
+        </a>
         <a href="#como-funciona" class="btn btn--ghost btn--lg" data-i18n="hero.cta2">Ver cómo funciona</a>
       </div>
 
-      <p class="hero__signup-link js-reveal">
-        <a href="https://inmobly-project.web.app/login.html" target="_blank" rel="noopener" data-i18n="hero.signup">
-          ¿Ya sabés que querés empezar? Creá tu cuenta gratis →
-        </a>
+      <p class="hero__trust js-reveal" data-i18n="hero.trust">
+        14 días gratis · Sin tarjeta de crédito · Cancelás cuando quieras
       </p>
     </div>
 
@@ -144,7 +142,7 @@
           <span class="panel-landing__dot"></span>
           <span class="panel-landing__dot"></span>
           <span class="panel-landing__dot"></span>
-          <code class="panel-landing__url">puntoalto.com.py/las-lomas</code>
+          <code class="panel-landing__url">inmobly.app/las-lomas</code>
         </div>
         <div class="panel-landing__page">
           <div class="panel-landing__head">
@@ -172,20 +170,20 @@
 <section class="stats">
   <div class="stats__inner">
     <div class="stat js-reveal">
+      <strong data-counter="14" data-suffix=" días">0</strong>
+      <span data-i18n="stats.s1">De prueba gratis, sin tarjeta</span>
+    </div>
+    <div class="stat js-reveal">
       <strong data-counter="5" data-suffix=" min">0</strong>
-      <span data-i18n="stats.s1">Para publicar un inmueble nuevo</span>
+      <span data-i18n="stats.s2">Para crear tu cuenta y tu primera página</span>
     </div>
     <div class="stat js-reveal">
       <strong data-counter="100" data-suffix="%">0</strong>
-      <span data-i18n="stats.s2">Catálogo que vos mismo actualizás</span>
-    </div>
-    <div class="stat js-reveal">
-      <strong data-counter="24" data-suffix="h">0</strong>
-      <span data-i18n="stats.s3">De fotos a página publicada</span>
+      <span data-i18n="stats.s3">Autoservicio: vos subís, editás, publicás</span>
     </div>
     <div class="stat js-reveal">
       <strong data-counter="0" data-suffix="">0</strong>
-      <span data-i18n="stats.s4">Intermediarios para cambiar un precio</span>
+      <span data-i18n="stats.s4">Developers o código necesarios</span>
     </div>
   </div>
 </section>
@@ -194,8 +192,8 @@
 <section class="section section--dark" id="dores">
   <div class="section__head">
     <span class="eyebrow js-reveal" data-i18n="pain.eyebrow">El problema real</span>
-    <h2 class="js-reveal" data-i18n-html="pain.title">Tu proyecto y tu catálogo se merecen <em>algo mejor</em> que esto.</h2>
-    <p class="js-reveal" data-i18n="pain.sub">No es falta de inmuebles buenos. Es que nadie los está mostrando como corresponde.</p>
+    <h2 class="js-reveal" data-i18n-html="pain.title">Tu catálogo se merece <em>algo mejor</em> que esto.</h2>
+    <p class="js-reveal" data-i18n="pain.sub">No es falta de inmuebles buenos. Es que depender de un developer o de una agencia te frena.</p>
   </div>
 
   <div class="grid grid--2">
@@ -205,8 +203,8 @@
           <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
         </svg>
       </div>
-      <h3 data-i18n="pain.1.t">Todos tus proyectos comparten una página genérica.</h3>
-      <p data-i18n="pain.1.d">El mismo sitio institucional para todo: ninguno destaca, ninguno convierte.</p>
+      <h3 data-i18n="pain.1.t">No tenés web propia, o depende de un developer para cualquier cambio.</h3>
+      <p data-i18n="pain.1.d">Cada actualización implica escribir, esperar y pagar de nuevo.</p>
     </article>
 
     <article class="card js-reveal">
@@ -215,7 +213,7 @@
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/>
         </svg>
       </div>
-      <h3 data-i18n="pain.2.t">Tu catálogo vive en un Excel que nadie actualiza.</h3>
+      <h3 data-i18n="pain.2.t">Tu catálogo vive en un Excel o en el estado de WhatsApp.</h3>
       <p data-i18n="pain.2.d">El inmueble que ya se vendió sigue publicado, y el nuevo tarda semanas en aparecer.</p>
     </article>
 
@@ -225,8 +223,8 @@
           <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
         </svg>
       </div>
-      <h3 data-i18n="pain.3.t">Cambiar un precio implica escribirle a la agencia y esperar.</h3>
-      <p data-i18n="pain.3.d">Días de ida y vuelta para actualizar algo que debería tardar un minuto.</p>
+      <h3 data-i18n="pain.3.t">Cambiar un precio te toma días, no minutos.</h3>
+      <p data-i18n="pain.3.d">Depender de otro para algo que deberías poder hacer vos mismo, ahora mismo.</p>
     </article>
 
     <article class="card js-reveal">
@@ -244,9 +242,9 @@
 <!-- ─── LOS 2 PILARES ─────────────────────────────────── -->
 <section class="section" id="servicios">
   <div class="section__head">
-    <span class="eyebrow js-reveal" data-i18n="svc.eyebrow">Lo que armamos, y nada más</span>
-    <h2 class="js-reveal" data-i18n-html="svc.title">Dos sistemas. <em>Uno solo funcionando.</em></h2>
-    <p class="js-reveal" data-i18n="svc.sub">Nada de creativos sueltos ni funcionalidades que no vas a usar. La página que vende tu proyecto, y el catálogo que nunca se queda atrás.</p>
+    <span class="eyebrow js-reveal" data-i18n="svc.eyebrow">Qué incluye Inmobly</span>
+    <h2 class="js-reveal" data-i18n-html="svc.title">Dos herramientas. <em>Un solo panel.</em></h2>
+    <p class="js-reveal" data-i18n="svc.sub">Sin developers, sin tickets de soporte eternos. Armás vos mismo la página que vende tu proyecto, y el catálogo que nunca se queda atrás.</p>
   </div>
 
   <div class="pillars">
@@ -257,22 +255,22 @@
         </svg>
       </div>
       <h3 data-i18n="svc.1.t">Página de ventas por emprendimiento</h3>
-      <p data-i18n="svc.1.d">Una página propia para cada proyecto: galería, planta, ubicación, avance de obra y unidades disponibles. Nada de sitio institucional genérico.</p>
+      <p data-i18n="svc.1.d">Elegís tu proyecto, cargás fotos, precio y ubicación. Tu página queda lista y online, sin depender de nadie.</p>
       <ul class="pillar__list">
         <li>
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-          <span data-i18n="svc.1.l1">Galería, planta y avance de obra</span>
+          <span data-i18n="svc.1.l1">Galería, planta y avance de obra — vos los cargás</span>
         </li>
         <li>
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-          <span data-i18n="svc.1.l2">Precio y unidades disponibles, siempre al día</span>
+          <span data-i18n="svc.1.l2">Precio y unidades disponibles, editables en segundos</span>
         </li>
         <li>
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
           <span data-i18n="svc.1.l3">Botón directo a WhatsApp, sin formularios eternos</span>
         </li>
       </ul>
-      <span class="card__tag" data-i18n="svc.1.tag">Una página por proyecto</span>
+      <span class="card__tag" data-i18n="svc.1.tag">Una página por proyecto, autoservicio</span>
     </article>
 
     <article class="card pillar js-reveal">
@@ -282,7 +280,7 @@
         </svg>
       </div>
       <h3 data-i18n="svc.2.t">Catálogo CMS de inmuebles disponibles</h3>
-      <p data-i18n="svc.2.d">Cada inmueble con su propia ficha, filtros por zona y precio, y un panel para publicar vos mismo en minutos. Sin depender del equipo de marketing.</p>
+      <p data-i18n="svc.2.d">Cada inmueble con su propia ficha, filtros por zona y precio. Subís las fotos desde el celular y Inmobly hace el resto.</p>
       <ul class="pillar__list">
         <li>
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
@@ -297,7 +295,7 @@
           <span data-i18n="svc.2.l3">Subís fotos desde el celular, se publica solo</span>
         </li>
       </ul>
-      <span class="card__tag card__tag--live" data-i18n="svc.2.tag">Catálogo siempre actualizado</span>
+      <span class="card__tag card__tag--live" data-i18n="svc.2.tag">Catálogo siempre actualizado, por vos</span>
     </article>
   </div>
 </section>
@@ -307,7 +305,7 @@
   <div class="section__head">
     <span class="eyebrow js-reveal" data-i18n="panel.eyebrow">Cómo funciona · Mobile first</span>
     <h2 class="js-reveal" data-i18n-html="panel.title">Subís fotos desde el celular. <em>Tu catálogo se actualiza solo.</em></h2>
-    <p class="js-reveal" data-i18n="panel.sub">Sacás las fotos con el celular y las subís en 30 segundos. El inmueble queda publicado en tu página y en tu catálogo, listo para compartir por WhatsApp. Sin esperar a nadie.</p>
+    <p class="js-reveal" data-i18n="panel.sub">Sacás las fotos con el celular, las subís en Inmobly, y en segundos están en tu página y en tu catálogo. Sin developers, sin tickets, sin esperar a nadie.</p>
   </div>
 
   <div class="panel-demo js-reveal">
@@ -316,7 +314,7 @@
       <div class="panel-phone__notch"></div>
       <div class="panel-phone__screen">
         <header class="panel-phone__head">
-          <small data-i18n="panel.app">Punto Alto · Admin</small>
+          <small data-i18n="panel.app">Inmobly · Admin</small>
           <strong data-i18n="panel.property">Edif. Las Lomas · 3 dorm.</strong>
         </header>
 
@@ -358,7 +356,7 @@
         <span class="panel-landing__dot"></span>
         <span class="panel-landing__dot"></span>
         <span class="panel-landing__dot"></span>
-        <code class="panel-landing__url">puntoalto.com.py/inmuebles/las-lomas-3d</code>
+        <code class="panel-landing__url">inmobly.app/inmuebles/las-lomas-3d</code>
       </div>
       <div class="panel-landing__page">
         <div class="panel-landing__head">
@@ -439,43 +437,30 @@
 <!-- ─── PRECIOS ───────────────────────────────────────── -->
 <section class="section" id="precios">
   <div class="section__head">
-    <span class="eyebrow js-reveal" data-i18n="price.eyebrow">Inversión</span>
-    <h2 class="js-reveal" data-i18n="price.title">Un plan simple, sin letra chica.</h2>
-    <p class="js-reveal" data-i18n="price.sub">Página de tu emprendimiento + catálogo completo de inmuebles disponibles. Si tenés varios proyectos, armamos el plan a medida.</p>
+    <span class="eyebrow js-reveal" data-i18n="price.eyebrow">Planes</span>
+    <h2 class="js-reveal" data-i18n="price.title">Empezá gratis. Pagá solo cuando estés convencido.</h2>
+    <p class="js-reveal" data-i18n="price.sub">14 días de prueba, sin tarjeta de crédito. Después, elegís el plan que se ajuste al tamaño de tu catálogo.</p>
   </div>
 
-  <article class="pricing-card js-reveal" aria-labelledby="starterCardTitle">
+  <article class="pricing-card pricing-card--single js-reveal" aria-labelledby="starterCardTitle">
     <div class="pricing-card__col pricing-card__col--starter">
-      <span class="pricing-card__eyebrow" data-i18n="price.start.eyebrow">Plan único · desde</span>
+      <span class="pricing-card__eyebrow" data-i18n="price.start.eyebrow">Plan Inmobly · desde</span>
       <h3 id="starterCardTitle" class="pricing-card__title" data-i18n="price.start.title">Tu página de emprendimiento + catálogo completo de inmuebles.</h3>
       <div class="pricing-card__price">
-        <strong>Gs. 1.800.000</strong>
+        <strong>USD 79</strong>
         <span class="pricing-card__unit">/mes</span>
       </div>
-      <span class="pricing-card__tag" data-i18n="price.start.tag">IVA incluido</span>
+      <span class="pricing-card__tag" data-i18n="price.start.tag">14 días gratis · sin tarjeta</span>
       <p data-i18n="price.start.desc">Incluye la página de ventas de tu proyecto, catálogo CMS para toda tu cartera de inmuebles, panel para publicar vos mismo desde el celular, hosting, CDN y optimización de fotos.</p>
-      <button class="btn btn--primary" data-open-form data-open-form-source="plan-starter" data-i18n="price.start.cta">Empezar con este plan →</button>
-    </div>
-
-    <div class="pricing-card__divider" aria-hidden="true"></div>
-
-    <div class="pricing-card__col pricing-card__col--budget">
-      <span class="pricing-card__eyebrow" data-i18n="price.ads.eyebrow">Verba sugerida en ads</span>
-      <h3 class="pricing-card__title" data-i18n="price.ads.title">Para llevar tráfico a tu página.</h3>
-      <div class="pricing-card__price pricing-card__price--alt">
-        <strong>Gs. 80.000</strong>
-        <span class="pricing-card__unit">/día</span>
-      </div>
-      <span class="pricing-card__tag pricing-card__tag--alt" data-i18n="price.ads.tag">Mínimo recomendado</span>
-      <p data-i18n="price.ads.desc">El ticket inmobiliario es alto, así que la inversión en ads tiene que ser proporcional. Este presupuesto se paga directo a Meta/Google, fuera de la mensualidad de Punto Alto.</p>
+      <a class="btn btn--primary" href="https://inmobly-project.web.app/login.html" target="_blank" rel="noopener" data-i18n="price.start.cta">Empezar gratis →</a>
     </div>
   </article>
 
   <aside class="custom-plan js-reveal" aria-labelledby="customPlanTitle">
     <div class="custom-plan__head">
-      <span class="custom-plan__eyebrow" data-i18n="price.custom.eyebrow">Plan a tu medida</span>
+      <span class="custom-plan__eyebrow" data-i18n="price.custom.eyebrow">¿Portfolio grande?</span>
       <h3 id="customPlanTitle" class="custom-plan__title" data-i18n="price.custom.title">¿Sos developer o tenés varios emprendimientos?</h3>
-      <p data-i18n="price.custom.desc">Para varios proyectos en simultáneo, catálogos grandes (100+ unidades), fotos profesionales o render 3D, y gerente de cuenta dedicado, armamos un plan exacto. Cotizamos según la cantidad de proyectos y el tamaño de tu cartera.</p>
+      <p data-i18n="price.custom.desc">Para varios proyectos en simultáneo, catálogos grandes (100+ unidades), fotos profesionales o render 3D, y gerente de cuenta dedicado, armamos un plan a medida. Cotizamos según la cantidad de proyectos y el tamaño de tu cartera.</p>
     </div>
     <button class="btn btn--ghost custom-plan__cta" data-open-form data-open-form-source="plan-custom" data-i18n="price.custom.cta">Hablemos →</button>
   </aside>
@@ -490,23 +475,12 @@
       <li class="scope-note__item">
         <span class="scope-note__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/>
-          </svg>
-        </span>
-        <div class="scope-note__body">
-          <strong data-i18n="scope.i1.t">Pauta en Meta y Google Ads</strong>
-          <span data-i18n="scope.i1.d">Presupuesto pagado directo a las plataformas: recomendamos Gs. 80.000/día mínimo.</span>
-        </div>
-      </li>
-      <li class="scope-note__item">
-        <span class="scope-note__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
           </svg>
         </span>
         <div class="scope-note__body">
-          <strong data-i18n="scope.i2.t">Fotos profesionales o render 3D</strong>
-          <span data-i18n="scope.i2.d">Para emprendimientos en pozo o que necesitan producción visual de mayor nivel: cotización aparte según proyecto.</span>
+          <strong data-i18n="scope.i1.t">Fotos profesionales o render 3D</strong>
+          <span data-i18n="scope.i1.d">Para emprendimientos en pozo o que necesitan producción visual de mayor nivel: cotización aparte según proyecto.</span>
         </div>
       </li>
       <li class="scope-note__item">
@@ -516,8 +490,8 @@
           </svg>
         </span>
         <div class="scope-note__body">
-          <strong data-i18n="scope.i3.t">Hosting y dominio premium</strong>
-          <span data-i18n="scope.i3.d">Recomendamos hosting dedicado para lanzamientos con tráfico alto: costo aparte según tráfico.</span>
+          <strong data-i18n="scope.i2.t">Hosting y dominio premium</strong>
+          <span data-i18n="scope.i2.d">Recomendamos hosting dedicado para lanzamientos con tráfico alto: costo aparte según tráfico.</span>
         </div>
       </li>
     </ul>
@@ -527,10 +501,13 @@
 <!-- ─── CTA FINAL ─────────────────────────────────────── -->
 <section class="section cta-final" id="contacto">
   <div class="cta-final__box js-reveal">
-    <h2 data-i18n-html="cta.title">Tu próximo emprendimiento, con página propia <em>desde el día uno.</em></h2>
-    <p data-i18n="cta.sub">Diagnóstico gratuito de 30 minutos. Te mostramos cómo se ve tu página y tu catálogo, y cuánto tarda en estar en vivo.</p>
-    <button class="btn btn--primary btn--lg" data-open-form data-open-form-source="cta-final" data-i18n="cta.btn">Agendar diagnóstico →</button>
-    <small data-i18n="cta.trust">Respuesta por WhatsApp en menos de 2 horas · 100% gratuito</small>
+    <h2 data-i18n-html="cta.title">Tu inmobiliaria, con web propia <em>desde hoy.</em></h2>
+    <p data-i18n="cta.sub">Creá tu cuenta gratis, cargá tu primer inmueble y compartilo por WhatsApp en minutos. Sin tarjeta, sin compromiso.</p>
+    <div class="cta-final__ctas">
+      <a class="btn btn--primary btn--lg" href="https://inmobly-project.web.app/login.html" target="_blank" rel="noopener" data-i18n="cta.btn">Empezar gratis →</a>
+      <button class="btn btn--ghost btn--lg" data-open-form data-open-form-source="cta-final" data-i18n="cta.btn2">¿Portfolio grande? Hablemos →</button>
+    </div>
+    <small data-i18n="cta.trust">14 días gratis · Sin tarjeta de crédito · Cancelás cuando quieras</small>
   </div>
 </section>
 
@@ -538,30 +515,27 @@
 <footer class="footer">
   <div class="footer__inner">
     <div class="logo">
-      <svg class="logo__mark" viewBox="0 0 60 60" fill="none" aria-hidden="true">
-        <path d="M8 52 L30 10 L52 52" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
-        <circle cx="30" cy="10" r="5" fill="#FF6A3D"/>
-      </svg>
+      <span class="logo__set"><img class="logo__mark theme-img--light" src="/img/mark-light.webp" width="36" height="33" alt=""/><img class="logo__mark theme-img--dark" src="/img/mark-dark.webp" width="36" height="33" alt=""/></span>
       <span class="logo__text">
-        <strong>PUNTO ALTO</strong>
-        <small data-i18n="footer.sub">Para Inmobiliarias</small>
+        <strong>INMOBLY</strong>
+        <small data-i18n="footer.sub">Un producto de Punto Alto</small>
       </span>
     </div>
     <div class="footer__links">
+      <a href="https://inmobly-project.web.app/login.html" target="_blank" rel="noopener" data-i18n="footer.login">Iniciar sesión</a>
+      <span>·</span>
       <a href="index.html" data-i18n="footer.l1">Punto Alto Marketing</a>
       <span>·</span>
       <a href="contadores.html" data-i18n="footer.l2">Para Contadores</a>
-      <span>·</span>
-      <a href="#servicios" data-i18n="nav.services">Servicios</a>
     </div>
-    <p class="footer__copy" data-i18n="footer.copy">© 2026 Punto Alto, Asunción, Paraguay. Página por emprendimiento y catálogo de inmuebles.</p>
+    <p class="footer__copy" data-i18n="footer.copy">© 2026 Inmobly by Punto Alto. Asunción, Paraguay.</p>
   </div>
 </footer>
 
 </main>
 
 <!-- ─── FORM OVERLAY ──────────────────────────────────── -->
-<div class="formx" id="formx" aria-modal="true" role="dialog" aria-label="Diagnóstico gratuito" hidden>
+<div class="formx" id="formx" aria-modal="true" role="dialog" aria-label="Contanos tu caso" hidden>
   <div class="formx__bg" aria-hidden="true"></div>
 
   <div class="formx__progress"><div class="formx__bar" id="fxBar"></div></div>
@@ -651,7 +625,7 @@
         <path fill="none" d="M14 27l8 8 16-16"/>
       </svg>
       <h2 data-i18n-html="form.ok.title">¡Perfecto, <span id="fxOkName"></span>!</h2>
-      <p class="fxsub" data-i18n="form.ok.sub">Te escribimos por WhatsApp en menos de 2 horas para agendar tu diagnóstico gratuito.</p>
+      <p class="fxsub" data-i18n="form.ok.sub">Te escribimos por WhatsApp en menos de 2 horas para armar tu plan a medida.</p>
       <button class="btn btn--ghost" id="fxDone" data-i18n="form.ok.btn">Volver al sitio</button>
     </div>
 
@@ -663,5 +637,7 @@
   </div>
 </div>
 
+<!-- ─── Chat IA (atención automática) ─── -->
+<script async src="https://access.crmwhatspro.com/native-widget.js" data-embed-key="SRUXOFykYecnlP0ot7UrABl_fq7ZmONFuDjaJXiJTAM"></script>
 </body>
 </html>
