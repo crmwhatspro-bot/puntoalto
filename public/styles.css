@@ -873,9 +873,9 @@ h1, h2, h3 {
 }
 .case__preview--front {
   background:
-    radial-gradient(ellipse at 80% 20%, rgba(116,172,223,0.3), transparent 60%),
-    radial-gradient(ellipse at 20% 80%, rgba(0,155,58,0.28), transparent 60%),
-    linear-gradient(160deg, #0A0322, #04010F);
+    radial-gradient(ellipse at 80% 20%, rgba(0,155,58,0.26), transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(20,35,80,0.55), transparent 60%),
+    linear-gradient(160deg, #081023, #03060D);
 }
 .case__tag-top {
   font-size: 0.66rem;
