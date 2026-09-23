@@ -128,6 +128,12 @@ const I18N = {
     'case.crm.f1': 'Equipos, números y redes sociales en un solo chat',
     'case.crm.f2': 'Automatizaciones e IA integradas',
     'case.crm.f3': 'Sitio ultrarrápido: más visitas, más leads',
+    'case.front.tag': 'PAGOS INTERNACIONALES',
+    'case.front.sector': 'Fintech · Pagos',
+    'case.front.p': 'Soluciones de pago entre Guaraní, Real, Peso y Dólar para personas y empresas. Construimos un sitio trilingüe que transmite confianza desde el primer segundo: tasa transparente, liquidación en el día y atención humana por WhatsApp a un clic.',
+    'case.front.f1': 'Sitio trilingüe: español, portugués e inglés',
+    'case.front.f2': 'Paraguay, Brasil, Argentina y EE.UU. en un solo lugar',
+    'case.front.f3': 'Leads directo a WhatsApp con atención humana',
     'case.link': 'Visitar sitio <span aria-hidden="true">→</span>',
 
 
@@ -345,6 +351,12 @@ const I18N = {
     'case.crm.f1': 'Teams, numbers and social media in one chat',
     'case.crm.f2': 'Built-in automations and AI',
     'case.crm.f3': 'Blazing-fast site: more visits, more leads',
+    'case.front.tag': 'CROSS-BORDER PAYMENTS',
+    'case.front.sector': 'Fintech · Payments',
+    'case.front.p': 'Payment solutions between Guaraní, Real, Peso and Dollar for individuals and businesses. We built a trilingual site that builds trust from the very first second: transparent rates, same-day settlement and human support on WhatsApp, one click away.',
+    'case.front.f1': 'Trilingual site: Spanish, Portuguese and English',
+    'case.front.f2': 'Paraguay, Brazil, Argentina and the US in one place',
+    'case.front.f3': 'Leads straight to WhatsApp with human support',
     'case.link': 'Visit site <span aria-hidden="true">→</span>',
 
 
@@ -562,6 +574,12 @@ const I18N = {
     'case.crm.f1': 'Equipes, números e redes sociais em um só chat',
     'case.crm.f2': 'Automações e IA integradas',
     'case.crm.f3': 'Site ultrarrápido: mais visitas, mais leads',
+    'case.front.tag': 'PAGAMENTOS INTERNACIONAIS',
+    'case.front.sector': 'Fintech · Pagamentos',
+    'case.front.p': 'Soluções de pagamento entre Guarani, Real, Peso e Dólar para pessoas e empresas. Construímos um site trilíngue que transmite confiança desde o primeiro segundo: taxa transparente, liquidação no mesmo dia e atendimento humano pelo WhatsApp a um clique.',
+    'case.front.f1': 'Site trilíngue: espanhol, português e inglês',
+    'case.front.f2': 'Paraguai, Brasil, Argentina e EUA em um só lugar',
+    'case.front.f3': 'Leads direto no WhatsApp com atendimento humano',
     'case.link': 'Visitar site <span aria-hidden="true">→</span>',
 
 
